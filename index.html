@@ -2,101 +2,210 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAC // Syndicate</title>
+    <title>TAC // Syndicate Official</title>
     <style>
-        :root { --bg: #04060d; --card: rgba(13,19,33,0.8); --cyan: #00f2fe; --purple: #9b51e0; --text: #fff; --muted: #7e8ebc; }
-        body { background: var(--bg); color: var(--text); font-family: system-ui,sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
-        body::before { content: '🐻'; font-size: 20rem; opacity: 0.03; position: absolute; left: 5%; top: 15%; filter: blur(5px); }
-        body::after { content: '⚡'; font-size: 18rem; opacity: 0.03; position: absolute; right: 5%; top: 40%; filter: blur(5px); }
-        .header { width: 100%; max-width: 1200px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; padding: 20px; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-right: 20px; }
-        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; }
-        .hero { width: 100%; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; box-sizing: border-box; }
-        .banner-title { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; margin: 0 0 15px 0; background: linear-gradient(#fff, #a3b8cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .banner-desc { font-size: 1.1rem; color: var(--muted); max-width: 600px; line-height: 1.5; margin-bottom: 30px; }
-        .section-title { text-transform: uppercase; letter-spacing: 3px; font-size: 2rem; background: linear-gradient(45deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 40px; }
-        .timeline { position: relative; max-width: 800px; width: 100%; margin-bottom: 100px; }
-        .timeline::after { content: ''; position: absolute; width: 4px; background: linear-gradient(var(--cyan), var(--purple)); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
-        .phase-container { padding: 15px 30px; position: relative; width: 50%; box-sizing: border-box; }
-        .phase-container::after { content: ''; position: absolute; width: 14px; height: 14px; right: -7px; background: var(--bg); border: 3px solid var(--cyan); top: 25px; border-radius: 50%; z-index: 1; }
+        :root { --bg: #03050a; --card: rgba(10,15,30,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #fff; --muted: #6f80ab; }
+        body { background: var(--bg); color: var(--text); font-family: system-ui,sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; background-image: radial-gradient(circle at 50% -20%, rgba(0,242,254,0.15), transparent 50%); }
+        .header { width: 100%; max-width: 1200px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; padding: 25px 40px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 2px; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
+        .nav-menu { display: flex; gap: 25px; }
+        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; cursor: pointer; padding: 5px 10px; transition: 0.3s; }
+        .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); border-bottom: 2px solid var(--cyan); }
+        .social-icons { display: flex; gap: 15px; align-items: center; margin-right: 20px; }
+        .soc-link img { width: 18px; height: 18px; filter: invert(60%); transition: 0.3s; }
+        .soc-link:hover img { filter: invert(100%) drop-shadow(0 0 5px var(--cyan)); }
+        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 10px 22px; border-radius: 30px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; box-shadow: 0 0 20px rgba(0,242,254,0.3); }
+        .page-section { width: 100%; display: none; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease; }
+        .page-section.active-section { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hero { width: 100%; padding: 60px 20px; box-sizing: border-box; text-align: center; }
+        .supply-tag { font-size: 1.1rem; font-weight: 900; color: var(--cyan); letter-spacing: 2px; margin-bottom: 10px; text-shadow: 0 0 15px rgba(0,242,254,0.4); }
+        .banner-title { font-size: 3.8rem; font-weight: 900; text-transform: uppercase; margin: 0 0 20px 0; background: linear-gradient(#fff, #8fa3b7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .banner-desc { font-size: 1.1rem; color: var(--muted); max-width: 700px; margin: 0 auto; line-height: 1.6; }
+        .features-grid { display: flex; gap: 25px; max-width: 1050px; width: 100%; padding: 40px 20px; box-sizing: border-box; flex-wrap: wrap; justify-content: center; }
+        .feat-card { flex: 1; min-width: 280px; max-width: 320px; background: var(--card); padding: 30px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.03); text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .feat-icon { font-size: 2rem; margin-bottom: 15px; }
+        .feat-card h3 { font-size: 1.3rem; margin: 0 0 10px 0; font-weight: 800; color: #fff; }
+        .feat-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin: 0; }
+        .crypto-ticker { width: 100%; background: rgba(5,10,25,0.6); border-top: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02); padding: 15px 0; margin: 20px 0; overflow: hidden; display: flex; justify-content: center; }
+        .ticker-wrap { display: flex; gap: 50px; align-items: center; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .coin { display: flex; align-items: center; gap: 8px; }
+        .coin span { font-family: monospace; font-size: 1rem; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 6px; }
+        .coin.ton { color: #0088cc; text-shadow: 0 0 10px rgba(0,136,204,0.3); }
+        .coin.btc { color: #f7931a; text-shadow: 0 0 10px rgba(247,147,26,0.3); }
+        .coin.eth { color: #627eea; text-shadow: 0 0 10px rgba(98,126,234,0.3); }
+        .section-title { text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; background: linear-gradient(45deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 40px 0; }
+        .timeline { position: relative; max-width: 900px; width: 100%; margin-bottom: 100px; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background: linear-gradient(var(--cyan), var(--purple)); top: 0; bottom: 0; left: 50%; margin-left: -2px; box-shadow: 0 0 20px rgba(0,242,254,0.3); }
+        .phase-container { padding: 20px 50px; position: relative; width: 50%; box-sizing: border-box; }
+        .phase-container::after { content: ''; position: absolute; width: 14px; height: 14px; right: -7px; background: var(--bg); border: 4px solid var(--cyan); top: 35px; border-radius: 50%; z-index: 1; box-shadow: 0 0 15px var(--cyan); }
         .left { left: 0; text-align: right; }
         .right { left: 50%; text-align: left; }
-        .right::after { left: -7px; border-color: var(--purple); }
-        .content { padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); backdrop-filter: blur(5px); }
-        .badge { display: inline-block; padding: 4px 10px; border-radius: 10px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
-        .badge.active { background: #00ff87; color: #000; }
+        .right::after { left: -7px; border-color: var(--purple); box-shadow: 0 0 15px var(--purple); }
+        .content { padding: 25px; background: var(--card); border-radius: 20px; border: 1px solid rgba(255,255,255,0.03); backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-bottom: 12px; }
+        .badge.active { background: #00ff87; color: #000; box-shadow: 0 0 12px #00ff87; }
         .badge.locked { background: rgba(255,255,255,0.05); color: var(--muted); }
-        .date { font-weight: 800; color: var(--cyan); font-size: 1.1rem; margin-bottom: 5px; }
+        .date { font-weight: 900; color: var(--cyan); font-size: 1.2rem; margin-bottom: 5px; }
         .right .date { color: var(--purple); }
-        .phase-title { font-size: 1.25rem; margin: 0 0 10px 0; font-weight: 700; }
-        .details { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
-        .details ul { padding: 0; list-style: none; margin: 5px 0 0 0; }
-        @media (max-width: 768px) { .nav-links { display: none; } .banner-title { font-size: 2.2rem; } body::before, body::after { display: none; } .timeline::after { left: 20px; } .phase-container { width: 100%; padding-left: 45px; text-align: left !important; } .phase-container::after { left: 13px; } .left, .right { left: 0; } .left .date, .right .date { color: var(--cyan); } }
+        .phase-title { font-size: 1.4rem; margin: 0 0 10px 0; font-weight: 800; }
+        .nft-img { width: 100%; max-width: 260px; height: auto; border-radius: 12px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); background: #0b0f19; }
+        .details { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+        .details p { margin: 5px 0; }
+        @media (max-width: 768px) { .social-icons { display: none; } .banner-title { font-size: 2.3rem; } .timeline::after { left: 30px; } .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } .phase-container::after { left: 23px; } .left, .right { left: 0; } .left .date, .right .date { color: var(--cyan); } .nft-img { max-width: 100%; } }
     </style>
 </head>
 <body>
 
     <header class="header">
         <div class="logo">TAC // Syndicate</div>
-        <nav class="nav-links">
-            <a href="https://t.me" target="_blank">TG</a>
-            <a href="https://x.com" target="_blank">X (X)</a>
-            <a href="https://getgems.io" target="_blank">Getgems</a>
+        <nav class="nav-menu">
+            <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
+            <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
         </nav>
-        <button class="connect-btn" onclick="alert('Coming soon!')">Wallet</button>
+        <div style="display: flex; align-items: center;">
+            <div class="social-icons">
+                <a href="https://t.me" target="_blank" class="soc-link"><img src="https://jsdelivr.net"></a>
+                <a href="https://x.com" target="_blank" class="soc-link"><img src="https://jsdelivr.net"></a>
+                <a href="https://getgems.io" target="_blank" class="soc-link"><img src="https://jsdelivr.net"></a>
+            </div>
+            <button class="connect-btn" onclick="alert('Coming soon!')">Wallet</button>
+        </div>
     </header>
 
-    <section class="hero">
-        <div class="logo" style="font-size:0.9rem; letter-spacing:4px; margin-bottom:10px;">Welcome to the Syndicate</div>
-        <h1 class="banner-title">TAC Genesis Bears</h1>
-        <p class="banner-desc">An elite cyber-collection of 111 unique entities deploying on the TON Blockchain. Mutate your fighters, duplicate your power, and conquer the dark network.</p>
+    <section id="home-section" class="page-section active-section">
+        <div class="hero">
+            <div class="supply-tag">TOTAL SUPPLY: 1111 UNIQUE TOYS</div>
+            <h1 class="banner-title">TAC Genesis Bears</h1>
+            <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
+        </div>
+
+        <div class="crypto-ticker">
+            <div class="ticker-wrap">
+                <div class="coin ton">💎 TON: <span id="price-ton">Loading...</span></div>
+                <div class="coin btc">₿ BTC: <span id="price-btc">Loading...</span></div>
+                <div class="coin eth">♦ ETH: <span id="price-eth">Loading...</span></div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feat-card">
+                <div class="feat-icon">🔥</div>
+                <h3>1111 Hard Cap Supply</h3>
+                <p>Strict limitation rules. Initial drop of 111 tactical genesis bears, followed by tight programmatic monthly batches of 100 entities every 25th day.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🧪</div>
+                <h3>The Mutation Lab</h3>
+                <p>Advanced deflationary utility mechanics. Burn catalyst assets to instantly double structural squad force and unlock elite tiers.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">👑</div>
+                <h3>Syndicate Privileges</h3>
+                <p>High-security private membership tier providing early stage entries, cross-chain airdrops, and governance distribution parameters.</p>
+            </div>
+        </div>
     </section>
+    <section id="roadmap-section" class="page-section">
+        <h1 class="section-title">Strategic Roadmap</h1>
+        <div class="timeline">
+            <!-- PHASE 1 -->
+            <div class="phase-container left">
+                <div class="content">
+                    <span class="badge active">Live</span>
+                    <div class="date">October 2026</div>
+                    <div class="phase-title">Phase 1: Deployment & Genesis</div>
+                    <div class="details">
+                        <p>• <b>Oct 20:</b> Whitelist registration (88 slots @ 50 TON).</p>
+                        <p>• <b>Oct 25:</b> Official Genesis Mint of the first <b>111 Bears</b> on Getgems.</p>
+                        <p>• <b>Future Drops:</b> Exactly 100 new entities drop on the 25th of every following month until supply hits 1111.</p>
+                        <p>• Immediate access to: <b>TAC // The Syndicate</b>.</p>
+                    </div>
+                    <img src="bear1.png" alt="Genesis Bear" class="nft-img">
+                </div>
+            </div>
 
-    <h1 class="section-title">Strategic Roadmap</h1>
+            <!-- PHASE 2 -->
+            <div class="phase-container right">
+                <div class="content">
+                    <span class="badge locked">Month 1</span>
+                    <div class="date">November 2026</div>
+                    <div class="phase-title">Phase 2: Infection Drop</div>
+                    <div class="details">
+                        <p>• <b>Nov 20:</b> Global blockchain snapshot of all holders.</p>
+                        <p>• <b>Nov 25:</b> Guaranteed 1:1 Airdrop of <b>COVID 111</b> token + Next Monthly Drop of 100 items.</p>
+                    </div>
+                    <img src="bear2.png" alt="Infection Drop" class="nft-img">
+                </div>
+            </div>
 
-    <div class="timeline">
-        <div class="phase-container left">
-            <div class="content">
-                <span class="badge active">Live</span>
-                <div class="date">October 2026</div>
-                <div class="phase-title">Phase 1: Genesis</div>
-                <div class="details"><ul><li>• <b>Oct 20:</b> Whitelist (88 slots @ 50 TON).</li><li>• <b>Oct 25:</b> Mint of 111 Bears on Getgems.</li><li>• Club: <b>TAC // The Syndicate</b>.</li></ul></div>
+            <!-- PHASE 3 -->
+            <div class="phase-container left">
+                <div class="content">
+                    <span class="badge locked">Month 2</span>
+                    <div class="date">December 2026</div>
+                    <div class="phase-title">Phase 3: Faction Split</div>
+                    <div class="details">
+                        <p>• <b>Mutation Lab:</b> Burn your COVID 111 token to duplicate power.</p>
+                        <p>• Generate an elite warrior: <b>Cyber Angel</b> or <b>Mutant Demon</b>.</p>
+                        <p>• <b>Dec 25:</b> Monthly drop of 100 new entities goes live.</p>
+                    </div>
+                    <img src="bear3.png" alt="Mutation Lab" class="nft-img">
+                </div>
             </div>
-        </div>
-        <div class="phase-container right">
-            <div class="content">
-                <span class="badge locked">Month 1</span>
-                <div class="date">November 2026</div>
-                <div class="phase-title">Phase 2: Infection</div>
-                <div class="details"><ul><li>• <b>Nov 20:</b> Blockchain snapshot.</li><li>• <b>Nov 25:</b> 1:1 Airdrop of <b>**COVID 111**</b>.</li></ul></div>
-            </div>
-        </div>
-        <div class="phase-container left">
-            <div class="content">
-                <span class="badge locked">Month 2</span>
-                <div class="date">December 2026</div>
-                <div class="phase-title">Phase 3: Faction Split</div>
-                <div class="details"><ul><li>• Mutation Lab: Burn **COVID 111**.</li><li>• Get <b>Cyber Angel</b> or <b>Mutant Demon</b>.</li><li>• Genesis Bear stays safe.</li></ul></div>
-            </div>
-        </div>
-        <div class="phase-container right">
-            <div class="content">
-                <span class="badge locked">Month 3</span>
-                <div class="date">January 2027</div>
-                <div class="phase-title">Phase 4: Elite AirDrop</div>
-                <div class="details"><ul><li>• <b>Jan 25:</b> Secret second NFT Airdrop.</li><li>• Only for holders keeping <b>2+ bears</b>.</li></ul></div>
-            </div>
-        </div>
-        <div class="phase-container left">
-            <div class="content">
-                <span class="badge locked">Month 4</span>
-                <div class="date">February 2027</div>
-                <div class="phase-title">Phase 5: Evolution</div>
-                <div class="details"><ul><li>• <b>Feb 25:</b> Crafting goes live.</li><li>• Mutant Faction ➡️ <b>Hell Bear</b>.</li><li>• Cyber Faction ➡️ <b>Heaven Bear</b>.</li></ul></div>
-            </div>
-        </div>
-    </div>
 
+            <!-- PHASE 4 -->
+            <div class="phase-container right">
+                <div class="content">
+                    <span class="badge locked">Month 3</span>
+                    <div class="date">January 2027</div>
+                    <div class="phase-title">Phase 4: Elite AirDrop</div>
+                    <div class="details">
+                        <p>• <b>Jan 25:</b> Secret second NFT Airdrop distribution + Monthly drop of 100 items.</p>
+                        <p>• Eligible only for holders keeping <b>2+ bears</b> in a single wallet.</p>
+                    </div>
+                    <img src="bear4.png" alt="Elite AirDrop" class="nft-img">
+                </div>
+            </div>
+
+            <!-- PHASE 5 -->
+            <div class="phase-container left">
+                <div class="content">
+                    <span class="badge locked">Month 4</span>
+                    <div class="date">February 2027</div>
+                    <div class="phase-title">Phase 5: Ultimate Evolution</div>
+                    <div class="details">
+                        <p>• <b>Feb 25:</b> Crafting process for supreme entities goes live + Final Monthly Drop.</p>
+                        <p>• Mutant Faction ➡️ generate a <b>Hell Bear</b>.</p>
+                        <p>• Cyber Faction ➡️ generate a <b>Haven Bear</b>.</p>
+                    </div>
+                    <img src="bear5.png" alt="Ultimate Evolution" class="nft-img">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function switchSection(sectionId, tabEl) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
+            document.getElementById(sectionId + '-section').classList.add('active-section');
+            tabEl.classList.add('active-tab');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function updateCryptoPrices() {
+            try {
+                const res = await fetch('https://binance.com["TONUSDT","BTCUSDT","ETHUSDT"]');
+                const data = await res.json();
+                data.forEach(coin => {
+                    if(coin.symbol === "TONUSDT") document.getElementById('price-ton').innerText = '$' + parseFloat(coin.price).toFixed(2);
+                    if(coin.symbol === "BTCUSDT") document.getElementById('price-btc').innerText = '$' + parseInt(coin.price).toLocaleString();
+                    if(coin.symbol === "ETHUSDT") document.getElementById('price-eth').innerText = '$' + parseInt(coin.price).toLocaleString();
+                });
+            } catch (e) { console.error("Price fetch error", e); }
+        }
+        setInterval(updateCryptoPrices, 1000);
+        updateCryptoPrices();
+    </script>
 </body>
 </html>
