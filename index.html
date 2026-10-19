@@ -1,251 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAC // Genesis Roadmap</title>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAC // Syndicate</title>
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #141b2d;
-            --cyan: #00f2fe;
-            --purple: #9b51e0;
-            --text: #ffffff;
-            --text-muted: #8fa0dd;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h1 {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, var(--cyan), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        /* Timeline Container */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        /* Central Neon Line */
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--cyan), var(--purple));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-            box-shadow: 0 0 15px var(--cyan);
-        }
-
-        /* Phase Block */
-        .phase-container {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        /* Timeline Dots */
-        .phase-container::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: var(--bg-color);
-            border: 4px solid var(--cyan);
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px var(--cyan);
-        }
-
-        /* Direction Alignment */
+        :root { --bg: #04060d; --card: rgba(13,19,33,0.8); --cyan: #00f2fe; --purple: #9b51e0; --text: #fff; --muted: #7e8ebc; }
+        body { background: var(--bg); color: var(--text); font-family: system-ui,sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
+        body::before { content: '🐻'; font-size: 20rem; opacity: 0.03; position: absolute; left: 5%; top: 15%; filter: blur(5px); }
+        body::after { content: '⚡'; font-size: 18rem; opacity: 0.03; position: absolute; right: 5%; top: 40%; filter: blur(5px); }
+        .header { width: 100%; max-width: 1200px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; padding: 20px; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-right: 20px; }
+        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; }
+        .hero { width: 100%; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; box-sizing: border-box; }
+        .banner-title { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; margin: 0 0 15px 0; background: linear-gradient(#fff, #a3b8cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .banner-desc { font-size: 1.1rem; color: var(--muted); max-width: 600px; line-height: 1.5; margin-bottom: 30px; }
+        .section-title { text-transform: uppercase; letter-spacing: 3px; font-size: 2rem; background: linear-gradient(45deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 40px; }
+        .timeline { position: relative; max-width: 800px; width: 100%; margin-bottom: 100px; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background: linear-gradient(var(--cyan), var(--purple)); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
+        .phase-container { padding: 15px 30px; position: relative; width: 50%; box-sizing: border-box; }
+        .phase-container::after { content: ''; position: absolute; width: 14px; height: 14px; right: -7px; background: var(--bg); border: 3px solid var(--cyan); top: 25px; border-radius: 50%; z-index: 1; }
         .left { left: 0; text-align: right; }
         .right { left: 50%; text-align: left; }
-        .right::after { left: -10px; border-color: var(--purple); box-shadow: 0 0 10px var(--purple); }
-
-        /* Card Content */
-        .content {
-            padding: 25px;
-            background-color: var(--card-bg);
-            position: relative;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
-        }
-
-        /* Status Badges */
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-        .badge.active { background: #00ff87; color: #000; box-shadow: 0 0 10px #00ff87; }
-        .badge.locked { background: rgba(255, 255, 255, 0.1); color: var(--text-muted); }
-
-        .date {
-            font-weight: bold;
-            color: var(--cyan);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
+        .right::after { left: -7px; border-color: var(--purple); }
+        .content { padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); backdrop-filter: blur(5px); }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 10px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        .badge.active { background: #00ff87; color: #000; }
+        .badge.locked { background: rgba(255,255,255,0.05); color: var(--muted); }
+        .date { font-weight: 800; color: var(--cyan); font-size: 1.1rem; margin-bottom: 5px; }
         .right .date { color: var(--purple); }
-
-        .phase-title {
-            font-size: 1.4rem;
-            margin: 0 0 15px 0;
-            font-weight: 700;
-        }
-
-        .details {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .details ul {
-            padding: 0;
-            list-style: none;
-            margin: 10px 0 0 0;
-        }
-
-        .details li {
-            margin-bottom: 8px;
-            position: relative;
-        }
-
-        /* Responsive Styles for Mobile */
-        @media screen and (max-width: 768px) {
-            .timeline::after { left: 31px; }
-            .phase-container { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left !important; }
-            .phase-container::after { left: 21px; right: auto; }
-            .left { left: 0; }
-            .right { left: 0; }
-            .left .date, .right .date { color: var(--cyan); }
-        }
+        .phase-title { font-size: 1.25rem; margin: 0 0 10px 0; font-weight: 700; }
+        .details { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+        .details ul { padding: 0; list-style: none; margin: 5px 0 0 0; }
+        @media (max-width: 768px) { .nav-links { display: none; } .banner-title { font-size: 2.2rem; } body::before, body::after { display: none; } .timeline::after { left: 20px; } .phase-container { width: 100%; padding-left: 45px; text-align: left !important; } .phase-container::after { left: 13px; } .left, .right { left: 0; } .left .date, .right .date { color: var(--cyan); } }
     </style>
 </head>
 <body>
 
-    <h1>Strategic Roadmap</h1>
+    <header class="header">
+        <div class="logo">TAC // Syndicate</div>
+        <nav class="nav-links">
+            <a href="https://t.me" target="_blank">TG</a>
+            <a href="https://x.com" target="_blank">X (X)</a>
+            <a href="https://getgems.io" target="_blank">Getgems</a>
+        </nav>
+        <button class="connect-btn" onclick="alert('Coming soon!')">Wallet</button>
+    </header>
+
+    <section class="hero">
+        <div class="logo" style="font-size:0.9rem; letter-spacing:4px; margin-bottom:10px;">Welcome to the Syndicate</div>
+        <h1 class="banner-title">TAC Genesis Bears</h1>
+        <p class="banner-desc">An elite cyber-collection of 111 unique entities deploying on the TON Blockchain. Mutate your fighters, duplicate your power, and conquer the dark network.</p>
+    </section>
+
+    <h1 class="section-title">Strategic Roadmap</h1>
 
     <div class="timeline">
-
-        <!-- PHASE 1 -->
         <div class="phase-container left">
             <div class="content">
-                <span class="badge active">Live Now</span>
+                <span class="badge active">Live</span>
                 <div class="date">October 2026</div>
-                <div class="phase-title">Phase 1: Deployment & Genesis</div>
-                <div class="details">
-                    Launch of the first generation wave:
-                    <ul>
-                        <li>• <b>October 20:</b> Whitelist registration (88 slots @ 50 TON).</li>
-                        <li>• <b>October 25:</b> Official Mint of 111 Genesis Bears on Getgems.</li>
-                        <li>• Instant access to the high-security club: <b>TAC // The Syndicate</b>.</li>
-                    </ul>
-                </div>
+                <div class="phase-title">Phase 1: Genesis</div>
+                <div class="details"><ul><li>• <b>Oct 20:</b> Whitelist (88 slots @ 50 TON).</li><li>• <b>Oct 25:</b> Mint of 111 Bears on Getgems.</li><li>• Club: <b>TAC // The Syndicate</b>.</li></ul></div>
             </div>
         </div>
-
-        <!-- PHASE 2 -->
         <div class="phase-container right">
             <div class="content">
                 <span class="badge locked">Month 1</span>
                 <div class="date">November 2026</div>
-                <div class="phase-title">Phase 2: Infection Drop</div>
-                <div class="details">
-                    Network infection and first rewards for holders:
-                    <ul>
-                        <li>• <b>November 20:</b> Global blockchain snapshot of all holders.</li>
-                        <li>• <b>November 25:</b> Guaranteed 1:1 Airdrop of the <b>**COVID 111**</b> catalyst token directly to your wallet.</li>
-                    </ul>
-                </div>
+                <div class="phase-title">Phase 2: Infection</div>
+                <div class="details"><ul><li>• <b>Nov 20:</b> Blockchain snapshot.</li><li>• <b>Nov 25:</b> 1:1 Airdrop of <b>**COVID 111**</b>.</li></ul></div>
             </div>
         </div>
-
-        <!-- PHASE 3 -->
         <div class="phase-container left">
             <div class="content">
                 <span class="badge locked">Month 2</span>
                 <div class="date">December 2026</div>
-                <div class="phase-title">Phase 3: The Great Faction Split</div>
-                <div class="details">
-                    Mutation Lab activation:
-                    <ul>
-                        <li>• Burn your **COVID 111** token to duplicate your power.</li>
-                        <li>• Generate an elite warrior: <b>Cyber Angel</b> or <b>Mutant Demon</b>.</li>
-                        <li>• Original Genesis Bear remains completely safe in your wallet.</li>
-                    </ul>
-                </div>
+                <div class="phase-title">Phase 3: Faction Split</div>
+                <div class="details"><ul><li>• Mutation Lab: Burn **COVID 111**.</li><li>• Get <b>Cyber Angel</b> or <b>Mutant Demon</b>.</li><li>• Genesis Bear stays safe.</li></ul></div>
             </div>
         </div>
-
-        <!-- PHASE 4 -->
         <div class="phase-container right">
             <div class="content">
                 <span class="badge locked">Month 3</span>
                 <div class="date">January 2027</div>
                 <div class="phase-title">Phase 4: Elite AirDrop</div>
-                <div class="details">
-                    Exclusive distribution for top supporters:
-                    <ul>
-                        <li>• <b>January 25:</b> Secret second NFT Airdrop.</li>
-                        <li>• Eligible only for holders keeping **2 or more bears** in a single wallet.</li>
-                    </ul>
-                </div>
+                <div class="details"><ul><li>• <b>Jan 25:</b> Secret second NFT Airdrop.</li><li>• Only for holders keeping <b>2+ bears</b>.</li></ul></div>
             </div>
         </div>
-
-        <!-- PHASE 5 -->
         <div class="phase-container left">
             <div class="content">
                 <span class="badge locked">Month 4</span>
                 <div class="date">February 2027</div>
-                <div class="phase-title">Phase 5: Ultimate Evolution</div>
-                <div class="details">
-                    Final fusion and generation unlock:
-                    <ul>
-                        <li>• <b>February 25:</b> Crafting process for supreme entities goes live.</li>
-                        <li>• Mutant Faction ➡️ generate a <b>Hell Bear</b>.</li>
-                        <li>• Cyber Faction ➡️ generate a <b>Heaven Bear</b>.</li>
-                    </ul>
-                </div>
+                <div class="phase-title">Phase 5: Evolution</div>
+                <div class="details"><ul><li>• <b>Feb 25:</b> Crafting goes live.</li><li>• Mutant Faction ➡️ <b>Hell Bear</b>.</li><li>• Cyber Faction ➡️ <b>Heaven Bear</b>.</li></ul></div>
             </div>
         </div>
-
     </div>
 
 </body>
