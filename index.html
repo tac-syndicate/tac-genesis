@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
-    <!-- ПОДКЛЮЧЕНИЕ НАСТОЯЩИХ ИКОНОК СОЦСЕТЕЙ -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
         body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; background-image: radial-gradient(circle at 50% -20%, rgba(0,242,254,0.18), transparent 60%), radial-gradient(circle at 0% 100%, rgba(155,81,224,0.05), transparent 40%); }
         .header { width: 100%; max-width: 1200px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; padding: 25px 40px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.04); }
         .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
-        .nav-menu { display: flex; gap: 30px; }
-        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; cursor: pointer; padding: 8px 16px; border-radius: 8px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-menu { display: flex; gap: 15px; }
+        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
         .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); }
         .social-icons { display: flex; gap: 24px; align-items: center; margin-right: 25px; font-size: 1.4rem; }
@@ -30,6 +29,13 @@
         .ticker-wrap { display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; }
         .coin { display: flex; align-items: center; gap: 12px; color: #0088cc; text-shadow: 0 0 15px rgba(0,136,204,0.4); }
         .coin span { font-family: monospace; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); color: #fff; }
+        .swap-container { max-width: 440px; width: 100%; background: var(--card); border-radius: 32px; border: 1px solid rgba(255,255,255,0.04); padding: 30px; box-sizing: border-box; box-shadow: 0 30px 60px rgba(0,0,0,0.8); margin-top: 40px; }
+        .swap-box { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.02); border-radius: 20px; padding: 16px; margin-bottom: 12px; }
+        .swap-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+        .swap-row { display: flex; justify-content: space-between; align-items: center; }
+        .swap-input { background: transparent; border: none; color: #fff; font-size: 1.6rem; font-family: monospace; font-weight: 700; width: 60%; outline: none; }
+        .token-select { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; color: #fff; padding: 8px 16px; font-weight: 800; font-size: 1rem; cursor: pointer; outline: none; }
+        .swap-btn-locked { width: 100%; padding: 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.02); color: var(--muted); font-size: 1rem; font-weight: 800; text-transform: uppercase; cursor: not-allowed; transition: all 0.3s; margin-top: 15px; text-align: center; letter-spacing: 1px; }
         .features-grid { display: flex; gap: 30px; max-width: 1100px; width: 100%; padding: 30px 20px; box-sizing: border-box; flex-wrap: wrap; justify-content: center; }
         .feat-card { flex: 1; min-width: 290px; max-width: 340px; background: var(--card); padding: 35px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.03); text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.6); transform-style: preserve-3d; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .feat-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(0,242,254,0.3); box-shadow: 0 30px 60px rgba(0,242,254,0.12); }
@@ -63,6 +69,7 @@
         <nav class="nav-menu">
             <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
             <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
+            <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool</div>
         </nav>
         <div style="display: flex; align-items: center;">
             <div class="social-icons">
@@ -86,7 +93,6 @@
             </div>
         </div>
 
-        <!-- МАНИФЕСТ ОСНОВАТЕЛЯ TAC_ZERO -->
         <div class="manifesto-box">
             <p style="color:var(--purple); font-weight:900; font-style:normal; margin-bottom:10px; text-transform:uppercase; letter-spacing:2px;">// TAC_ZERO SYSTEM MANIFESTO</p>
             <p>"We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."</p>
@@ -198,7 +204,7 @@
             <div class="phase-container left">
                 <div class="content">
                     <span class="badge locked">Month 4</span><div class="date">February 2027</div><div class="phase-title">Phase 5: Ultimate Evolution</div>
-                    <div class="details"><p>• <b>Feb 25:</b> Crafting process for supreme entities goes live + Final Monthly Drop.</p><p>• Mutant Faction ➡️ generate a <b>Hell Bear</b> | Cyber Faction ➡️ generate a <b>Heaven Bear</b>.</p><p>• Core parameters prepared for potential multi-chain expansion modules.</p></div>
+                    <div class="details"><p>• <b>Feb 25:</b> Crafting process for supreme entities goes live + Final Monthly Drop.</p><p>• Mutant Faction ➡️ generate a <b>Hell Bear</b> | Cyber Faction ➡️ generate a <b>Haven Bear</b>.</p><p>• Core parameters prepared for potential multi-chain expansion modules.</p></div>
                     <img src="bear5.png" alt="Ultimate Evolution" class="nft-img">
                 </div>
             </div>
@@ -233,15 +239,22 @@
 
         async function updateCryptoPrices() {
             try {
-                // Нативный и стабильный метод без CORS блокировок бирж
-                const res = await fetch('https://coingecko.com');
+                const res = await fetch('https://tonapi.io');
                 const data = await res.json();
-                if (data.market_data && data.market_data.current_price && data.market_data.current_price.usd) {
-                    document.getElementById('price-ton').innerText = '$' + parseFloat(data.market_data.current_price.usd).toFixed(2);
+                if (data.rates && data.rates.TON && data.rates.TON.prices && data.rates.TON.prices.USD) {
+                    document.getElementById('price-ton').innerText = '$' + parseFloat(data.rates.TON.prices.USD).toFixed(2);
                 }
             } catch (e) { 
-                console.error("Price fetch error", e); 
-                document.getElementById('price-ton').innerText = 'Connecting...';
+                console.error("TON network fetch error, switching backup", e);
+                try {
+                    const backupRes = await fetch('https://toncenter.com');
+                    const backupData = await backupRes.json();
+                    if(backupData && backupData.rate) {
+                        document.getElementById('price-ton').innerText = '$' + parseFloat(backupData.rate).toFixed(2);
+                    }
+                } catch(err) {
+                    document.getElementById('price-ton').innerText = 'Connecting...';
+                }
             }
         }
         setInterval(updateCryptoPrices, 10000);
