@@ -9,58 +9,53 @@
         .header { width: 100%; max-width: 1200px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; padding: 25px 40px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.04); }
         .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
         .nav-menu { display: flex; gap: 15px; }
-        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid transparent; }
+        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: 0.3s; border: 1px solid transparent; }
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
         .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); }
-        .social-icons { display: flex; gap: 20px; align-items: center; margin-right: 25px; }
-        .soc-link { display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s; }
-        .soc-link svg { width: 20px; height: 20px; fill: var(--muted); transition: fill 0.3s, filter 0.3s; }
-        .soc-link:hover { transform: scale(1.25) translateY(-2px); }
-        .soc-link:hover svg { fill: var(--cyan); filter: drop-shadow(0 0 8px var(--cyan)); }
-        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 0 25px rgba(0,242,254,0.35); transition: all 0.3s ease; }
-        .connect-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 35px var(--cyan); }
-        .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); perspective: 1000px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .social-icons { display: flex; gap: 20px; align-items: center; margin-right: 25px; font-weight: 900; }
+        .soc-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
+        .soc-link:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; box-shadow: 0 0 25px rgba(0,242,254,0.35); }
+        .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); transition: all 0.4s ease; }
         .page-section.active-section { display: flex; opacity: 1; transform: scale(1) translateY(0); }
-        .hero { width: 100%; padding: 80px 20px 40px 20px; box-sizing: border-box; text-align: center; }
-        .supply-tag { font-size: 1.1rem; font-weight: 900; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; animation: pulseGlow 2s infinite alternate; }
-        @keyframes pulseGlow { from { text-shadow: 0 0 10px rgba(0,242,254,0.3); } to { text-shadow: 0 0 25px rgba(0,242,254,0.8); transform: scale(1.02); } }
-        .banner-title { font-size: 4.2rem; font-weight: 900; text-transform: uppercase; margin: 0 0 25px 0; letter-spacing: -1px; background: linear-gradient(180deg, #ffffff 30%, #768fa5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto; line-height: 1.7; letter-spacing: 0.5px; }
-        .crypto-ticker { width: 100%; max-width: 400px; background: rgba(6,10,23,0.7); border: 1px solid rgba(255,255,255,0.03); border-radius: 50px; padding: 16px 35px; margin: 40px 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 15px 35px rgba(0,0,0,0.5); }
-        .ticker-wrap { display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; }
-        .coin { display: flex; align-items: center; gap: 12px; color: #0088cc; text-shadow: 0 0 15px rgba(0,136,204,0.4); font-weight: 900; }
-        .coin span { font-family: monospace; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); color: #fff; margin-left: 5px; }
-        .swap-container { max-width: 440px; width: 100%; background: var(--card); border-radius: 32px; border: 1px solid rgba(255,255,255,0.04); padding: 30px; box-sizing: border-box; box-shadow: 0 30px 60px rgba(0,0,0,0.8); margin-top: 40px; }
+        .hero { width: 100%; padding: 60px 20px 40px 20px; box-sizing: border-box; text-align: center; }
+        .supply-tag { font-size: 1.1rem; font-weight: 900; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; }
+        .banner-title { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin: 0 0 25px 0; background: linear-gradient(180deg, #ffffff, #768fa5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto 35px auto; line-height: 1.7; }
+        .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
+        .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-window { background: var(--card); width: 100%; max-width: 550px; height: 80vh; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; color: var(--muted); cursor: pointer; z-index: 1001; }
+        .form-iframe { width: 100%; height: 100%; border: none; border-radius: 16px; }
+        .swap-container { max-width: 440px; width: 100%; background: var(--card); border-radius: 32px; border: 1px solid rgba(255,255,255,0.04); padding: 30px; box-sizing: border-box; margin-top: 40px; }
         .swap-box { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.02); border-radius: 20px; padding: 16px; margin-bottom: 12px; }
         .swap-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
         .swap-row { display: flex; justify-content: space-between; align-items: center; }
         .swap-input { background: transparent; border: none; color: #fff; font-size: 1.6rem; font-family: monospace; font-weight: 700; width: 60%; outline: none; }
-        .token-select { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; color: #fff; padding: 8px 16px; font-weight: 800; font-size: 1rem; cursor: pointer; outline: none; }
-        .swap-btn-locked { width: 100%; padding: 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.02); color: var(--muted); font-size: 1rem; font-weight: 800; text-transform: uppercase; cursor: not-allowed; transition: all 0.3s; margin-top: 15px; text-align: center; letter-spacing: 1px; }
+        .token-select { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; color: #fff; padding: 8px 16px; font-weight: 800; }
+        .swap-btn-locked { width: 100%; padding: 16px; border-radius: 20px; background: rgba(255,255,255,0.02); color: rgba(255,255,255,0.15); font-size: 1rem; font-weight: 800; text-transform: uppercase; cursor: not-allowed; margin-top: 15px; text-align: center; }
         .features-grid { display: flex; gap: 30px; max-width: 1100px; width: 100%; padding: 30px 20px; box-sizing: border-box; flex-wrap: wrap; justify-content: center; }
-        .feat-card { flex: 1; min-width: 290px; max-width: 340px; background: var(--card); padding: 35px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.03); text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.6); transform-style: preserve-3d; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .feat-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(0,242,254,0.3); box-shadow: 0 30px 60px rgba(0,242,254,0.12); }
-        .feat-icon { font-size: 2.5rem; margin-bottom: 20px; display: inline-block; }
-        .feat-card h3 { font-size: 1.4rem; margin: 0 0 12px 0; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+        .feat-card { flex: 1; min-width: 290px; max-width: 340px; background: var(--card); padding: 35px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.03); text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .feat-card h3 { font-size: 1.4rem; margin: 0 0 12px 0; font-weight: 800; color: #fff; }
         .feat-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .section-title { text-transform: uppercase; letter-spacing: 5px; font-size: 2.5rem; background: linear-gradient(45deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 50px 0; }
         .timeline { position: relative; max-width: 950px; width: 100%; margin-bottom: 120px; }
-        .timeline::after { content: ''; position: absolute; width: 4px; background: linear-gradient(var(--cyan), var(--purple)); top: 0; bottom: 0; left: 50%; margin-left: -2px; box-shadow: 0 0 25px rgba(0,242,254,0.4); }
+        .timeline::after { content: ''; position: absolute; width: 4px; background: linear-gradient(var(--cyan), var(--purple)); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
         .phase-container { padding: 25px 60px; position: relative; width: 50%; box-sizing: border-box; }
-        .phase-container::after { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background: var(--bg); border: 4px solid var(--cyan); top: 40px; border-radius: 50%; z-index: 1; box-shadow: 0 0 20px var(--cyan); }
+        .phase-container::after { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background: var(--bg); border: 4px solid var(--cyan); top: 40px; border-radius: 50%; z-index: 1; }
         .left { left: 0; text-align: right; } .right { left: 50%; text-align: left; }
-        .right::after { left: -8px; border-color: var(--purple); box-shadow: 0 0 20px var(--purple); }
-        .content { padding: 30px; background: var(--card); border-radius: 24px; border: 1px solid rgba(255,255,255,0.03); backdrop-filter: blur(20px); box-shadow: 0 25px 50px rgba(0,0,0,0.6); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .content:hover { transform: translateY(-5px); border-color: rgba(0,242,254,0.25); box-shadow: 0 25px 50px rgba(0,242,254,0.08); }
+        .right::after { left: -8px; border-color: var(--purple); }
+        .content { padding: 30px; background: var(--card); border-radius: 24px; border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
         .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
         .badge.active { background: #00ff87; color: #000; box-shadow: 0 0 15px #00ff87; }
-        .badge.locked { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid rgba(255,255,255,0.05); }
-        .date { font-weight: 900; color: var(--cyan); font-size: 1.25rem; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .badge.locked { background: rgba(255,255,255,0.05); color: var(--muted); }
+        .date { font-weight: 900; color: var(--cyan); font-size: 1.25rem; margin-bottom: 6px; }
         .right .date { color: var(--purple); }
         .phase-title { font-size: 1.5rem; margin: 0 0 12px 0; font-weight: 800; }
-        .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
-        .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) { .social-icons { display: none; } .banner-title { font-size: 2.6rem; } .timeline::after { left: 30px; } .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } .phase-container::after { left: 23px; } .left, .right { left: 0; } .left .date, .right .date { color: var(--cyan); } .nft-img { max-width: 100%; } }
     </style>
 </head>
@@ -70,91 +65,84 @@
         <nav class="nav-menu">
             <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
             <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
-            <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool</div>
+            <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool 0%</div>
         </nav>
         <div style="display: flex; align-items: center;">
             <div class="social-icons">
-                <!-- НАСТОЯЩИЕ ВШИТЫЕ SVG ВМЕСТО ШРИФТОВ -->
-                <a href="https://t.me" target="_blank" class="soc-link" title="Telegram"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-0.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg></a>
-                <a href="https://x.com" target="_blank" class="soc-link" title="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                <a href="https://getgems.io" target="_blank" class="soc-link" title="Getgems"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></a>
+                <a href="https://t.me" target="_blank" class="soc-link">TELEGRAM</a>
+                <a href="https://x.com" target="_blank" class="soc-link">TWITTER</a>
+                <a href="https://getgems.io" target="_blank" class="soc-link">GETGEMS</a>
             </div>
             <button class="connect-btn" onclick="alert('Coming soon!')">Wallet</button>
         </div>
     </header>
-    <!-- РАЗДЕЛ 1: PRESENTATION -->
+    <!-- SECTION 1: PRESENTATION -->
     <section id="home-section" class="page-section active-section">
         <div class="hero">
             <div class="supply-tag">TOTAL SUPPLY: 1111 VALUABLE ENTITIES</div>
             <h1 class="banner-title">TAC Genesis Bears</h1>
             <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
+            <button class="mint-main-btn" onclick="openMintModal()">Mint Now (WL Application)</button>
         </div>
 
-        <div class="crypto-ticker">
-            <div class="ticker-wrap">
-                <div class="coin">💎 TON PRICE: <span id="price-ton">Loading...</span></div>
+        <div id="mint-modal" class="modal-overlay" onclick="closeMintModal(event)">
+            <div class="modal-window">
+                <span class="modal-close" onclick="document.getElementById('mint-modal').style.display='none'">&times;</span>
+                <iframe src="https://google.com" class="form-iframe">Loading...</iframe>
             </div>
         </div>
 
         <div class="manifesto-box">
-            <p style="color:var(--purple); font-weight:900; font-style:normal; margin-bottom:10px; text-transform:uppercase; letter-spacing:2px;">// TAC_ZERO SYSTEM MANIFESTO</p>
+            <p style="color:var(--purple); font-weight:900; font-style:normal; margin-bottom:10px; text-transform:uppercase;">// TAC_ZERO SYSTEM MANIFESTO</p>
             <p>"We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."</p>
         </div>
 
         <div class="features-grid">
             <div class="feat-card">
-                <div class="feat-icon">🔥</div>
                 <h3>1111 Hard Cap Supply</h3>
                 <p>Strict limitation rules. Initial drop of 111 tactical genesis bears, followed by tight programmatic monthly batches of 100 entities every 25th day.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">🧪</div>
                 <h3>The Mutation Lab</h3>
                 <p>Advanced deflationary utility mechanics. Burn catalyst assets to instantly double structural squad force and unlock elite tiers.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">🌐</div>
                 <h3>Ecosystem Vision</h3>
-                <p>Strategic expansion plans. While launching natively on TON, the core ecosystem is designed with long-term plans to deploy cross-chain bridges to <b>Ethereum</b>, opening potential market presence on <b>OpenSea</b> and <b>Rarible</b>.</p>
+                <p>Strategic expansion plans. While launching natively on TON, the core ecosystem is designed with long-term plans to deploy cross-chain bridges to Ethereum, opening potential market presence on OpenSea and Rarible.</p>
             </div>
         </div>
 
         <div class="features-grid">
             <div class="feat-card">
-                <div class="feat-icon">📊</div>
                 <h3>Ecosystem Staking</h3>
                 <p>Hold your Genesis Entities to accumulate non-monetary ecosystem utility points. 100% of marketplace royalty fees are fully re-routed to community liquidity pools.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">🛡️</div>
                 <h3>Verified Security</h3>
                 <p>Ecosystem Smart Contracts:<br>
                 <span style="font-family:monospace; font-size:0.75rem; color:var(--cyan)">Collection: EQ_TAC_Genesis_Collection_Core...</span><br>
                 <span style="font-family:monospace; font-size:0.75rem; color:var(--purple)">Lab Core: EQ_TAC_Mutation_Laboratory_Active...</span></p>
             </div>
         </div>
-
         <h2 class="section-title" style="font-size: 1.8rem; margin: 40px 0 10px 0;">Ecosystem Syndicate Founders</h2>
         <div class="features-grid" style="padding-top: 10px;">
-            <div class="feat-card" style="max-width: 300px;">
-                <div style="font-size:2.5rem; margin-bottom:15px;">🕶️</div>
+            <div class="feat-card">
                 <h3>TAC_Zero</h3>
                 <p style="color:var(--cyan); font-weight:800; font-size:0.8rem; margin-bottom:5px; text-transform:uppercase;">Lead Architect & Vision</p>
                 <p>10+ years of digital brand development and product architecture across premium asset spheres.</p>
             </div>
-            <div class="feat-card" style="max-width: 300px;">
-                <div style="font-size:2.5rem; margin-bottom:15px;">⚙️</div>
+            <div class="feat-card">
                 <h3>Cyber_Morph</h3>
                 <p style="color:var(--purple); font-weight:800; font-size:0.8rem; margin-bottom:5px; text-transform:uppercase;">Senior Smart Contract Dev</p>
                 <p>Expert in scalable FunC/Tact system architectures and high-security automated distribution modules.</p>
             </div>
-            <div class="feat-card" style="max-width: 300px;">
-                <div style="font-size:2.5rem; margin-bottom:15px;">🎨</div>
+            <div class="feat-card">
                 <h3>Plush_Render</h3>
                 <p style="color:var(--cyan); font-weight:800; font-size:0.8rem; margin-bottom:5px; text-transform:uppercase;">Lead 3D Digital Artist</p>
                 <p>Specializes in hyper-realistic octane shading, custom material generation, and intricate character silhouettes.</p>
             </div>
         </div>
+
         <h2 class="section-title" style="font-size: 1.8rem; margin: 40px 0 10px 0;">Frequently Asked Questions</h2>
         <div class="features-grid" style="padding-top: 10px;">
             <div class="feat-card" style="max-width: 500px;">
@@ -173,70 +161,67 @@
         </footer>
     </section>
 
-    <!-- РАЗДЕЛ 2: SWAP POOL -->
+    <!-- SECTION 2: SWAP POOL -->
     <section id="swap-section" class="page-section">
         <h2 class="section-title" style="margin-bottom:10px;">TAC Syndicate Liquidity Swap</h2>
-        <p style="color:var(--muted); text-align:center; max-width:500px; margin-bottom:20px;">Swap top TON ecosystem tokens instantly. Verified holders of TAC Genesis NFTs receive a programmatic 0% exchange fee benefit powered by the accumulation treasury pool.</p>
-        
         <div class="swap-container">
-            <div style="background:rgba(0,255,135,0.06); border:1px dashed #00ff87; border-radius:16px; padding:12px; font-size:0.75rem; text-align:center; color:#00ff87; font-weight:800; margin-bottom:20px; letter-spacing:0.5px;">
-                 TAC HOLDER BENEFIT: 0% SWAP FEES ACTIVE
+            <div style="background:rgba(255,255,255,0.03); border:1px dashed rgba(255,255,255,0.1); border-radius:16px; padding:12px; font-size:0.75rem; text-align:center; color:var(--muted); font-weight:800; margin-bottom:20px; letter-spacing:0.5px;">
+                 SWAP POOL STATUS: MAINTENANCE / LOCKED
             </div>
             <div class="swap-box">
                 <div class="swap-label">You Send</div>
                 <div class="swap-row">
-                    <input type="text" class="swap-input" value="100" placeholder="0.0">
-                    <select class="token-select"><option>TON</option><option>USDT</option><option>NOT</option><option>DOGS</option></select>
+                    <input type="text" class="swap-input" value="100" disabled style="cursor:not-allowed; color:var(--muted)">
+                    <select class="token-select" disabled><option>TON</option></select>
                 </div>
             </div>
-            <div style="text-align:center; margin:-6px 0 6px 0; color:var(--cyan); font-size:1.2rem;">↓</div>
             <div class="swap-box">
                 <div class="swap-label">You Receive (Estimated)</div>
                 <div class="swap-row">
-                    <input type="text" class="swap-input" value="532.4" placeholder="0.0" readonly>
-                    <select class="token-select"><option>USDT</option><option>TON</option><option>NOT</option><option>DOGS</option></select>
+                    <input type="text" class="swap-input" value="0.00" readonly disabled style="cursor:not-allowed; color:var(--muted)">
+                    <select class="token-select" disabled><option>USDT</option></select>
                 </div>
             </div>
-            <div class="swap-btn-locked">Pool Opening Pending Signal</div>
+            <div class="swap-btn-locked">Exchange System Disabled</div>
         </div>
     </section>
 
-    <!-- РАЗДЕЛ 3: ROADMAP -->
+    <!-- SECTION 3: ROADMAP -->
     <section id="roadmap-section" class="page-section">
         <h1 class="section-title">Strategic Roadmap</h1>
         <div class="timeline">
             <div class="phase-container left">
                 <div class="content">
                     <span class="badge active">Live Now</span><div class="date">October 2026</div><div class="phase-title">Phase 1: Deployment & Genesis</div>
-                    <div class="details"><p>• <b>Oct 20:</b> Whitelist registration (88 slots @ 50 TON).</p><p>• <b>Oct 25:</b> Official Genesis Mint of the first <b>111 Bears</b> on Getgems.</p><p>• <b>Future Drops:</b> Exactly 100 new entities drop on the 25th of every following month until supply hits 1111.</p></div>
+                    <div class="details"><p>• Oct 20: Whitelist registration (88 slots @ 50 TON).</p><p>• Oct 25: Official Genesis Mint of the first 111 Bears on Getgems.</p><p>• Future Drops: Exactly 100 new entities drop on the 25th of every following month until supply hits 1111.</p></div>
                     <img src="bear1.png" alt="Genesis Bear" class="nft-img">
                 </div>
             </div>
             <div class="phase-container right">
                 <div class="content">
                     <span class="badge locked">Month 1</span><div class="date">November 2026</div><div class="phase-title">Phase 2: Infection Drop</div>
-                    <div class="details"><p>• <b>Nov 20:</b> Global blockchain snapshot of all holders.</p><p>• <b>Nov 25:</b> Guaranteed 1:1 Airdrop of <b>COVID 111</b> token + Next Monthly Drop of 100 items.</p></div>
+                    <div class="details"><p>• Nov 20: Global blockchain snapshot of all holders.</p><p>• Nov 25: Guaranteed 1:1 Airdrop of COVID 111 token + Next Monthly Drop of 100 items.</p></div>
                     <img src="bear2.png" alt="Infection Drop" class="nft-img">
                 </div>
             </div>
             <div class="phase-container left">
                 <div class="content">
                     <span class="badge locked">Month 2</span><div class="date">December 2026</div><div class="phase-title">Phase 3: Faction Split</div>
-                    <div class="details"><p>• <b>Mutation Lab:</b> Burn your COVID 111 token to duplicate power.</p><p>• Generate an elite warrior: <b>Cyber Angel</b> or <b>Mutant Demon</b>.</p><p>• <b>Dec 25:</b> Monthly drop of 100 new entities goes live.</p></div>
+                    <div class="details"><p>• Mutation Lab: Burn your COVID 111 token to duplicate power.</p><p>• Generate an elite warrior: Cyber Angel or Mutant Demon.</p><p>• Dec 25: Monthly drop of 100 new entities goes live.</p></div>
                     <img src="bear3.png" alt="Mutation Lab" class="nft-img">
                 </div>
             </div>
             <div class="phase-container right">
                 <div class="content">
                     <span class="badge locked">Month 3</span><div class="date">January 2027</div><div class="phase-title">Phase 4: Elite AirDrop</div>
-                    <div class="details"><p>• <b>Jan 25:</b> Secret second NFT Airdrop distribution + Monthly drop of 100 items.</p><p>• Eligible only for holders keeping <b>2 or more bears</b> in a single wallet.</p></div>
+                    <div class="details"><p>• Jan 25: Secret second NFT Airdrop distribution + Monthly drop of 100 items.</p><p>• Eligible only for holders keeping 2 or more bears in a single wallet.</p></div>
                     <img src="bear4.png" alt="Elite AirDrop" class="nft-img">
                 </div>
             </div>
             <div class="phase-container left">
                 <div class="content">
                     <span class="badge locked">Month 4</span><div class="date">February 2027</div><div class="phase-title">Phase 5: Ultimate Evolution</div>
-                    <div class="details"><p>• <b>Feb 25:</b> Crafting process for supreme entities goes live + Final Monthly Drop.</p><p>• Mutant Faction ➡️ generate a <b>Hell Bear</b> | Cyber Faction ➡️ generate a <b>Haven Bear</b>.</p><p>• Core parameters prepared for potential multi-chain expansion modules.</p></div>
+                    <div class="details"><p>• Feb 25: Crafting process for supreme entities goes live + Final Monthly Drop.</p><p>• Mutant Faction -> generate a Hell Bear | Cyber Faction -> generate a Heaven Bear.</p></div>
                     <img src="bear5.png" alt="Ultimate Evolution" class="nft-img">
                 </div>
             </div>
@@ -251,45 +236,32 @@
                 setTimeout(() => {
                     activeSec.classList.remove('active-section');
                     activateNew(sectionId, tabEl);
-                }, 350); // Фикс зависания Swap
-            } else {
-                activateNew(sectionId, tabEl);
-            }
+                }, 350);
+            } else { activateNew(sectionId, tabEl); }
         }
-
         function activateNew(sectionId, tabEl) {
             const newSec = document.getElementById(sectionId + '-section');
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
             tabEl.classList.add('active-tab');
-            newSec.add ? newSec.classList.add('active-section') : newSec.classList.add('active-section');
+            newSec.classList.add('active-section');
             setTimeout(() => {
                 newSec.style.opacity = '1';
                 newSec.style.transform = 'scale(1) translateY(0)';
             }, 50);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        async function updateCryptoPrices() {
-            try {
-                // Прямой, нативный и бесперебойный Web3-запрос цен TON
-                const res = await fetch('https://geckoterminal.com');
-                const data = await res.json();
-                if (data.data && data.data.attributes && data.data.attributes.base_token_price_usd) {
-                    const price = parseFloat(data.data.attributes.base_token_price_usd);
-                    document.getElementById('price-ton').innerText = '$' + price.toFixed(2);
-                } else {
-                    // Резервный метод на случай падения пула
-                    const backup = await fetch('https://coingecko.com');
-                    const bData = await backup.json();
-                    document.getElementById('price-ton').innerText = '$' + parseFloat(bData['the-open-network'].usd).toFixed(2);
-                }
-            } catch (e) { 
-                console.error("Price API Error", e);
-                document.getElementById('price-ton').innerText = '$5.24'; // Хардкод-заглушка на случай полного падения интернета
+        function openMintModal() {
+            const modal = document.getElementById('mint-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.style.opacity = '1'; }, 10);
+        }
+        function closeMintModal(event) {
+            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-close')) {
+                const modal = document.getElementById('mint-modal');
+                modal.style.opacity = '0';
+                setTimeout(() => { modal.style.display = 'none'; }, 300);
             }
         }
-        setInterval(updateCryptoPrices, 15000);
-        updateCryptoPrices();
     </script>
 </body>
 </html>
