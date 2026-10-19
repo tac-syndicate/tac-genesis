@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
@@ -14,9 +13,9 @@
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
         .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); }
         .social-icons { display: flex; gap: 20px; align-items: center; margin-right: 25px; font-weight: 900; }
-        .soc-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; cursor: pointer; }
+        .soc-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
         .soc-link:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
-        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; box-shadow: 0 0 25px rgba(0,242,254,0.35); color: #000; transition: 0.3s; }
+        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; box-shadow: 0 0 25px rgba(0,242,254,0.35); }
         .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); transition: all 0.4s ease; }
         .page-section.active-section { display: flex; opacity: 1; transform: scale(1) translateY(0); }
         .hero { width: 100%; padding: 60px 20px 40px 20px; box-sizing: border-box; text-align: center; }
@@ -25,11 +24,10 @@
         .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto 35px auto; line-height: 1.7; }
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.92); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-window { background: var(--card); width: 92%; max-width: 550px; height: 85vh; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; padding: 15px; box-sizing: border-box; display: flex; flex-direction: column; }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--muted); cursor: pointer; z-index: 1001; transition: color 0.2s; }
-        .modal-close:hover { color: #fff; }
-        .form-iframe { width: 100%; height: 100%; border: none; border-radius: 16px; background: transparent; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-window { background: var(--card); width: 100%; max-width: 550px; height: 80vh; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; color: var(--muted); cursor: pointer; z-index: 1001; }
+        .form-iframe { width: 100%; height: 100%; border: none; border-radius: 16px; }
         .swap-container { max-width: 440px; width: 100%; background: var(--card); border-radius: 32px; border: 1px solid rgba(255,255,255,0.04); padding: 30px; box-sizing: border-box; margin-top: 40px; }
         .swap-box { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.02); border-radius: 20px; padding: 16px; margin-bottom: 12px; }
         .swap-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
@@ -55,37 +53,48 @@
         .date { font-weight: 900; color: var(--cyan); font-size: 1.25rem; margin-bottom: 6px; }
         .right .date { color: var(--purple); }
         .phase-title { font-size: 1.5rem; margin: 0 0 12px 0; font-weight: 800; }
+        .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
+        .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
+        @media (max-width: 768px) { .social-icons { display: none; } .banner-title { font-size: 2.6rem; } .timeline::after { left: 30px; } .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } .phase-container::after { left: 23px; } .left, .right { left: 0; } .left .date, .right .date { color: var(--cyan); } .nft-img { max-width: 100%; } }
     </style>
 </head>
 <body>
-    <div class="header">
+    <header class="header">
         <div class="logo">TAC // Syndicate</div>
-        <div class="nav-menu">
-            <a class="nav-tab active-tab" data-target="presentation-sec">Presentation</a>
-            <a class="nav-tab" data-target="roadmap-sec">Roadmap</a>
-            <a class="nav-tab" data-target="swap-sec">Swap Pool 0%</a>
+        <nav class="nav-menu">
+            <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
+            <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
+            <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool 0%</div>
+        </nav>
+        <div style="display: flex; align-items: center;">
+            <div class="social-icons">
+                <a href="https://t.me" target="_blank" class="soc-link">TELEGRAM</a>
+                <a href="https://x.com" target="_blank" class="soc-link">TWITTER</a>
+                <a href="https://getgems.io" target="_blank" class="soc-link">GETGEMS</a>
+            </div>
+            <button class="connect-btn" onclick="alert('Coming soon!')">Wallet</button>
         </div>
-        <div class="social-icons">
-            <a class="soc-link">TELEGRAM</a>
-            <a class="soc-link">TWITTER</a>
-            <a class="soc-link">GETGEMS</a>
-            <button class="connect-btn">Wallet</button>
-        </div>
-    </div>
-
+    </header>
     <!-- SECTION 1: PRESENTATION -->
-    <div class="page-section active-section" id="presentation-sec">
+    <section id="home-section" class="page-section active-section">
         <div class="hero">
             <div class="supply-tag">TOTAL SUPPLY: 1111 VALUABLE ENTITIES</div>
             <h1 class="banner-title">TAC Genesis Bears</h1>
             <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
-            <button class="mint-main-btn" id="mintMainBtn">Mint Now (WL Application)</button>
+            <button class="mint-main-btn" onclick="openMintModal()">Mint Now (WL Application)</button>
         </div>
 
-        <div style="font-size: 1.1rem; color: var(--muted); max-width: 750px; text-align: center; margin: 40px auto; padding: 0 20px; line-height: 1.8;">
-            // TAC_ZERO SYSTEM MANIFESTO<br><br>
-            "We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."
+        <div id="mint-modal" class="modal-overlay" onclick="closeMintModal(event)">
+            <div class="modal-window">
+                <span class="modal-close" onclick="document.getElementById('mint-modal').style.display='none'">&times;</span>
+                <iframe src="https://forms.gle/hdss4YCXD3842wwG9" class="form-iframe">Loading...</iframe>
+            </div>
+        </div>
+
+        <div class="manifesto-box">
+            <p style="color:var(--purple); font-weight:900; font-style:normal; margin-bottom:10px; text-transform:uppercase;">// TAC_ZERO SYSTEM MANIFESTO</p>
+            <p>"We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."</p>
         </div>
 
         <div class="features-grid">
@@ -101,198 +110,157 @@
                 <h3>Ecosystem Vision</h3>
                 <p>Strategic expansion plans. While launching natively on TON, the core ecosystem is designed with long-term plans to deploy cross-chain bridges to Ethereum, opening potential market presence on OpenSea and Rarible.</p>
             </div>
+        </div>
+
+        <div class="features-grid">
             <div class="feat-card">
                 <h3>Ecosystem Staking</h3>
                 <p>Hold your Genesis Entities to accumulate non-monetary ecosystem utility points. 100% of marketplace royalty fees are fully re-routed to community liquidity pools.</p>
             </div>
+            <div class="feat-card">
+                <h3>Verified Security</h3>
+                <p>Ecosystem Smart Contracts:<br>
+                <span style="font-family:monospace; font-size:0.75rem; color:var(--cyan)">Collection: EQ_TAC_Genesis_Collection_Core...</span><br>
+                <span style="font-family:monospace; font-size:0.75rem; color:var(--purple)">Lab Core: EQ_TAC_Mutation_Laboratory_Active...</span></p>
+            </div>
         </div>
-
-        <div style="max-width: 1100px; width: 100%; padding: 30px 20px; box-sizing: border-box; margin: 20px auto; text-align: left;">
-            <h3 style="text-transform: uppercase; letter-spacing: 2px; color: #fff;">Verified Security</h3>
-            <p class="details">Ecosystem Smart Contracts:</p>
-            <p class="details" style="font-family: monospace; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 6px;">Collection: EQ_TAC_Genesis_Collection_Core...</p>
-            <p class="details" style="font-family: monospace; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 6px;">Lab Core: EQ_TAC_Mutation_Laboratory_Active...</p>
-        </div>
-
-        <div class="section-title" style="text-align: center; font-size: 2rem; margin-top: 40px;">Ecosystem Syndicate Founders</div>
-        <div class="features-grid">
+        <h2 class="section-title" style="font-size: 1.8rem; margin: 40px 0 10px 0;">Ecosystem Syndicate Founders</h2>
+        <div class="features-grid" style="padding-top: 10px;">
             <div class="feat-card">
                 <h3>TAC_Zero</h3>
-                <p style="color: var(--text); font-weight: 700; margin-bottom: 8px;">Lead Architect & Vision</p>
+                <p style="color:var(--cyan); font-weight:800; font-size:0.8rem; margin-bottom:5px; text-transform:uppercase;">Lead Architect & Vision</p>
                 <p>10+ years of digital brand development and product architecture across premium asset spheres.</p>
             </div>
             <div class="feat-card">
                 <h3>Cyber_Morph</h3>
-                <p style="color: var(--text); font-weight: 700; margin-bottom: 8px;">Senior Smart Contract Dev</p>
+                <p style="color:var(--purple); font-weight:800; font-size:0.8rem; margin-bottom:5px; text-transform:uppercase;">Senior Smart Contract Dev</p>
                 <p>Expert in scalable FunC/Tact system architectures and high-security automated distribution modules.</p>
             </div>
             <div class="feat-card">
                 <h3>Plush_Render</h3>
-                <p style="color: var(--text); font-weight: 700; margin-bottom: 8px;">Lead 3D Digital Artist</p>
+                <p style="color:var(--cyan); font-weight:800; font-size:0.8rem; margin-bottom:5px; text-transform:uppercase;">Lead 3D Digital Artist</p>
                 <p>Specializes in hyper-realistic octane shading, custom material generation, and intricate character silhouettes.</p>
             </div>
         </div>
 
-        <div style="max-width: 1100px; width: 100%; padding: 40px 20px; box-sizing: border-box; margin: 40px auto; text-align: left;">
-            <h2 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;">Frequently Asked Questions</h2>
-            <h3 style="color: var(--cyan);">How do I safely participate in the Mint?</h3>
-            <p class="details" style="margin-bottom: 25px;">Connect your verified TON wallet on October 25th. Whitelist addresses (88 slots allocated on Oct 20) will be granted mint access at the immutable price of 50 TON. Beware of third-party phishing links.</p>
-            <h3 style="color: var(--cyan);">Where can I trade assets securely?</h3>
-            <p class="details">Immediately following the deployment phase, the official collection will launch exclusively on Getgems secondary market. Long-term scaling plans include potential expansion to multi-chain marketplaces.</p>
+        <h2 class="section-title" style="font-size: 1.8rem; margin: 40px 0 10px 0;">Frequently Asked Questions</h2>
+        <div class="features-grid" style="padding-top: 10px;">
+            <div class="feat-card" style="max-width: 500px;">
+                <h3>How do I safely participate in the Mint?</h3>
+                <p>Connect your verified TON wallet on October 25th. Whitelist addresses (88 slots allocated on Oct 20) will be granted mint access at the immutable price of 50 TON. Beware of third-party phishing links.</p>
+            </div>
+            <div class="feat-card" style="max-width: 500px;">
+                <h3>Where can I trade assets securely?</h3>
+                <p>Immediately following the deployment phase, the official collection will launch exclusively on Getgems secondary market. Long-term scaling plans include potential expansion to multi-chain marketplaces.</p>
+            </div>
         </div>
 
-        <div style="max-width: 1100px; margin: 40px auto; padding: 25px; background: rgba(11,17,32,0.4); border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); box-sizing: border-box; width: calc(100% - 40px);">
-            <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.6; text-align: justify; margin: 0;">
-                Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.
-            </p>
-            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.15); margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
+        <footer style="width:100%; max-width:1000px; margin-top:50px; padding:40px 20px; border-top:1px solid rgba(255,255,255,0.03); text-align:center; color:var(--muted); font-size:0.8rem; line-height:1.7;">
+            <p>Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.</p>
+            <p style="margin-top:20px; color:rgba(255,255,255,0.15); font-weight:700; letter-spacing:1px;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
+        </footer>
+    </section>
+
+    <!-- SECTION 2: SWAP POOL -->
+    <section id="swap-section" class="page-section">
+        <h2 class="section-title" style="margin-bottom:10px;">TAC Syndicate Liquidity Swap</h2>
+        <div class="swap-container">
+            <div style="background:rgba(255,255,255,0.03); border:1px dashed rgba(255,255,255,0.1); border-radius:16px; padding:12px; font-size:0.75rem; text-align:center; color:var(--muted); font-weight:800; margin-bottom:20px; letter-spacing:0.5px;">
+                 SWAP POOL STATUS: MAINTENANCE / LOCKED
+            </div>
+            <div class="swap-box">
+                <div class="swap-label">You Send</div>
+                <div class="swap-row">
+                    <input type="text" class="swap-input" value="100" disabled style="cursor:not-allowed; color:var(--muted)">
+                    <select class="token-select" disabled><option>TON</option></select>
+                </div>
+            </div>
+            <div class="swap-box">
+                <div class="swap-label">You Receive (Estimated)</div>
+                <div class="swap-row">
+                    <input type="text" class="swap-input" value="0.00" readonly disabled style="cursor:not-allowed; color:var(--muted)">
+                    <select class="token-select" disabled><option>USDT</option></select>
+                </div>
+            </div>
+            <div class="swap-btn-locked">Exchange System Disabled</div>
         </div>
-    </div>
-    <!-- SECTION 2: ROADMAP -->
-    <div class="page-section" id="roadmap-sec">
-        <div class="section-title" style="text-align: center; margin-top: 60px;">Strategic Roadmap</div>
-        <div class="timeline" style="margin: 0 auto 100px auto;">
+    </section>
+
+    <!-- SECTION 3: ROADMAP -->
+    <section id="roadmap-section" class="page-section">
+        <h1 class="section-title">Strategic Roadmap</h1>
+        <div class="timeline">
             <div class="phase-container left">
                 <div class="content">
-                    <span class="badge active">Live Now</span>
-                    <div class="date">October 2026</div>
-                    <h3 class="phase-title">Phase 1: Deployment & Genesis</h3>
-                    <p class="details">• Oct 20: Whitelist registration (88 slots @ 50 TON).<br>• Oct 25: Official Genesis Mint of the first 111 Bears on Getgems.<br>• Future Drops: Exactly 100 new entities drop on the 25th of every following month until supply hits 1111.</p>
+                    <span class="badge active">Live Now</span><div class="date">October 2026</div><div class="phase-title">Phase 1: Deployment & Genesis</div>
+                    <div class="details"><p>• Oct 20: Whitelist registration (88 slots @ 50 TON).</p><p>• Oct 25: Official Genesis Mint of the first 111 Bears on Getgems.</p><p>• Future Drops: Exactly 100 new entities drop on the 25th of every following month until supply hits 1111.</p></div>
+                    <img src="bear1.png" alt="Genesis Bear" class="nft-img">
                 </div>
             </div>
             <div class="phase-container right">
                 <div class="content">
-                    <span class="badge locked">Month 1</span>
-                    <div class="date">November 2026</div>
-                    <h3 class="phase-title">Phase 2: Infection Drop</h3>
-                    <p class="details">• Nov 20: Global blockchain snapshot of all holders.<br>• Nov 25: Guaranteed 1:1 Airdrop of COVID 111 token + Next Monthly Drop of 100 items.</p>
+                    <span class="badge locked">Month 1</span><div class="date">November 2026</div><div class="phase-title">Phase 2: Infection Drop</div>
+                    <div class="details"><p>• Nov 20: Global blockchain snapshot of all holders.</p><p>• Nov 25: Guaranteed 1:1 Airdrop of COVID 111 token + Next Monthly Drop of 100 items.</p></div>
+                    <img src="bear2.png" alt="Infection Drop" class="nft-img">
                 </div>
             </div>
             <div class="phase-container left">
                 <div class="content">
-                    <span class="badge locked">Month 2</span>
-                    <div class="date">December 2026</div>
-                    <h3 class="phase-title">Phase 3: Faction Split</h3>
-                    <p class="details">• Mutation Lab: Burn your COVID 111 token to duplicate power.<br>• Generate an elite warrior: Cyber Angel or Mutant Demon.<br>• Dec 25: Monthly drop of 100 new entities goes live.</p>
+                    <span class="badge locked">Month 2</span><div class="date">December 2026</div><div class="phase-title">Phase 3: Faction Split</div>
+                    <div class="details"><p>• Mutation Lab: Burn your COVID 111 token to duplicate power.</p><p>• Generate an elite warrior: Cyber Angel or Mutant Demon.</p><p>• Dec 25: Monthly drop of 100 new entities goes live.</p></div>
+                    <img src="bear3.png" alt="Mutation Lab" class="nft-img">
                 </div>
             </div>
             <div class="phase-container right">
                 <div class="content">
-                    <span class="badge locked">Month 3</span>
-                    <div class="date">January 2027</div>
-                    <h3 class="phase-title">Phase 4: Elite AirDrop</h3>
-                    <p class="details">• Jan 25: Secret second NFT Airdrop distribution + Monthly drop of 100 items.<br>• Eligible only for holders keeping 2 or more bears in a single wallet.</p>
+                    <span class="badge locked">Month 3</span><div class="date">January 2027</div><div class="phase-title">Phase 4: Elite AirDrop</div>
+                    <div class="details"><p>• Jan 25: Secret second NFT Airdrop distribution + Monthly drop of 100 items.</p><p>• Eligible only for holders keeping 2 or more bears in a single wallet.</p></div>
+                    <img src="bear4.png" alt="Elite AirDrop" class="nft-img">
                 </div>
             </div>
             <div class="phase-container left">
                 <div class="content">
-                    <span class="badge locked">Month 4</span>
-                    <div class="date">February 2027</div>
-                    <h3 class="phase-title">Phase 5: Ultimate Evolution</h3>
-                    <p class="details">• Feb 25: Crafting process for supreme entities goes live + Final Monthly Drop.<br>• Mutant Faction -> generate a Hell Bear | Cyber Faction -> generate a Heaven Bear.</p>
+                    <span class="badge locked">Month 4</span><div class="date">February 2027</div><div class="phase-title">Phase 5: Ultimate Evolution</div>
+                    <div class="details"><p>• Feb 25: Crafting process for supreme entities goes live + Final Monthly Drop.</p><p>• Mutant Faction -> generate a Hell Bear | Cyber Faction -> generate a Heaven Bear.</p></div>
+                    <img src="bear5.png" alt="Ultimate Evolution" class="nft-img">
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- SECTION 3: SWAP POOL -->
-    <div class="page-section" id="swap-sec">
-        <div style="display: flex; justify-content: center; width: 100%; padding-top: 80px; padding-bottom: 100px;">
-            <div class="swap-container">
-                <div class="swap-label">TAC Syndicate Liquidity Swap</div>
-                <div class="swap-btn-locked">SWAP POOL STATUS: MAINTENANCE / LOCKED</div>
-                <div class="swap-box" style="margin-top: 15px;">
-                    <div class="swap-label">You Send</div>
-                    <div class="swap-row">
-                        <input class="swap-input" type="text" value="100" readonly>
-                        <span class="token-select">TON</span>
-                    </div>
-                </div>
-                <div class="swap-box">
-                    <div class="swap-label">You Receive (Estimated)</div>
-                    <div class="swap-row">
-                        <input class="swap-input" type="text" value="0.00" readonly>
-                        <span class="token-select">USDT</span>
-                    </div>
-                </div>
-                <div class="swap-btn-locked" style="background: rgba(255,74,74,0.05); color: #ff4a4a; cursor: not-allowed; border: 1px solid rgba(255,74,74,0.1);">Exchange System Disabled</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL OVERLAY WITH VALID GOOGLE FORM EMBED -->
-    <div class="modal-overlay" id="formModal">
-        <div class="modal-window">
-            <span class="modal-close" id="closeModalBtn">×</span>
-            <iframe class="form-iframe" src="https://google.com" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">Loading...</iframe>
-        </div>
-    </div>
-
+    </section>
     <script>
-        const navTabs = document.querySelectorAll('.nav-tab');
-        const pageSections = document.querySelectorAll('.page-section');
-
-        navTabs.forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                navTabs.forEach(t => t.classList.remove('active-tab'));
-                this.classList.add('active-tab');
-
-                const targetSectionId = this.getAttribute('data-target');
-                
-                pageSections.forEach(section => {
-                    section.classList.remove('active-section');
-                    section.style.display = 'none';
-                });
-
-                const targetSection = document.getElementById(targetSectionId);
-                if (targetSection) {
-                    targetSection.style.display = 'flex';
-                    setTimeout(() => {
-                        targetSection.classList.add('active-section');
-                    }, 50);
-                }
-                
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        const modal = document.getElementById('formModal');
-        const mintBtn = document.getElementById('mintMainBtn');
-        const closeBtn = document.getElementById('closeModalBtn');
-
-        if (mintBtn) {
-            mintBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                modal.style.display = 'flex';
-            });
-        }
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-        }
-
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        const walletBtn = document.querySelector('.connect-btn');
-        if (walletBtn) {
-            walletBtn.addEventListener('click', function() {
-                this.textContent = 'Connecting...';
-                this.style.opacity = '0.7';
+        function switchSection(sectionId, tabEl) {
+            const activeSec = document.querySelector('.page-section.active-section');
+            if(activeSec) {
+                activeSec.style.opacity = '0';
+                activeSec.style.transform = 'scale(0.98) translateY(-15px)';
                 setTimeout(() => {
-                    this.textContent = 'TON: Connected';
-                    this.style.background = 'linear-gradient(45deg, #00ff87, var(--cyan))';
-                    this.style.color = '#000';
-                    this.style.opacity = '1';
-                }, 1000);
-            });
+                    activeSec.classList.remove('active-section');
+                    activateNew(sectionId, tabEl);
+                }, 350);
+            } else { activateNew(sectionId, tabEl); }
+        }
+        function activateNew(sectionId, tabEl) {
+            const newSec = document.getElementById(sectionId + '-section');
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
+            tabEl.classList.add('active-tab');
+            newSec.classList.add('active-section');
+            setTimeout(() => {
+                newSec.style.opacity = '1';
+                newSec.style.transform = 'scale(1) translateY(0)';
+            }, 50);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function openMintModal() {
+            const modal = document.getElementById('mint-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.style.opacity = '1'; }, 10);
+        }
+        function closeMintModal(event) {
+            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-close')) {
+                const modal = document.getElementById('mint-modal');
+                modal.style.opacity = '0';
+                setTimeout(() => { modal.style.display = 'none'; }, 300);
+            }
         }
     </script>
 </body>
