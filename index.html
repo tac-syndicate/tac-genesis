@@ -210,6 +210,7 @@
         </div>
     </div>
 
+           <!-- SECTION 2: ROADMAP CLOSING AND MODAL INTERFACE -->
     <div class="modal-overlay" id="formModal">
         <div class="modal-window">
             <span class="modal-close" id="closeModalBtn">×</span>
@@ -218,8 +219,37 @@
     </div>
 
     <script>
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const pageSections = document.querySelectorAll('.page-section');
+
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                navTabs.forEach(t => t.classList.remove('active-tab'));
+                this.classList.add('active-tab');
+
+                const targetSectionId = this.getAttribute('data-target');
+                
+                pageSections.forEach(section => {
+                    section.classList.remove('active-section');
+                    section.style.display = 'none';
+                });
+
+                const targetSection = document.getElementById(targetSectionId);
+                if (targetSection) {
+                    targetSection.style.display = 'flex';
+                    setTimeout(() => {
+                        targetSection.classList.add('active-section');
+                    }, 50);
+                }
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
         const modal = document.getElementById('formModal');
-        const mintBtn = document.querySelector('.mint-main-btn');
+        const mintBtn = document.getElementById('mintMainBtn');
         const closeBtn = document.getElementById('closeModalBtn');
 
         if (mintBtn) {
@@ -247,33 +277,13 @@
                 this.textContent = 'Connecting...';
                 this.style.opacity = '0.7';
                 setTimeout(() => {
-                    this.textContent = 'TON: EQ...8842';
+                    this.textContent = 'TON: Connected';
                     this.style.background = 'linear-gradient(45deg, #00ff87, var(--cyan))';
                     this.style.color = '#000';
                     this.style.opacity = '1';
-                }, 1200);
+                }, 1000);
             });
         }
-
-        const navTabs = document.querySelectorAll('.nav-tab');
-        navTabs.forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                navTabs.forEach(t => t.classList.remove('active-tab'));
-                this.classList.add('active-tab');
-
-                if (this.textContent.trim() === 'Roadmap') {
-                    const roadmapTitle = document.querySelectorAll('.section-title');
-                    if (roadmapTitle) {
-                        roadmapTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-                if (this.textContent.trim() === 'Presentation') {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            });
-        });
     </script>
 </body>
 </html>
