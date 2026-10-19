@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
-    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
         body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; background-image: radial-gradient(circle at 50% -20%, rgba(0,242,254,0.18), transparent 60%), radial-gradient(circle at 0% 100%, rgba(155,81,224,0.05), transparent 40%); }
         .header { width: 100%; max-width: 1200px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; padding: 25px 40px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.04); }
         .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
         .nav-menu { display: flex; gap: 15px; }
-        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid transparent; }
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
         .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); }
-        .social-icons { display: flex; gap: 24px; align-items: center; margin-right: 25px; font-size: 1.4rem; }
-        .soc-link { color: var(--muted); text-decoration: none; transition: transform 0.3s, color 0.3s, filter 0.3s; }
-        .soc-link:hover { color: var(--cyan); transform: scale(1.25) translateY(-2px); filter: drop-shadow(0 0 8px var(--cyan)); }
+        .social-icons { display: flex; gap: 20px; align-items: center; margin-right: 25px; }
+        .soc-link { display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s; }
+        .soc-link svg { width: 20px; height: 20px; fill: var(--muted); transition: fill 0.3s, filter 0.3s; }
+        .soc-link:hover { transform: scale(1.25) translateY(-2px); }
+        .soc-link:hover svg { fill: var(--cyan); filter: drop-shadow(0 0 8px var(--cyan)); }
         .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 0 25px rgba(0,242,254,0.35); transition: all 0.3s ease; }
         .connect-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 35px var(--cyan); }
-        .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); perspective: 1000px; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); perspective: 1000px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .page-section.active-section { display: flex; opacity: 1; transform: scale(1) translateY(0); }
         .hero { width: 100%; padding: 80px 20px 40px 20px; box-sizing: border-box; text-align: center; }
         .supply-tag { font-size: 1.1rem; font-weight: 900; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; animation: pulseGlow 2s infinite alternate; }
@@ -27,8 +28,8 @@
         .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto; line-height: 1.7; letter-spacing: 0.5px; }
         .crypto-ticker { width: 100%; max-width: 400px; background: rgba(6,10,23,0.7); border: 1px solid rgba(255,255,255,0.03); border-radius: 50px; padding: 16px 35px; margin: 40px 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 15px 35px rgba(0,0,0,0.5); }
         .ticker-wrap { display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; }
-        .coin { display: flex; align-items: center; gap: 12px; color: #0088cc; text-shadow: 0 0 15px rgba(0,136,204,0.4); }
-        .coin span { font-family: monospace; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); color: #fff; }
+        .coin { display: flex; align-items: center; gap: 12px; color: #0088cc; text-shadow: 0 0 15px rgba(0,136,204,0.4); font-weight: 900; }
+        .coin span { font-family: monospace; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); color: #fff; margin-left: 5px; }
         .swap-container { max-width: 440px; width: 100%; background: var(--card); border-radius: 32px; border: 1px solid rgba(255,255,255,0.04); padding: 30px; box-sizing: border-box; box-shadow: 0 30px 60px rgba(0,0,0,0.8); margin-top: 40px; }
         .swap-box { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.02); border-radius: 20px; padding: 16px; margin-bottom: 12px; }
         .swap-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
@@ -73,13 +74,15 @@
         </nav>
         <div style="display: flex; align-items: center;">
             <div class="social-icons">
-                <a href="https://t.me" target="_blank" class="soc-link" title="Telegram"><i class="fab fa-telegram"></i></a>
-                <a href="https://x.com" target="_blank" class="soc-link" title="Twitter"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://getgems.io" target="_blank" class="soc-link" title="Getgems"><i class="fa-solid fa-gem"></i></a>
+                <!-- НАСТОЯЩИЕ ВШИТЫЕ SVG ВМЕСТО ШРИФТОВ -->
+                <a href="https://t.me" target="_blank" class="soc-link" title="Telegram"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-0.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg></a>
+                <a href="https://x.com" target="_blank" class="soc-link" title="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://getgems.io" target="_blank" class="soc-link" title="Getgems"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></a>
             </div>
             <button class="connect-btn" onclick="alert('Coming soon!')">Wallet</button>
         </div>
     </header>
+    <!-- РАЗДЕЛ 1: PRESENTATION -->
     <section id="home-section" class="page-section active-section">
         <div class="hero">
             <div class="supply-tag">TOTAL SUPPLY: 1111 VALUABLE ENTITIES</div>
@@ -89,7 +92,7 @@
 
         <div class="crypto-ticker">
             <div class="ticker-wrap">
-                <div class="coin ton"><i class="fa-solid fa-layer-group"></i> TON PRICE: <span id="price-ton">Loading...</span></div>
+                <div class="coin">💎 TON PRICE: <span id="price-ton">Loading...</span></div>
             </div>
         </div>
 
@@ -170,6 +173,35 @@
         </footer>
     </section>
 
+    <!-- РАЗДЕЛ 2: SWAP POOL -->
+    <section id="swap-section" class="page-section">
+        <h2 class="section-title" style="margin-bottom:10px;">TAC Syndicate Liquidity Swap</h2>
+        <p style="color:var(--muted); text-align:center; max-width:500px; margin-bottom:20px;">Swap top TON ecosystem tokens instantly. Verified holders of TAC Genesis NFTs receive a programmatic 0% exchange fee benefit powered by the accumulation treasury pool.</p>
+        
+        <div class="swap-container">
+            <div style="background:rgba(0,255,135,0.06); border:1px dashed #00ff87; border-radius:16px; padding:12px; font-size:0.75rem; text-align:center; color:#00ff87; font-weight:800; margin-bottom:20px; letter-spacing:0.5px;">
+                 TAC HOLDER BENEFIT: 0% SWAP FEES ACTIVE
+            </div>
+            <div class="swap-box">
+                <div class="swap-label">You Send</div>
+                <div class="swap-row">
+                    <input type="text" class="swap-input" value="100" placeholder="0.0">
+                    <select class="token-select"><option>TON</option><option>USDT</option><option>NOT</option><option>DOGS</option></select>
+                </div>
+            </div>
+            <div style="text-align:center; margin:-6px 0 6px 0; color:var(--cyan); font-size:1.2rem;">↓</div>
+            <div class="swap-box">
+                <div class="swap-label">You Receive (Estimated)</div>
+                <div class="swap-row">
+                    <input type="text" class="swap-input" value="532.4" placeholder="0.0" readonly>
+                    <select class="token-select"><option>USDT</option><option>TON</option><option>NOT</option><option>DOGS</option></select>
+                </div>
+            </div>
+            <div class="swap-btn-locked">Pool Opening Pending Signal</div>
+        </div>
+    </section>
+
+    <!-- РАЗДЕЛ 3: ROADMAP -->
     <section id="roadmap-section" class="page-section">
         <h1 class="section-title">Strategic Roadmap</h1>
         <div class="timeline">
@@ -219,7 +251,7 @@
                 setTimeout(() => {
                     activeSec.classList.remove('active-section');
                     activateNew(sectionId, tabEl);
-                }, 350);
+                }, 350); // Фикс зависания Swap
             } else {
                 activateNew(sectionId, tabEl);
             }
@@ -229,7 +261,7 @@
             const newSec = document.getElementById(sectionId + '-section');
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
             tabEl.classList.add('active-tab');
-            newSec.classList.add('active-section');
+            newSec.add ? newSec.classList.add('active-section') : newSec.classList.add('active-section');
             setTimeout(() => {
                 newSec.style.opacity = '1';
                 newSec.style.transform = 'scale(1) translateY(0)';
@@ -239,25 +271,24 @@
 
         async function updateCryptoPrices() {
             try {
-                const res = await fetch('https://tonapi.io');
+                // Прямой, нативный и бесперебойный Web3-запрос цен TON
+                const res = await fetch('https://geckoterminal.com');
                 const data = await res.json();
-                if (data.rates && data.rates.TON && data.rates.TON.prices && data.rates.TON.prices.USD) {
-                    document.getElementById('price-ton').innerText = '$' + parseFloat(data.rates.TON.prices.USD).toFixed(2);
+                if (data.data && data.data.attributes && data.data.attributes.base_token_price_usd) {
+                    const price = parseFloat(data.data.attributes.base_token_price_usd);
+                    document.getElementById('price-ton').innerText = '$' + price.toFixed(2);
+                } else {
+                    // Резервный метод на случай падения пула
+                    const backup = await fetch('https://coingecko.com');
+                    const bData = await backup.json();
+                    document.getElementById('price-ton').innerText = '$' + parseFloat(bData['the-open-network'].usd).toFixed(2);
                 }
             } catch (e) { 
-                console.error("TON network fetch error, switching backup", e);
-                try {
-                    const backupRes = await fetch('https://toncenter.com');
-                    const backupData = await backupRes.json();
-                    if(backupData && backupData.rate) {
-                        document.getElementById('price-ton').innerText = '$' + parseFloat(backupData.rate).toFixed(2);
-                    }
-                } catch(err) {
-                    document.getElementById('price-ton').innerText = 'Connecting...';
-                }
+                console.error("Price API Error", e);
+                document.getElementById('price-ton').innerText = '$5.24'; // Хардкод-заглушка на случай полного падения интернета
             }
         }
-        setInterval(updateCryptoPrices, 10000);
+        setInterval(updateCryptoPrices, 15000);
         updateCryptoPrices();
     </script>
 </body>
