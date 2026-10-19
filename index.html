@@ -56,7 +56,19 @@
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
-        @media (max-width: 768px) { .social-icons { display: none; } .banner-title { font-size: 2.6rem; } .timeline::after { left: 30px; } .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } .phase-container::after { left: 23px; } .left, .right { left: 0; } .left .date, .right .date { color: var(--cyan); } .nft-img { max-width: 100%; } }
+        @media (max-width: 768px) {
+.header { flex-direction: column; gap: 15px; padding: 15px 20px; position: relative; backdrop-filter: blur(10px); }
+.nav-menu { flex-wrap: wrap; justify-content: center; gap: 8px; }
+.nav-tab { padding: 6px 10px; font-size: 0.75rem; }
+.social-icons { display: none; }
+.banner-title { font-size: 2.4rem; }
+.timeline::after { left: 30px; }
+.phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; }
+.phase-container::after { left: 23px; }
+.left, .right { left: 0; }
+.left .date, .right .date { color: var(--cyan); }
+.nft-img { max-width: 100%; }
+}
     </style>
 </head>
 <body>
