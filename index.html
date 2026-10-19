@@ -3,145 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAC // GENESIS ELITE - Mutation Lab</title>
-    <!-- TON Connect UI Script -->
-    <script src="https://unpkg.com"></script>
+    <title>TAC // Genesis Roadmap</title>
     <style>
-        body { background-color: #0b0c10; color: #c5c6c7; font-family: 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 40px 20px; margin: 0; }
-        .container { max-width: 800px; margin: 0 auto; background: #1f2833; padding: 40px; border-radius: 20px; border: 2px solid #66fcf1; box-shadow: 0 0 20px rgba(102, 252, 241, 0.2); }
-        h1 { color: #fff; font-size: 2.5rem; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
-        .accent { color: #66fcf1; }
-        .btn { background: #66fcf1; color: #0b0c10; border: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.3s; margin: 10px; text-transform: uppercase; }
-        .btn:hover { background: #45a29e; box-shadow: 0 0 15px rgba(102, 252, 241, 0.5); }
-        .btn:disabled { background: #444; color: #888; cursor: not-allowed; box-shadow: none; }
-        #ton-connect-btn { margin-bottom: 30px; display: inline-block; }
-        
-        /* Mutation Zone */
-        .mutation-zone { display: none; margin-top: 30px; border-top: 1px solid #45a29e; padding-top: 30px; }
-        .choices { display: flex; justify-content: space-around; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
-        .choice-card { background: #0b0c10; border: 2px solid #45a29e; padding: 25px; border-radius: 16px; width: 40%; min-width: 280px; transition: 0.3s; }
-        .choice-card p { font-size: 0.9rem; line-height: 1.4; }
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #141b2d;
+            --cyan: #00f2fe;
+            --purple: #9b51e0;
+            --text: #ffffff;
+            --text-muted: #8fa0dd;
+        }
 
-        /* Roadmap Section */
-        .roadmap-section { max-width: 800px; margin: 60px auto 0 auto; text-align: left; border-top: 1px solid #45a29e; padding-top: 40px; }
-        .roadmap-title { text-align: center; color: #fff; font-size: 2rem; letter-spacing: 2px; margin-bottom: 40px; }
-        .roadmap-step { border-left: 3px solid #45a29e; padding-left: 25px; margin-bottom: 35px; position: relative; }
-        .roadmap-step::before { content: ''; position: absolute; left: -9px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background: #66fcf1; box-shadow: 0 0 10px #66fcf1; }
-        .step-date { color: #66fcf1; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-        .step-name { color: #fff; font-size: 1.3rem; margin: 5px 0; }
-        .step-desc { font-size: 0.95rem; line-height: 1.5; color: #a9b7c6; }
-        .step-desc ul { padding-left: 20px; margin-top: 5px; }
-        .step-desc li { margin-bottom: 5px; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* Timeline Container */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Central Neon Line */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--cyan), var(--purple));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            box-shadow: 0 0 15px var(--cyan);
+        }
+
+        /* Phase Block */
+        .phase-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        /* Timeline Dots */
+        .phase-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--cyan);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        /* Direction Alignment */
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
+        .right::after { left: -10px; border-color: var(--purple); box-shadow: 0 0 10px var(--purple); }
+
+        /* Card Content */
+        .content {
+            padding: 25px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .badge.active { background: #00ff87; color: #000; box-shadow: 0 0 10px #00ff87; }
+        .badge.locked { background: rgba(255, 255, 255, 0.1); color: var(--text-muted); }
+
+        .date {
+            font-weight: bold;
+            color: var(--cyan);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .right .date { color: var(--purple); }
+
+        .phase-title {
+            font-size: 1.4rem;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        .details {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .details ul {
+            padding: 0;
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+
+        .details li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        /* Responsive Styles for Mobile */
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .phase-container { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left !important; }
+            .phase-container::after { left: 21px; right: auto; }
+            .left { left: 0; }
+            .right { left: 0; }
+            .left .date, .right .date { color: var(--cyan); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>TAC // <span class="accent">MUTATION LAB</span></h1>
-        <p style="margin-bottom: 30px;">Official Evolution Portal for GENESIS ELITE Holders</p>
-        
-        <!-- TON Connect Button Container -->
-        <div id="ton-connect-btn"></div>
+    <h1>Strategic Roadmap</h1>
 
-        <div>
-            <button class="btn" id="check-assets-btn" disabled>1. Scan Wallet Assets</button>
-        </div>
+    <div class="timeline">
 
-        <!-- Hidden until wallet verified -->
-        <div class="mutation-zone" id="mutation-zone">
-            <h2>🧬 Evolvement Catalyst Detected</h2>
-            <p>Status: <span class="accent">1x Original Bear</span> secured on balance + <span class="accent">1x COVID 111</span> ready to fuse.</p>
-            <p style="color: #ff4a4a; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">Notice: Select your faction deployment. Your Original Bear will NOT be burned.</p>
-            
-            <div class="choices">
-                <!-- Cyber Angel Faction -->
-                <div class="choice-card" style="border-color: #00d2ff; box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);">
-                    <h3 style="color: #00d2ff; margin-top: 0;">🪽 CYBER ANGEL</h3>
-                    <p>Deploy high-tech clearing protocols. Retain Original Bear and claim a bonus Cyber-Angel NFT. Grants elite Syndicate software tools access.</p>
-                    <button class="btn" style="background: #00d2ff; color: #000;" onclick="startMutation('cyber_angel')">Fuse Angel</button>
-                </div>
-                
-                <!-- Mutant Demon Faction -->
-                <div class="choice-card" style="border-color: #ff3333; box-shadow: 0 0 15px rgba(255, 51, 51, 0.2);">
-                    <h3 style="color: #ff3333; margin-top: 0;">😈 MUTANT DEMON</h3>
-                    <p>Trigger absolute biological infection. Retain Original Bear and mint a bonus Mutant-Demon NFT. Grants maximized DAO voting multiplier.</p>
-                    <button class="btn" style="background: #ff3333; color: #fff;" onclick="startMutation('mutant_demon')">Fuse Demon</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Roadmap Block -->
-        <div class="roadmap-section">
-            <h2 class="roadmap-title">⚡ STRATEGIC ROADMAP</h2>
-            
-            <div class="roadmap-step">
-                <div class="step-date">October 2026</div>
-                <div class="step-name">Phase 1: Deployment & Genesis</div>
-                <div class="step-desc">
+        <!-- PHASE 1 -->
+        <div class="phase-container left">
+            <div class="content">
+                <span class="badge active">Live Now</span>
+                <div class="date">October 2026</div>
+                <div class="phase-title">Phase 1: Deployment & Genesis</div>
+                <div class="details">
+                    Launch of the first generation wave:
                     <ul>
-                        <li><strong>October 20:</strong> Whitelist registration launch (88 slots @ 50 TON).</li>
-                        <li><strong>October 25:</strong> Official Mint of 111 Genesis Bears on Getgems. Immediate activation of the high-security club <strong>TAC // The Syndicate</strong>.</li>
+                        <li>• <b>October 20:</b> Whitelist registration (88 slots @ 50 TON).</li>
+                        <li>• <b>October 25:</b> Official Mint of 111 Genesis Bears on Getgems.</li>
+                        <li>• Instant access to the high-security club: <b>TAC // The Syndicate</b>.</li>
                     </ul>
                 </div>
             </div>
+        </div>
 
-            <div class="roadmap-step">
-                <div class="step-date">November 2026</div>
-                <div class="step-name">Phase 2: Infection Drop</div>
-                <div class="step-desc">
+        <!-- PHASE 2 -->
+        <div class="phase-container right">
+            <div class="content">
+                <span class="badge locked">Month 1</span>
+                <div class="date">November 2026</div>
+                <div class="phase-title">Phase 2: Infection Drop</div>
+                <div class="details">
+                    Network infection and first rewards for holders:
                     <ul>
-                        <li><strong>November 20:</strong> Global blockchain snapshot of all holders.</li>
-                        <li><strong>November 25:</strong> Guaranteed 1:1 free Airdrop of the **COVID 111** catalyst token directly to holders' wallets.</li>
+                        <li>• <b>November 20:</b> Global blockchain snapshot of all holders.</li>
+                        <li>• <b>November 25:</b> Guaranteed 1:1 Airdrop of the <b>**COVID 111**</b> catalyst token directly to your wallet.</li>
                     </ul>
                 </div>
             </div>
+        </div>
 
-            <div class="roadmap-step">
-                <div class="step-date">December 2026</div>
-                <div class="step-name">Phase 3: The Great Faction Split</div>
-                <div class="step-desc">
-                    Mutation Lab activation. Burn **COVID 111** to duplicate your power. Original Bear remains completely safe in your wallet while generating an additional Elite warrior (Cyber Angel or Mutant Demon).
+        <!-- PHASE 3 -->
+        <div class="phase-container left">
+            <div class="content">
+                <span class="badge locked">Month 2</span>
+                <div class="date">December 2026</div>
+                <div class="phase-title">Phase 3: The Great Faction Split</div>
+                <div class="details">
+                    Mutation Lab activation:
+                    <ul>
+                        <li>• Burn your **COVID 111** token to duplicate your power.</li>
+                        <li>• Generate an elite warrior: <b>Cyber Angel</b> or <b>Mutant Demon</b>.</li>
+                        <li>• Original Genesis Bear remains completely safe in your wallet.</li>
+                    </ul>
                 </div>
             </div>
         </div>
+
+        <!-- PHASE 4 -->
+        <div class="phase-container right">
+            <div class="content">
+                <span class="badge locked">Month 3</span>
+                <div class="date">January 2027</div>
+                <div class="phase-title">Phase 4: Elite AirDrop</div>
+                <div class="details">
+                    Exclusive distribution for top supporters:
+                    <ul>
+                        <li>• <b>January 25:</b> Secret second NFT Airdrop.</li>
+                        <li>• Eligible only for holders keeping **2 or more bears** in a single wallet.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE 5 -->
+        <div class="phase-container left">
+            <div class="content">
+                <span class="badge locked">Month 4</span>
+                <div class="date">February 2027</div>
+                <div class="phase-title">Phase 5: Ultimate Evolution</div>
+                <div class="details">
+                    Final fusion and generation unlock:
+                    <ul>
+                        <li>• <b>February 25:</b> Crafting process for supreme entities goes live.</li>
+                        <li>• Mutant Faction ➡️ generate a <b>Hell Bear</b>.</li>
+                        <li>• Cyber Faction ➡️ generate a <b>Heaven Bear</b>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <script>
-        // Init TON Connect UI
-        const tonConnectUI = new TONConnectUI.TonConnectUI({
-            manifestUrl: 'https://githubusercontent.com',
-            buttonRootId: 'ton-connect-btn'
-        });
-
-        const checkBtn = document.getElementById('check-assets-btn');
-        const mutationZone = document.getElementById('mutation-zone');
-        let userAddress = null;
-
-        // Monitor wallet connection
-        tonConnectUI.onStatusChange(wallet => {
-            if (wallet) {
-                userAddress = wallet.account.address;
-                checkBtn.disabled = false;
-            } else {
-                userAddress = null;
-                checkBtn.disabled = true;
-                mutationZone.style.display = 'none';
-            }
-        });
-
-        // Scan Simulation
-        checkBtn.addEventListener('click', () => {
-            checkBtn.innerText = "Scanning TON Blockchain...";
-            setTimeout(() => {
-                checkBtn.innerText = "Assets Verified";
-                mutationZone.style.display = 'block';
-            }, 1200);
-        });
-
-        // Transaction Logic Placeholder for December 2026
-        async function startMutation(faction) {
-            alert(`Faction Selection: ${faction.toUpperCase()}.\nThe mutation smart-contract platform will activate in December 2026.\nYour Original Bear is safe.`);
-        }
-    </script>
 </body>
 </html>
