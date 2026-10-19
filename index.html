@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
+    <!-- ПОДКЛЮЧЕНИЕ НАСТОЯЩИХ ИКОНОК СОЦСЕТЕЙ -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
         body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; background-image: radial-gradient(circle at 50% -20%, rgba(0,242,254,0.18), transparent 60%), radial-gradient(circle at 0% 100%, rgba(155,81,224,0.05), transparent 40%); }
@@ -12,9 +14,9 @@
         .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; cursor: pointer; padding: 8px 16px; border-radius: 8px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
         .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); }
-        .social-icons { display: flex; gap: 24px; align-items: center; margin-right: 25px; font-size: 1.3rem; }
-        .soc-link { text-decoration: none; transition: transform 0.3s, filter 0.3s; }
-        .soc-link:hover { transform: scale(1.25) translateY(-2px); filter: drop-shadow(0 0 8px var(--cyan)); }
+        .social-icons { display: flex; gap: 24px; align-items: center; margin-right: 25px; font-size: 1.4rem; }
+        .soc-link { color: var(--muted); text-decoration: none; transition: transform 0.3s, color 0.3s, filter 0.3s; }
+        .soc-link:hover { color: var(--cyan); transform: scale(1.25) translateY(-2px); filter: drop-shadow(0 0 8px var(--cyan)); }
         .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 0 25px rgba(0,242,254,0.35); transition: all 0.3s ease; }
         .connect-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 35px var(--cyan); }
         .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); perspective: 1000px; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -24,11 +26,10 @@
         @keyframes pulseGlow { from { text-shadow: 0 0 10px rgba(0,242,254,0.3); } to { text-shadow: 0 0 25px rgba(0,242,254,0.8); transform: scale(1.02); } }
         .banner-title { font-size: 4.2rem; font-weight: 900; text-transform: uppercase; margin: 0 0 25px 0; letter-spacing: -1px; background: linear-gradient(180deg, #ffffff 30%, #768fa5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto; line-height: 1.7; letter-spacing: 0.5px; }
-        .crypto-ticker { width: 100%; max-width: 600px; background: rgba(6,10,23,0.7); border: 1px solid rgba(255,255,255,0.03); border-radius: 50px; padding: 16px 35px; margin: 40px 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 15px 35px rgba(0,0,0,0.5); }
-        .ticker-wrap { display: flex; justify-content: space-around; align-items: center; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; }
-        .coin { display: flex; align-items: center; gap: 10px; }
-        .coin span { font-family: monospace; font-size: 1.1rem; background: rgba(255,255,255,0.04); padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); color: #fff; }
-        .coin.ton { color: #0088cc; } .coin.usdt { color: #26a17b; }
+        .crypto-ticker { width: 100%; max-width: 400px; background: rgba(6,10,23,0.7); border: 1px solid rgba(255,255,255,0.03); border-radius: 50px; padding: 16px 35px; margin: 40px 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 15px 35px rgba(0,0,0,0.5); }
+        .ticker-wrap { display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; }
+        .coin { display: flex; align-items: center; gap: 12px; color: #0088cc; text-shadow: 0 0 15px rgba(0,136,204,0.4); }
+        .coin span { font-family: monospace; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); color: #fff; }
         .features-grid { display: flex; gap: 30px; max-width: 1100px; width: 100%; padding: 30px 20px; box-sizing: border-box; flex-wrap: wrap; justify-content: center; }
         .feat-card { flex: 1; min-width: 290px; max-width: 340px; background: var(--card); padding: 35px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.03); text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.6); transform-style: preserve-3d; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .feat-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(0,242,254,0.3); box-shadow: 0 30px 60px rgba(0,242,254,0.12); }
@@ -52,6 +53,7 @@
         .phase-title { font-size: 1.5rem; margin: 0 0 12px 0; font-weight: 800; }
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
+        .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         @media (max-width: 768px) { .social-icons { display: none; } .banner-title { font-size: 2.6rem; } .timeline::after { left: 30px; } .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } .phase-container::after { left: 23px; } .left, .right { left: 0; } .left .date, .right .date { color: var(--cyan); } .nft-img { max-width: 100%; } }
     </style>
 </head>
@@ -64,9 +66,9 @@
         </nav>
         <div style="display: flex; align-items: center;">
             <div class="social-icons">
-                <a href="https://t.me" target="_blank" class="soc-link" title="Telegram">📢</a>
-                <a href="https://x.com" target="_blank" class="soc-link" title="Twitter">🌐</a>
-                <a href="https://getgems.io" target="_blank" class="soc-link" title="Getgems">💎</a>
+                <a href="https://t.me" target="_blank" class="soc-link" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://x.com" target="_blank" class="soc-link" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://getgems.io" target="_blank" class="soc-link" title="Getgems"><i class="fa-solid fa-gem"></i></a>
             </div>
             <button class="connect-btn" onclick="alert('Coming soon!')">Wallet</button>
         </div>
@@ -77,12 +79,19 @@
             <h1 class="banner-title">TAC Genesis Bears</h1>
             <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
         </div>
+
         <div class="crypto-ticker">
             <div class="ticker-wrap">
-                <div class="coin ton">💎 TON NET: <span id="price-ton">Loading...</span></div>
-                <div class="coin usdt">₮ USDT COIN: <span id="price-usdt">$1.00</span></div>
+                <div class="coin ton"><i class="fa-solid fa-layer-group"></i> TON PRICE: <span id="price-ton">Loading...</span></div>
             </div>
         </div>
+
+        <!-- МАНИФЕСТ ОСНОВАТЕЛЯ TAC_ZERO -->
+        <div class="manifesto-box">
+            <p style="color:var(--purple); font-weight:900; font-style:normal; margin-bottom:10px; text-transform:uppercase; letter-spacing:2px;">// TAC_ZERO SYSTEM MANIFESTO</p>
+            <p>"We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."</p>
+        </div>
+
         <div class="features-grid">
             <div class="feat-card">
                 <div class="feat-icon">🔥</div>
@@ -95,11 +104,12 @@
                 <p>Advanced deflationary utility mechanics. Burn catalyst assets to instantly double structural squad force and unlock elite tiers.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">👑</div>
-                <h3>Syndicate Privileges</h3>
-                <p>High-security private membership tier providing early stage entries, cross-chain airdrops, and governance distribution parameters.</p>
+                <div class="feat-icon">🌐</div>
+                <h3>Ecosystem Vision</h3>
+                <p>Strategic expansion plans. While launching natively on TON, the core ecosystem is designed with long-term plans to deploy cross-chain bridges to <b>Ethereum</b>, opening potential market presence on <b>OpenSea</b> and <b>Rarible</b>.</p>
             </div>
         </div>
+
         <div class="features-grid">
             <div class="feat-card">
                 <div class="feat-icon">📊</div>
@@ -114,6 +124,7 @@
                 <span style="font-family:monospace; font-size:0.75rem; color:var(--purple)">Lab Core: EQ_TAC_Mutation_Laboratory_Active...</span></p>
             </div>
         </div>
+
         <h2 class="section-title" style="font-size: 1.8rem; margin: 40px 0 10px 0;">Ecosystem Syndicate Founders</h2>
         <div class="features-grid" style="padding-top: 10px;">
             <div class="feat-card" style="max-width: 300px;">
@@ -143,14 +154,16 @@
             </div>
             <div class="feat-card" style="max-width: 500px;">
                 <h3>Where can I trade assets securely?</h3>
-                <p>Immediately following the deployment phase, the official collection will launch exclusively on Getgems secondary market. All verified contracts are hosted on our site to prevent fake derivative collection exploits.</p>
+                <p>Immediately following the deployment phase, the official collection will launch exclusively on Getgems secondary market. Long-term scaling plans include potential expansion to multi-chain marketplaces.</p>
             </div>
         </div>
+
         <footer style="width:100%; max-width:1000px; margin-top:50px; padding:40px 20px; border-top:1px solid rgba(255,255,255,0.03); text-align:center; color:var(--muted); font-size:0.8rem; line-height:1.7;">
             <p>Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.</p>
             <p style="margin-top:20px; color:rgba(255,255,255,0.15); font-weight:700; letter-spacing:1px;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
         </footer>
     </section>
+
     <section id="roadmap-section" class="page-section">
         <h1 class="section-title">Strategic Roadmap</h1>
         <div class="timeline">
@@ -185,7 +198,7 @@
             <div class="phase-container left">
                 <div class="content">
                     <span class="badge locked">Month 4</span><div class="date">February 2027</div><div class="phase-title">Phase 5: Ultimate Evolution</div>
-                    <div class="details"><p>• <b>Feb 25:</b> Crafting process for supreme entities goes live + Final Monthly Drop.</p><p>• Mutant Faction ➡️ generate a <b>Hell Bear</b> | Cyber Faction ➡️ generate a <b>Heaven Bear</b>.</p></div>
+                    <div class="details"><p>• <b>Feb 25:</b> Crafting process for supreme entities goes live + Final Monthly Drop.</p><p>• Mutant Faction ➡️ generate a <b>Hell Bear</b> | Cyber Faction ➡️ generate a <b>Heaven Bear</b>.</p><p>• Core parameters prepared for potential multi-chain expansion modules.</p></div>
                     <img src="bear5.png" alt="Ultimate Evolution" class="nft-img">
                 </div>
             </div>
@@ -220,17 +233,18 @@
 
         async function updateCryptoPrices() {
             try {
+                // Нативный и стабильный метод без CORS блокировок бирж
                 const res = await fetch('https://coingecko.com');
                 const data = await res.json();
-                if (data['the-open-network'] && data['the-open-network'].usd) {
-                    document.getElementById('price-ton').innerText = '$' + parseFloat(data['the-open-network'].usd).toFixed(2);
+                if (data.market_data && data.market_data.current_price && data.market_data.current_price.usd) {
+                    document.getElementById('price-ton').innerText = '$' + parseFloat(data.market_data.current_price.usd).toFixed(2);
                 }
             } catch (e) { 
                 console.error("Price fetch error", e); 
                 document.getElementById('price-ton').innerText = 'Connecting...';
             }
         }
-        setInterval(updateCryptoPrices, 7000);
+        setInterval(updateCryptoPrices, 10000);
         updateCryptoPrices();
     </script>
 </body>
