@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
@@ -25,14 +24,10 @@
         .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto 35px auto; line-height: 1.7; }
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
-        
-        /* Стили модального окна */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
-        .modal-window { background: var(--card); width: 95%; max-width: 550px; height: 85vh; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; padding: 15px; box-sizing: border-box; display: flex; flex-direction: column; }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--muted); cursor: pointer; z-index: 1001; transition: color 0.2s; }
-        .modal-close:hover { color: #fff; }
-        .form-iframe { width: 100%; height: 100%; border: none; border-radius: 16px; background: transparent; }
-        
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-window { background: var(--card); width: 100%; max-width: 550px; height: 80vh; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; color: var(--muted); cursor: pointer; z-index: 1001; }
+        .form-iframe { width: 100%; height: 100%; border: none; border-radius: 16px; }
         .swap-container { max-width: 440px; width: 100%; background: var(--card); border-radius: 32px; border: 1px solid rgba(255,255,255,0.04); padding: 30px; box-sizing: border-box; margin-top: 40px; }
         .swap-box { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.02); border-radius: 20px; padding: 16px; margin-bottom: 12px; }
         .swap-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
@@ -60,162 +55,163 @@
         .phase-title { font-size: 1.5rem; margin: 0 0 12px 0; font-weight: 800; }
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
-        .manifesto-box { max-width: 800px; padding: 40px; background: rgba(11,17,32,0.5); border-radius: 24px; border: 1px solid rgba(0,242,254,0.1); margin: 40px 20px; text-align: center; }
-        .manifesto-text { font-style: italic; color: #fff; font-size: 1.15rem; line-height: 1.8; margin-bottom: 20px; }
-        .legal-disclosure { max-width: 1000px; padding: 30px; background: rgba(0,0,0,0.4); border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); margin: 60px 20px 20px 20px; text-align: left; }
-        .legal-title { font-size: 0.85rem; font-weight: 900; color: var(--purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
-        .legal-text { font-size: 0.78rem; color: var(--muted); line-height: 1.6; text-align: justify; }
-        .footer-cr { font-size: 0.75rem; color: rgba(255,255,255,0.2); letter-spacing: 1px; margin: 30px 0; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <header class="header">
+    <div class="header">
         <div class="logo">TAC // Syndicate</div>
-        <nav class="nav-menu">
-            <a class="nav-tab active-tab">Presentation</a>
+        <div class="nav-menu">
+            <a class="nav-tab">Presentation</a>
             <a class="nav-tab">Roadmap</a>
             <a class="nav-tab">Swap Pool 0%</a>
-        </nav>
-        <div class="social-icons">
-            <a class="soc-link" href="#">TELEGRAM</a>
-            <a class="soc-link" href="#">TWITTER</a>
-            <a class="soc-link" href="#">GETGEMS</a>
-            <button class="connect-btn">Wallet</button>
         </div>
-    </header>
-
-    <main style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-        <!-- Секция главного экрана -->
-        <section class="hero">
-            <div class="supply-tag">TOTAL SUPPLY: 1111 VALUABLE ENTITIES</div>
-            <h1 class="banner-title">TAC Genesis Bears</h1>
-            <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
-            <!-- Исправленная кнопка с вызовом функции -->
-            <button class="mint-main-btn" onclick="openFormModal()">Mint Now (WL Application)</button>
-        </section>
-        <!-- Манифест системы -->
-        <section class="manifesto-box">
-            <div class="legal-title">// TAC_ZERO SYSTEM MANIFESTO</div>
-            <p class="manifesto-text">"We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."</p>
-        </section>
-
-        <!-- Свап-контейнер -->
-        <section class="swap-container">
-            <div class="swap-label">TAC Syndicate Liquidity Swap</div>
-            <div class="swap-btn-locked">SWAP POOL STATUS: MAINTENANCE / LOCKED</div>
-            <div class="swap-box" style="margin-top: 15px;">
-                <div class="swap-label">You Send</div>
-                <div class="swap-row">
-                    <input class="swap-input" type="text" value="100" readonly>
-                    <span class="token-select">TON</span>
-                </div>
-            </div>
-            <div class="swap-box">
-                <div class="swap-label">You Receive (Estimated)</div>
-                <div class="swap-row">
-                    <input class="swap-input" type="text" value="0.00" readonly>
-                    <span class="token-select">USDT</span>
-                </div>
-            </div>
-            <div class="swap-btn-locked" style="background: rgba(235, 87, 87, 0.05); color: #eb5757;">Exchange System Disabled</div>
-        </section>
-
-        <!-- Сетка преимуществ -->
-        <section class="features-grid">
-            <div class="feat-card">
-                <h3>1111 Hard Cap Supply</h3>
-                <p>Strict limitation rules. Initial drop of 111 tactical genesis bears, followed by tight programmatic monthly batches of 100 entities every 25th day.</p>
-            </div>
-            <div class="feat-card">
-                <h3>The Mutation Lab</h3>
-                <p>Advanced deflationary utility mechanics. Burn catalyst assets to instantly double structural squad force and unlock elite tiers.</p>
-            </div>
-            <div class="feat-card">
-                <h3>Ecosystem Vision</h3>
-                <p>Strategic expansion plans. While launching natively on TON, the core ecosystem is designed with long-term plans to deploy cross-chain bridges to Ethereum, opening potential market presence on OpenSea and Rarible.</p>
-            </div>
-            <div class="feat-card">
-                <h3>Ecosystem Staking</h3>
-                <p>Hold your Genesis Entities to accumulate non-monetary ecosystem utility points. 100% of marketplace royalty fees are fully re-routed to community liquidity pools.</p>
-            </div>
-        </section>
-        <!-- Дорожная карта -->
-        <h2 class="section-title">Strategic Roadmap</h2>
-        <section class="timeline">
-            <div class="phase-container left">
-                <div class="content">
-                    <span class="badge active">Live Now</span>
-                    <div class="date">October 2026</div>
-                    <h3 class="phase-title">Phase 1: Deployment & Genesis</h3>
-                    <p class="details">• Oct 20: Whitelist registration (88 slots @ 50 TON).<br>• Oct 25: Official Genesis Mint of the first 111 Bears on Getgems.</p>
-                </div>
-            </div>
-            <div class="phase-container right">
-                <div class="content">
-                    <span class="badge locked">Month 1</span>
-                    <div class="date">November 2026</div>
-                    <h3 class="phase-title">Phase 2: Infection Drop</h3>
-                    <p class="details">• Nov 20: Global blockchain snapshot of all holders.<br>• Nov 25: Guaranteed 1:1 Airdrop of COVID 111 token + Monthly Drop.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Раздел команды -->
-        <h2 class="section-title">Syndicate Founders</h2>
-        <section class="features-grid" style="margin-bottom: 40px;">
-            <div class="feat-card">
-                <h3>TAC_Zero</h3>
-                <p>Lead Architect & Vision. 10+ years of digital brand development and product architecture across premium asset spheres.</p>
-            </div>
-            <div class="feat-card">
-                <h3>Cyber_Morph</h3>
-                <p>Senior Smart Contract Dev. Expert in scalable FunC/Tact system architectures and high-security automated distribution modules.</p>
-            </div>
-        </section>
-
-        <!-- ИСПРАВЛЕННЫЙ ЮРИДИЧЕСКИЙ БЛОК ДЛЯ ЗАЩИТЫ ОТ СЕC И РЕГУЛЯТОРОВ -->
-        <section class="legal-disclosure">
-            <div class="legal-title">Risk & Regulatory Disclosure</div>
-            <p class="legal-text">
-                TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment, artistic appreciation, and community participation within the digital ecosystem, with absolutely no expectation of financial profit, dividend yields, or investment returns. Acquisition of these digital entities does not constitute financial investments, securities, fractional ownership, or profit-sharing rights in any jurisdiction. All smart-contract interactions, mutations, and staking processes are executed on strict "as-is" and "as-available" parameters at the user's sole risk and responsibility. The Syndicate provides no guarantees regarding long-term marketplace liquidity or floor price stability. Conduct exhaustive individual due diligence and research before processing any cryptographic blockchain transactions.
-            </p>
-        </section>
-
-        <div class="footer-cr">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</div>
-    </main>
-    <!-- Встроенное Модальное окно с твоей готовой английской формой -->
-    <div class="modal-overlay" id="formModal">
-        <div class="modal-window">
-            <span class="modal-close" onclick="closeFormModal()">&times;</span>
-            <iframe class="form-iframe" src="https://forms.gle" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">Loading...</iframe>
+        <div class="social-icons">
+            <a class="soc-link">TELEGRAM</a>
+            <a class="soc-link">TWITTER</a>
+            <a class="soc-link">GETGEMS</a>
+            <button class="connect-btn">Wallet</button>
         </div>
     </div>
 
-    <!-- JavaScript логика управления сайтом -->
-    <script>
-        function openFormModal() {
-            const modal = document.getElementById('formModal');
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.style.opacity = '1';
-            }, 10);
-        }
+    <div class="hero">
+        <div class="supply-tag">TOTAL SUPPLY: 1111 VALUABLE ENTITIES</div>
+        <h1 class="banner-title">TAC Genesis Bears</h1>
+        <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
+        <button class="mint-main-btn">Mint Now (WL Application)</button>
+    </div>
 
-        function closeFormModal() {
-            const modal = document.getElementById('formModal');
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        }
+    <!-- Modal window integrated with your English Google Form -->
+    <div class="modal-overlay">
+        <div class="modal-window">
+            <span class="modal-close">×</span>
+            <iframe class="form-iframe" src="https://forms.gle">Loading...</iframe>
+        </div>
+    </div>
+    <div style="font-size: 1.1rem; color: var(--muted); max-width: 750px; text-align: center; margin: 40px auto;">
+        // TAC_ZERO SYSTEM MANIFESTO<br><br>
+        "We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."
+    </div>
 
-        // Автоматическое закрытие окна при клике на темный фон вокруг формы
-        window.onclick = function(event) {
-            const modal = document.getElementById('formModal');
-            if (event.target === modal) {
-                closeFormModal();
-            }
-        }
-    </script>
+    <div class="features-grid">
+        <div class="feat-card">
+            <h3>1111 Hard Cap Supply</h3>
+            <p>Strict limitation rules. Initial drop of 111 tactical genesis bears, followed by tight programmatic monthly batches of 100 entities every 25th day.</p>
+        </div>
+        <div class="feat-card">
+            <h3>The Mutation Lab</h3>
+            <p>Advanced deflationary utility mechanics. Burn catalyst assets to instantly double structural squad force and unlock elite tiers.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Ecosystem Vision</h3>
+            <p>Strategic expansion plans. While launching natively on TON, the core ecosystem is designed with long-term plans to deploy cross-chain bridges to Ethereum, opening potential market presence on OpenSea and Rarible.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Ecosystem Staking</h3>
+            <p>Hold your Genesis Entities to accumulate non-monetary ecosystem utility points. 100% of marketplace royalty fees are fully re-routed to community liquidity pools.</p>
+        </div>
+    </div>
+
+    <div style="max-width: 1100px; width: 100%; padding: 0 20px; box-sizing: border-box; margin-top: 40px;">
+        <h3>Verified Security</h3>
+        <p class="details">Ecosystem Smart Contracts:</p>
+        <p class="details">Collection: EQ_TAC_Genesis_Collection_Core...</p>
+        <p class="details">Lab Core: EQ_TAC_Mutation_Laboratory_Active...</p>
+    </div>
+    <div class="section-title" style="text-align: center;">Ecosystem Syndicate Founders</div>
+    <div class="features-grid">
+        <div class="feat-card">
+            <h3>TAC_Zero</h3>
+            <p style="color: var(--text); font-weight: 700; margin-bottom: 8px;">Lead Architect & Vision</p>
+            <p>10+ years of digital brand development and product architecture across premium asset spheres.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Cyber_Morph</h3>
+            <p style="color: var(--text); font-weight: 700; margin-bottom: 8px;">Senior Smart Contract Dev</p>
+            <p>Expert in scalable FunC/Tact system architectures and high-security automated distribution modules.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Plush_Render</h3>
+            <p style="color: var(--text); font-weight: 700; margin-bottom: 8px;">Lead 3D Digital Artist</p>
+            <p>Specializes in hyper-realistic octane shading, custom material generation, and intricate character silhouettes.</p>
+        </div>
+    </div>
+
+    <div style="max-width: 1100px; width: 100%; padding: 0 20px; box-sizing: border-box; margin-top: 60px;">
+        <h2 style="text-transform: uppercase; letter-spacing: 2px;">Frequently Asked Questions</h2>
+        <h3>How do I safely participate in the Mint?</h3>
+        <p class="details">Connect your verified TON wallet on October 25th. Whitelist addresses (88 slots allocated on Oct 20) will be granted mint access at the immutable price of 50 TON. Beware of third-party phishing links.</p>
+        <h3>Where can I trade assets securely?</h3>
+        <p class="details">Immediately following the deployment phase, the official collection will launch exclusively on Getgems secondary market. Long-term scaling plans include potential expansion to multi-chain marketplaces.</p>
+    </div>
+
+    <div class="legal-disclosure" style="max-width: 1100px; margin: 40px 20px; padding: 20px; background: rgba(255,255,255,0.01); border-radius: 12px;">
+        <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.6;">
+            Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.
+        </p>
+        <p class="footer-cr" style="font-size: 0.8rem; color: rgba(255,255,255,0.2); margin-top: 15px;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
+    </div>
+
+    <div class="swap-container">
+        <div class="swap-label">TAC Syndicate Liquidity Swap</div>
+        <div class="swap-btn-locked">SWAP POOL STATUS: MAINTENANCE / LOCKED</div>
+        <div class="swap-box" style="margin-top: 15px;">
+            <div class="swap-label">You Send</div>
+            <div class="swap-row">
+                <input class="swap-input" type="text" value="100">
+                <span class="token-select">TON</span>
+            </div>
+        </div>
+        <div class="swap-box">
+            <div class="swap-label">You Receive (Estimated)</div>
+            <div class="swap-row">
+                <input class="swap-input" type="text" value="0.00">
+                <span class="token-select">USDT</span>
+            </div>
+        </div>
+        <div class="swap-btn-locked" style="background: rgba(255,0,0,0.05); color: #ff4a4a; cursor: not-allowed;">Exchange System Disabled</div>
+    </div>
+    <div class="section-title" style="text-align: center;">Strategic Roadmap</div>
+    <div class="timeline">
+        <div class="phase-container left">
+            <div class="content">
+                <span class="badge active">Live Now</span>
+                <div class="date">October 2026</div>
+                <h3 class="phase-title">Phase 1: Deployment & Genesis</h3>
+                <p class="details">• Oct 20: Whitelist registration (88 slots @ 50 TON).<br>• Oct 25: Official Genesis Mint of the first 111 Bears on Getgems.<br>• Future Drops: Exactly 100 new entities drop on the 25th of every following month until supply hits 1111.</p>
+            </div>
+        </div>
+        <div class="phase-container right">
+            <div class="content">
+                <span class="badge locked">Month 1</span>
+                <div class="date">November 2026</div>
+                <h3 class="phase-title">Phase 2: Infection Drop</h3>
+                <p class="details">• Nov 20: Global blockchain snapshot of all holders.<br>• Nov 25: Guaranteed 1:1 Airdrop of COVID 111 token + Next Monthly Drop of 100 items.</p>
+            </div>
+        </div>
+        <div class="phase-container left">
+            <div class="content">
+                <span class="badge locked">Month 2</span>
+                <div class="date">December 2026</div>
+                <h3 class="phase-title">Phase 3: Faction Split</h3>
+                <p class="details">• Mutation Lab: Burn your COVID 111 token to duplicate power.<br>• Generate an elite warrior: Cyber Angel or Mutant Demon.<br>• Dec 25: Monthly drop of 100 new entities goes live.</p>
+            </div>
+        </div>
+        <div class="phase-container right">
+            <div class="content">
+                <span class="badge locked">Month 3</span>
+                <div class="date">January 2027</div>
+                <h3 class="phase-title">Phase 4: Elite AirDrop</h3>
+                <p class="details">• Jan 25: Secret second NFT Airdrop distribution + Monthly drop of 100 items.<br>• Eligible only for holders keeping 2 or more bears in a single wallet.</p>
+            </div>
+        </div>
+        <div class="phase-container left">
+            <div class="content">
+                <span class="badge locked">Month 4</span>
+                <div class="date">February 2027</div>
+                <h3 class="phase-title">Phase 5: Ultimate Evolution</h3>
+                <p class="details">• Feb 25: Crafting process for supreme entities goes live + Final Monthly Drop.<br>• Mutant Faction -> generate a Hell Bear | Cyber Faction -> generate a Heaven Bear.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
