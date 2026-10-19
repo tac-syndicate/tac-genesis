@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
@@ -13,9 +14,9 @@
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
         .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); }
         .social-icons { display: flex; gap: 20px; align-items: center; margin-right: 25px; font-weight: 900; }
-        .soc-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
+        .soc-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; cursor: pointer; }
         .soc-link:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
-        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; box-shadow: 0 0 25px rgba(0,242,254,0.35); }
+        .connect-btn { background: linear-gradient(45deg, var(--cyan), var(--purple)); border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; box-shadow: 0 0 25px rgba(0,242,254,0.35); color: #000; transition: 0.3s; }
         .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); transition: all 0.4s ease; }
         .page-section.active-section { display: flex; opacity: 1; transform: scale(1) translateY(0); }
         .hero { width: 100%; padding: 60px 20px 40px 20px; box-sizing: border-box; text-align: center; }
@@ -24,10 +25,11 @@
         .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto 35px auto; line-height: 1.7; }
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-window { background: var(--card); width: 100%; max-width: 550px; height: 80vh; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; }
-        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; color: var(--muted); cursor: pointer; z-index: 1001; }
-        .form-iframe { width: 100%; height: 100%; border: none; border-radius: 16px; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.92); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-window { background: var(--card); width: 92%; max-width: 550px; height: 85vh; border-radius: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; padding: 15px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--muted); cursor: pointer; z-index: 1001; transition: color 0.2s; }
+        .modal-close:hover { color: #fff; }
+        .form-iframe { width: 100%; height: 100%; border: none; border-radius: 16px; background: transparent; }
         .swap-container { max-width: 440px; width: 100%; background: var(--card); border-radius: 32px; border: 1px solid rgba(255,255,255,0.04); padding: 30px; box-sizing: border-box; margin-top: 40px; }
         .swap-box { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.02); border-radius: 20px; padding: 16px; margin-bottom: 12px; }
         .swap-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
@@ -61,7 +63,7 @@
     <div class="header">
         <div class="logo">TAC // Syndicate</div>
         <div class="nav-menu">
-            <a class="nav-tab">Presentation</a>
+            <a class="nav-tab active-tab">Presentation</a>
             <a class="nav-tab">Roadmap</a>
             <a class="nav-tab">Swap Pool 0%</a>
         </div>
@@ -79,15 +81,7 @@
         <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
         <button class="mint-main-btn">Mint Now (WL Application)</button>
     </div>
-
-    <!-- Modal window integrated with your English Google Form -->
-    <div class="modal-overlay">
-        <div class="modal-window">
-            <span class="modal-close">×</span>
-            <iframe class="form-iframe" src="https://forms.gle">Loading...</iframe>
-        </div>
-    </div>
-    <div style="font-size: 1.1rem; color: var(--muted); max-width: 750px; text-align: center; margin: 40px auto;">
+    <div style="font-size: 1.1rem; color: var(--muted); max-width: 750px; text-align: center; margin: 40px auto; padding: 0 20px; line-height: 1.8;">
         // TAC_ZERO SYSTEM MANIFESTO<br><br>
         "We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."
     </div>
@@ -111,13 +105,13 @@
         </div>
     </div>
 
-    <div style="max-width: 1100px; width: 100%; padding: 0 20px; box-sizing: border-box; margin-top: 40px;">
-        <h3>Verified Security</h3>
+    <div style="max-width: 1100px; width: 100%; padding: 30px 20px; box-sizing: border-box; margin: 20px auto; text-align: left;">
+        <h3 style="text-transform: uppercase; letter-spacing: 2px; color: #fff;">Verified Security</h3>
         <p class="details">Ecosystem Smart Contracts:</p>
-        <p class="details">Collection: EQ_TAC_Genesis_Collection_Core...</p>
-        <p class="details">Lab Core: EQ_TAC_Mutation_Laboratory_Active...</p>
+        <p class="details" style="font-family: monospace; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 6px;">Collection: EQ_TAC_Genesis_Collection_Core...</p>
+        <p class="details" style="font-family: monospace; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 6px;">Lab Core: EQ_TAC_Mutation_Laboratory_Active...</p>
     </div>
-    <div class="section-title" style="text-align: center;">Ecosystem Syndicate Founders</div>
+    <div class="section-title" style="text-align: center; font-size: 2rem; margin-top: 40px;">Ecosystem Syndicate Founders</div>
     <div class="features-grid">
         <div class="feat-card">
             <h3>TAC_Zero</h3>
@@ -136,42 +130,44 @@
         </div>
     </div>
 
-    <div style="max-width: 1100px; width: 100%; padding: 0 20px; box-sizing: border-box; margin-top: 60px;">
-        <h2 style="text-transform: uppercase; letter-spacing: 2px;">Frequently Asked Questions</h2>
-        <h3>How do I safely participate in the Mint?</h3>
-        <p class="details">Connect your verified TON wallet on October 25th. Whitelist addresses (88 slots allocated on Oct 20) will be granted mint access at the immutable price of 50 TON. Beware of third-party phishing links.</p>
-        <h3>Where can I trade assets securely?</h3>
+    <div style="max-width: 1100px; width: 100%; padding: 40px 20px; box-sizing: border-box; margin: 40px auto; text-align: left;">
+        <h2 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;">Frequently Asked Questions</h2>
+        <h3 style="color: var(--cyan);">How do I safely participate in the Mint?</h3>
+        <p class="details" style="margin-bottom: 25px;">Connect your verified TON wallet on October 25th. Whitelist addresses (88 slots allocated on Oct 20) will be granted mint access at the immutable price of 50 TON. Beware of third-party phishing links.</p>
+        <h3 style="color: var(--cyan);">Where can I trade assets securely?</h3>
         <p class="details">Immediately following the deployment phase, the official collection will launch exclusively on Getgems secondary market. Long-term scaling plans include potential expansion to multi-chain marketplaces.</p>
     </div>
 
-    <div class="legal-disclosure" style="max-width: 1100px; margin: 40px 20px; padding: 20px; background: rgba(255,255,255,0.01); border-radius: 12px;">
-        <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.6;">
-            Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.
-        </p>
-        <p class="footer-cr" style="font-size: 0.8rem; color: rgba(255,255,255,0.2); margin-top: 15px;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <div class="swap-container">
+            <div class="swap-label">TAC Syndicate Liquidity Swap</div>
+            <div class="swap-btn-locked">SWAP POOL STATUS: MAINTENANCE / LOCKED</div>
+            <div class="swap-box" style="margin-top: 15px;">
+                <div class="swap-label">You Send</div>
+                <div class="swap-row">
+                    <input class="swap-input" type="text" value="100" readonly>
+                    <span class="token-select">TON</span>
+                </div>
+            </div>
+            <div class="swap-box">
+                <div class="swap-label">You Receive (Estimated)</div>
+                <div class="swap-row">
+                    <input class="swap-input" type="text" value="0.00" readonly>
+                    <span class="token-select">USDT</span>
+                </div>
+            </div>
+            <div class="swap-btn-locked" style="background: rgba(255,74,74,0.05); color: #ff4a4a; cursor: not-allowed; border: 1px solid rgba(255,74,74,0.1);">Exchange System Disabled</div>
+        </div>
     </div>
 
-    <div class="swap-container">
-        <div class="swap-label">TAC Syndicate Liquidity Swap</div>
-        <div class="swap-btn-locked">SWAP POOL STATUS: MAINTENANCE / LOCKED</div>
-        <div class="swap-box" style="margin-top: 15px;">
-            <div class="swap-label">You Send</div>
-            <div class="swap-row">
-                <input class="swap-input" type="text" value="100">
-                <span class="token-select">TON</span>
-            </div>
-        </div>
-        <div class="swap-box">
-            <div class="swap-label">You Receive (Estimated)</div>
-            <div class="swap-row">
-                <input class="swap-input" type="text" value="0.00">
-                <span class="token-select">USDT</span>
-            </div>
-        </div>
-        <div class="swap-btn-locked" style="background: rgba(255,0,0,0.05); color: #ff4a4a; cursor: not-allowed;">Exchange System Disabled</div>
+    <div style="max-width: 1100px; margin: 60px auto 20px auto; padding: 25px; background: rgba(11,17,32,0.4); border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); box-sizing: border-box;">
+        <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.6; text-align: justify; margin: 0;">
+            Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.
+        </p>
+        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.15); margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
     </div>
     <div class="section-title" style="text-align: center;">Strategic Roadmap</div>
-    <div class="timeline">
+    <div class="timeline" style="margin: 0 auto 100px auto;">
         <div class="phase-container left">
             <div class="content">
                 <span class="badge active">Live Now</span>
@@ -213,5 +209,71 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-overlay" id="formModal">
+        <div class="modal-window">
+            <span class="modal-close" id="closeModalBtn">×</span>
+            <iframe class="form-iframe" src="https://google.com" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">Loading...</iframe>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('formModal');
+        const mintBtn = document.querySelector('.mint-main-btn');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        if (mintBtn) {
+            mintBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'flex';
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        const walletBtn = document.querySelector('.connect-btn');
+        if (walletBtn) {
+            walletBtn.addEventListener('click', function() {
+                this.textContent = 'Connecting...';
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.textContent = 'TON: EQ...8842';
+                    this.style.background = 'linear-gradient(45deg, #00ff87, var(--cyan))';
+                    this.style.color = '#000';
+                    this.style.opacity = '1';
+                }, 1200);
+            });
+        }
+
+        const navTabs = document.querySelectorAll('.nav-tab');
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                navTabs.forEach(t => t.classList.remove('active-tab'));
+                this.classList.add('active-tab');
+
+                if (this.textContent.trim() === 'Roadmap') {
+                    const roadmapTitle = document.querySelectorAll('.section-title');
+                    if (roadmapTitle) {
+                        roadmapTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+                if (this.textContent.trim() === 'Presentation') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
