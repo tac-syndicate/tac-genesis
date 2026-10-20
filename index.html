@@ -103,24 +103,25 @@
         .page-section.active-section { display: flex; opacity: 1; transform: scale(1) translateY(0); }
         .hero { width: 100%; padding: 60px 20px 40px 20px; box-sizing: border-box; text-align: center; }
         /* Делаем верхний маленький заголовок солиднее */
-                .supply-tag { 
-            font-size: 0.85rem; /* Слегка уменьшаем размер, но делаем буквы плотнее */
-            font-weight: 900; /* Максимальная жирность, чтобы текст читался сразу */
-            color: #ffffff; /* Сам текст делаем белым для контраста */
-            letter-spacing: 3px; 
+                        .supply-tag { 
+            font-size: 1.1rem; /* Делаем надпись крупной и читаемой */
+            font-weight: 900; 
+            color: #00cbd7; /* Окрашиваем в наш новый солидный циан */
+            letter-spacing: 4px; /* Фирменный разлет букв */
             text-transform: uppercase; 
-            margin-bottom: 25px; 
-            display: inline-block; /* Позволяет плашке аккуратно обнять текст */
+            margin-bottom: 20px; 
+            display: block; 
+            text-align: center;
             
-            /* Превращаем в солидную неоновую плашку */
-            background: rgba(0, 203, 215, 0.05); /* Мягкий бирюзовый оттенок внутри */
-            border: 1px solid rgba(0, 203, 215, 0.3); /* Четкий, аккуратный неоновый контур */
-            padding: 6px 18px; 
-            border-radius: 30px; /* Круглые края, как у современных Web3 кнопок */
+            /* Убираем все рамки и подложки, добавляем дорогое неоновое свечение */
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+            box-shadow: none !important;
             
-            /* Мягкая подсветка всей плашки, чтобы она притягивала взгляд */
-            box-shadow: 0 0 15px rgba(0, 203, 215, 0.15);
-            text-shadow: 0 0 8px rgba(0, 203, 215, 0.5);
+            /* Эффект кастомной неоновой вывески */
+            text-shadow: 0 0 10px rgba(0, 203, 215, 0.6), 
+                         0 0 20px rgba(0, 203, 215, 0.2);
         }
 
         .banner-title { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin: 0 0 25px 0; background: linear-gradient(180deg, #ffffff, #768fa5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
