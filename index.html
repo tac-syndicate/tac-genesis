@@ -171,10 +171,112 @@
         .feat-card h3 { font-size: 1.4rem; margin: 0 0 12px 0; font-weight: 800; color: #fff; }
         .feat-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .section-title { text-transform: uppercase; letter-spacing: 5px; font-size: 2.5rem; background: linear-gradient(45deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 50px 0; }
-        .timeline { position: relative; max-width: 950px; width: 100%; margin-bottom: 120px; }
-        .timeline::after { content: ''; position: absolute; width: 4px; background: linear-gradient(var(--cyan), var(--purple)); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
-        .phase-container { padding: 25px 60px; position: relative; width: 50%; box-sizing: border-box; }
-        .phase-container::after { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background: var(--bg); border: 4px solid var(--cyan); top: 40px; border-radius: 50%; z-index: 1; }
+                /* Общий контейнер дорожной карты */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Одинаковое, аккуратное расстояние между фазами/месяцами */
+            box-sizing: border-box;
+        }
+
+        /* Центральная направляющая неоновая линия */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--cyan), var(--purple), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(0, 203, 215, 0.4);
+            z-index: 1;
+        }
+
+        /* Контейнер для каждой отдельной карточки месяца/фазы */
+        .phase-container {
+            position: relative;
+            width: 50%; /* Занимает ровно половину ширины таймлайна */
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        /* Карточки, которые идут СЛЕВА */
+        .phase-container.left {
+            left: 0;
+            padding-right: 40px;
+            align-self: flex-start; /* Прижимаем к левому краю */
+        }
+
+        /* Карточки, которые идут СПРАВА */
+        .phase-container.right {
+            left: 50%; /* Смещаем на правую половину */
+            padding-left: 40px;
+            align-self: flex-end; /* Прижимаем к правому краю */
+        }
+
+        /* Стилизация самой контентной карточки (матовое стекло) */
+        .phase-container .content-card, .phase-container div[class*="card"] {
+            background: rgba(11, 17, 32, 0.65);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        /* Неоновые точки-узлы на центральной линии */
+        .phase-container::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #020408;
+            border: 3px solid var(--cyan);
+            border-radius: 50%;
+            top: 30px;
+            z-index: 10;
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        /* Точка для левой карточки крепится к её правому краю */
+        .phase-container.left::after {
+            right: -8px;
+        }
+
+        /* Точка для правой карточки крепится к её левому краю */
+        .phase-container.right::after {
+            left: -8px;
+        }
+
+        /* Адаптивность: на телефонах выстраиваем ВСЁ в одну ровную колонку */
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 20px;
+                padding-right: 20px;
+                gap: 30px;
+            }
+            .timeline::after {
+                left: 30px; /* Смещаем линию влево */
+            }
+            .phase-container {
+                width: 100% !important;
+                left: 0 !important;
+                padding-left: 45px !important;
+                padding-right: 0 !important;
+                align-self: flex-start !important;
+            }
+            .phase-container::after {
+                left: 22px !important; /* Центрируем точки по новой линии */
+            }
+        }
+
         .left { left: 0; text-align: right; } .right { left: 50%; text-align: left; }
         .right::after { left: -8px; border-color: var(--purple); }
         .content { padding: 30px; background: var(--card); border-radius: 24px; border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
