@@ -35,10 +35,10 @@
     position: relative;
 }
 
-/* Исправленный размытый неоновый фон */
+/* Яркий, сочный размытый неоновый фон */
 body::before {
     content: "";
-    position: fixed; /* Фиксируем на экране, чтобы высота не слетала в 0 */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -47,23 +47,26 @@ body::before {
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;
-    filter: blur(80px) brightness(0.45); /* Мягкое размытие сине-золотых оттенков */
+    /* Уменьшили размытие до 50px и подняли яркость до 1.3 (было 0.45) */
+    filter: blur(50px) brightness(1.3) contrast(1.1); 
     z-index: -2;
     pointer-events: none;
 }
 
-/* Затемняющая подложка для идеальной читаемости текста */
+/* Облегченная затемняющая подложка для сохранения цветного свечения */
 body::after {
     content: "";
-    position: fixed; /* Фиксируем вслед за картинкой */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.6) 0%, rgba(2, 4, 8, 0.9) 100%);
+    /* Сделали верхнюю часть прозрачнее (0.4 вместо 0.6), чтобы сине-золотой неон горел ярче */
+    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.4) 0%, rgba(2, 4, 8, 0.85) 60%, #020408 100%);
     z-index: -1;
     pointer-events: none;
 }
+
 /* Исправленная контрастная шапка сайта */
 .header { 
     width: 100%; 
