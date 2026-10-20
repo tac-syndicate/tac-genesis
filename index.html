@@ -185,7 +185,95 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) { 
-  .header { padding: 15px 20px; justify-content: space-between; } 
+  .header { padding: 15px 20px; justify-content: space-between; }
+            @media (max-width: 768px) {
+  .header { padding: 15px 20px; justify-content: space-between; }
+  
+  /* Скрываем десктопное меню ссылок на мобильных устройствах */
+  .nav-menu {
+      display: none !important;
+  }
+
+  /* Кнопка бургер-меню (три полоски) */
+  .burger-menu-btn {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px;
+      height: 18px;
+      background: none !important;
+      border: none !important;
+      cursor: pointer;
+      padding: 0 !important;
+      z-index: 1000001 !important;
+  }
+
+  .burger-menu-btn span {
+      width: 100%;
+      height: 2px;
+      background-color: #ffffff !important;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+  }
+
+  /* Полноэкранная выезжающая шторка меню */
+  .mobile-navigation-overlay {
+      position: fixed !important;
+      top: 0 !important;
+      left: -100% !important; /* Изначально спрятано за левым краем экрана */
+      width: 100% !important;
+      height: 100vh !important;
+      background: rgba(2, 4, 8, 0.96) !important; /* Плотный темный фон */
+      backdrop-filter: blur(15px) !important;
+      -webkit-backdrop-filter: blur(15px) !important;
+      z-index: 1000000 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: left 0.4s ease !important; /* Плавная анимация выезда */
+  }
+
+  /* Класс, который активируется через JavaScript при тапе */
+  .mobile-navigation-overlay.active {
+      left: 0 !important; /* Выезжает полностью на экран */
+  }
+
+  /* Кнопка закрытия меню (крестик) */
+  .close-menu-btn {
+      position: absolute !important;
+      top: 25px !important;
+      right: 30px !important;
+      font-size: 36px !important;
+      color: #ffffff !important;
+      background: none !important;
+      border: none !important;
+      cursor: pointer !important;
+      line-height: 1 !important;
+  }
+
+  /* Блок со ссылками внутри шторки */
+  .mobile-menu-links {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 35px !important;
+      text-align: center !important;
+  }
+
+  .mobile-menu-links a {
+      color: #ffffff !important;
+      font-size: 20px !important;
+      font-weight: 700 !important;
+      letter-spacing: 2px !important;
+      text-decoration: none !important;
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.3) !important;
+      transition: color 0.3s ease !important;
+  }
+
+  .mobile-menu-links a:hover {
+      color: #00e5ff !important; /* Неоновый голубой при наведении */
+  }
+
   .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
   .nav-menu { display: none; }  
   .social-icons { 
@@ -318,6 +406,22 @@
     </div>
     
     <button class="connect-btn" disabled style="background: rgba(255,255,255,0.05); color: #788cb6; box-shadow: none; cursor: not-allowed; opacity: 0.4; border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; text-transform: uppercase; font-size: 0.75rem;">Wallet</button>
+  </div>
+    <!-- Кнопка бургер-меню (три полоски) -->
+  <button class="burger-menu-btn" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Полноэкранная шторка мобильного меню -->
+  <div class="mobile-navigation-overlay" id="mobileMenu">
+    <button class="close-menu-btn" onclick="toggleMobileMenu()">×</button>
+    <div class="mobile-menu-links">
+      <a href="#presentation" onclick="toggleMobileMenu()">PRESENTATION</a>
+      <a href="#roadmap" onclick="toggleMobileMenu()">ROADMAP</a>
+      <a href="#swap" onclick="toggleMobileMenu()">SWAP POOL</a>
+    </div>
   </div>
 </header>
 
@@ -566,5 +670,13 @@
             }
         }
     </script>
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (menu) {
+        menu.classList.toggle('active');
+    }
+}
+</script>
 </body>
 </html>
