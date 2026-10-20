@@ -41,22 +41,48 @@
         }
         
         /* 3. ИСПРАВЛЕНИЕ ЧИТАЕМОСТИ ШАПКИ: легкое темное размытие фона только под меню */
-        .header { 
-            width: 100%; 
-            max-width: 1200px; 
+                .header { 
+            width: calc(100% - 40px); /* Оставляем аккуратные зазоры по бокам */
+            max-width: 1160px; 
             box-sizing: border-box; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 25px 40px; 
+            padding: 16px 35px; 
             position: sticky; 
-            top: 0; 
+            top: 20px; /* Приподнимаем панель от самого верха экрана, чтобы она парила */
             z-index: 100; 
-            background: rgba(2, 4, 8, 0.4);
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.04); 
+            
+            /* 1. Эффект парящего матового стекла */
+            background: linear-gradient(135deg, rgba(11, 17, 32, 0.65) 0%, rgba(2, 4, 8, 0.8) 100%);
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            
+            /* 2. Закругление углов */
+            border-radius: 20px; 
+            
+            /* 3. Тонкая объемная рамка (блик сверху) */
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.12); /* Верхняя грань чуть ярче для эффекта объема */
+            
+            /* 4. Сложная 3D-тень и внутренний неоновый отлив */
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.4), /* Глубокая тень на задний план */
+                inset 0 1px 1px rgba(255, 255, 255, 0.1), /* Внутренний блик на грани */
+                inset 0 0 15px rgba(0, 203, 215, 0.03); /* Едва заметное внутреннее сияние */
+                
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
+        /* Небольшой интерактивный 3D-эффект при наведении мышкой */
+        .header:hover {
+            transform: translateY(-2px) scale(1.005);
+            border-top: 1px solid rgba(0, 203, 215, 0.3);
+            box-shadow: 
+                0 10px 35px rgba(0, 0, 0, 0.6),
+                0 0 25px rgba(0, 203, 215, 0.08);
+        }
+
         
         .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
         .nav-menu { display: flex; gap: 15px; }
