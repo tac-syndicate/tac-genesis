@@ -254,6 +254,37 @@
     margin: 0 !important;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
 }
+.footer-disclaimer-box {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    padding: 25px !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    max-width: 900px !important;
+    margin: 60px auto 40px auto !important;
+    text-align: center !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.footer-disclaimer-box p {
+    color: #b0b5c0 !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    margin: 0 0 15px 0 !important;
+}
+
+.footer-disclaimer-box p span {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.25) !important;
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+    margin: 0 !important;
+}
 
     </style>
 </head>
@@ -382,10 +413,10 @@
             </div>
         </div>
 
-        <footer style="width:100%; max-width:1000px; margin-top:50px; padding:40px 20px; border-top:1px solid rgba(255,255,255,0.03); text-align:center; color:var(--muted); font-size:0.8rem; line-height:1.7;">
-            <p>Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.</p>
-            <p style="margin-top:20px; color:rgba(255,255,255,0.15); font-weight:700; letter-spacing:1px;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
-        </footer>
+        <div class="footer-disclaimer-box">
+                <p><span>Risk & Regulatory Disclosure:</span> TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment and does not constitute financial investments, securities, or profit-sharing rights. All smart-contract processing is autonomous and user-driven.</p>
+                <p class="footer-copyright">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
+        </div>
     </section>
 
     <!-- SECTION 2: SWAP POOL -->
