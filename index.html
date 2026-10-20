@@ -5,7 +5,7 @@
     <title>TAC // Syndicate Official</title>
  <!-- Подключение иконок Font Awesome Free 6.4.2 -->
 <link rel="stylesheet" href="https://cloudflare.com">
-   
+
     <style>
                 :root { 
             --bg: #020408; 
@@ -16,45 +16,38 @@
             --text: #f0f4f8; /* Слегка смягчили белый, чтобы он не резал глаза */
             --muted: #62779f; 
         }
-         
-                        body {
-    background: #020408;
-    color: var(--text);
-    font-family: system-ui, -apple-system, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-    
-    /* ВОЗВРАЩАЕМ ТВОЙ СТИЛЬНЫЙ НЕОНОВЫЙ ФОН */
-    background-image: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 80%), url("main_bg.png");
-    background-repeat: no-repeat;
-    background-position: center top;
-}
 
-            
+                        body { 
+            background: #020408; 
+            color: var(--text); 
+            font-family: system-ui, -apple-system, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            overflow-x: hidden; 
+
             /* Мягкий золотистый отблеск вместо плотного черного градиента */
             background-image: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 60%), url('main-bg.png'); 
             background-repeat: no-repeat; 
             background-position: center top; 
-            
+
             /* Растягиваем картинку на весь экран без сжатия и фиксируем при скролле */
             background-size: cover; 
             background-attachment: fixed; 
-            
+
             /* Делаем картинку ярче и контрастнее, чтобы проявить золото и медведей */
             backdrop-filter: brightness(1.25) contrast(1.1);
         }
-        
+
         /* 2. ИСПРАВЛЕНИЕ СДВИГА НА МОБИЛКАХ: предотвращаем вылеты блоков за экран */
-        , .hero, .page-section, div {
+        .header, .hero, .page-section, div {
             box-sizing: border-box;
         }
-        
+
         /* 3. ИСПРАВЛЕНИЕ ЧИТАЕМОСТИ ШАПКИ: легкое темное размытие фона только под меню */
-                 { 
+                .header { 
             width: calc(100% - 40px); /* Оставляем аккуратные зазоры по бокам */
             max-width: 1160px; 
             box-sizing: border-box; 
@@ -65,30 +58,30 @@
             position: sticky; 
             top: 20px; /* Приподнимаем панель от самого верха экрана, чтобы она парила */
             z-index: 100; 
-            
+
             /* 1. Эффект парящего матового стекла */
             background: linear-gradient(135deg, rgba(11, 17, 32, 0.65) 0%, rgba(2, 4, 8, 0.8) 100%);
             backdrop-filter: blur(16px); 
             -webkit-backdrop-filter: blur(16px);
-            
+
             /* 2. Закругление углов */
             border-radius: 20px; 
-            
+
             /* 3. Тонкая объемная рамка (блик сверху) */
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-top: 1px solid rgba(255, 255, 255, 0.12); /* Верхняя грань чуть ярче для эффекта объема */
-            
+
             /* 4. Сложная 3D-тень и внутренний неоновый отлив */
             box-shadow: 
                 0 4px 30px rgba(0, 0, 0, 0.4), /* Глубокая тень на задний план */
                 inset 0 1px 1px rgba(255, 255, 255, 0.1), /* Внутренний блик на грани */
                 inset 0 0 15px rgba(0, 203, 215, 0.03); /* Едва заметное внутреннее сияние */
-                
+
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         /* Небольшой интерактивный 3D-эффект при наведении мышкой */
-        :hover {
+        .header:hover {
             transform: translateY(-2px) scale(1.005);
             border-top: 1px solid rgba(0, 203, 215, 0.3);
             box-shadow: 
@@ -96,13 +89,21 @@
                 0 0 25px rgba(0, 203, 215, 0.08);
         }
 
-        
+
         .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
                 /* Возвращаем видимость меню для ПК-версии */
+        .nav-menu { 
+            display: flex !important; 
                 .nav-menu { 
             display: flex; 
             gap: 15px; 
+            visibility: visible !important;
+            opacity: 1 !important;
         }
+
+        .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: 0.3s; border: 1px solid transparent; }
+        .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
+        /* Приглушаем свечение активной вкладки в меню */
         
         .nav-tab { 
             color: var(--muted); 
@@ -125,6 +126,9 @@
         
         .nav-tab.active-tab { 
             color: var(--cyan); 
+            text-shadow: 0 0 12px rgba(0, 203, 215, 0.4); 
+            background: rgba(0, 203, 215, 0.04); 
+            border: 1px solid rgba(0, 203, 215, 0.15); 
             text-shadow: 0 0 15px var(--cyan); 
             background: rgba(0,242,254,0.06); 
             border: 1px solid rgba(0,242,254,0.2); 
@@ -147,13 +151,13 @@
             margin-bottom: 20px; 
             display: block; 
             text-align: center;
-            
+
             /* Убираем все рамки и подложки, добавляем дорогое неоновое свечение */
             background: none !important;
             border: none !important;
             padding: 0 !important;
             box-shadow: none !important;
-            
+
             /* Эффект кастомной неоновой вывески */
             text-shadow: 0 0 10px rgba(0, 203, 215, 0.6), 
                          0 0 20px rgba(0, 203, 215, 0.2);
@@ -168,12 +172,12 @@
             margin: 0 auto 35px auto; 
             line-height: 1.6; 
             padding: 15px 25px; 
-            
+
             /* Снижаем плотность черного и делаем сильное размытие заднего плана */
             background: rgba(11, 17, 32, 0.45); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            
+
             /* Закругляем углы, чтобы убрать квадратность, и делаем аккуратную рамку */
             border-radius: 16px; 
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -201,170 +205,158 @@
         .feat-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .section-title { text-transform: uppercase; letter-spacing: 5px; font-size: 2.5rem; background: linear-gradient(45deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 50px 0; }
                  /* 1. ИСПРАВЛЕНИЕ КАШИ: Выстраиваем контейнеры месяцев друг за другом */
-        /* ==========================================================================
-           1. ДОРОЖНАЯ КАРТА (ROADMAP) — РОТИРУЕМЫЙ СЕТОЧНЫЙ ПОРЯДОК
-           ========================================================================== */
-        
-        /* Общий контейнер таймлайна */
         .timeline {
-            position: relative !important;
-            width: 100% !important;
-            max-width: 1000px !important;
-            margin: 40px auto 80px auto !important;
-            padding: 20px 0 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 50px !important; /* Безопасный зазор, чтобы карточки месяцев не налезали друг на друга */
-            box-sizing: border-box !important;
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 60px; /* Фиксированный зазор между месяцами, чтобы они не накладывались */
+            box-sizing: border-box;
         }
 
-        /* Направляющая неоновая линия ровно по центру */
+        /* Вертикальная неоновая линия по центру */
         .timeline::after {
-            content: '' !important;
-            position: absolute !important;
-            width: 4px !important;
-            background: linear-gradient(to bottom, var(--cyan), var(--purple), transparent) !important;
-            top: 0 !important;
-            bottom: 0 !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            box-shadow: 0 0 15px rgba(0, 203, 215, 0.4) !important;
-            z-index: 1 !important;
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--cyan), var(--purple), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(0, 203, 215, 0.4);
+            z-index: 1;
         }
 
-        /* Контейнеры карточек фаз */
+        /* 2. ИСПРАВЛЕНИЕ РАСБРОСА: Позиционируем контейнеры фаз */
         .phase-container {
-            position: relative !important;
-            width: 50% !important;
-            box-sizing: border-box !important;
-            z-index: 2 !important;
-            transform: none !important;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            z-index: 2;
         }
 
-        /* Шахматный порядок для компьютерной версии */
+        /* Четное/нечетное разделение (Шахматный порядок) */
         .phase-container.left {
-            left: 0 !important;
-            padding-right: 40px !important;
-            align-self: flex-start !important;
+            left: 0;
+            padding-right: 40px;
+            align-self: flex-start;
         }
 
         .phase-container.right {
-            left: 50% !important;
-            padding-left: 40px !important;
-            align-self: flex-end !important;
+            left: 50%;
+            padding-left: 40px;
+            align-self: flex-end;
         }
 
-        /* СБРОС АБСОЛЮТНЫХ СДВИГОВ: выстраивает внутренние текстовые блоки и картинки ровно */
-        .phase-container .feat-card,
+        /* 3. ИСПРАВЛЕНИЕ НАЕЗДОВ: Отменяем старые абсолютные сдвиги для внутренних блоков */
+        .phase-container .feat-card, 
         .phase-container .content-card,
-        .phase-container div[class*="card"],
-        .phase-container .timeline-content {
-            position: relative !important;
+        .phase-container div[class*="card"] {
+            position: relative !important; /* Отменяем absolute, который ломал верстку */
             top: 0 !important;
             left: 0 !important;
             transform: none !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            background: rgba(11, 17, 32, 0.8) !important; /* Плотный матовый фон, чтобы текст легко читался */
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            border-radius: 20px !important;
-            padding: 25px !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
-            box-sizing: border-box !important;
+            background: rgba(11, 17, 32, 0.65) !important;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
-        /* Фиксируем картинки внутри фаз, чтобы они не раздувались на пол-экрана */
-        .phase-container img {
-            max-width: 100% !important;
-            width: auto !important;
-            height: auto !important;
-            border-radius: 12px !important;
-            display: block !important;
-            margin-top: 15px !important;
-        }
-
-        /* Неоновые точки на центральной оси */
+        /* Точки на линии */
         .phase-container::after {
-            content: '' !important;
-            position: absolute !important;
-            width: 14px !important;
-            height: 14px !important;
-            background: #020408 !important;
-            border: 3px solid var(--cyan) !important;
-            border-radius: 50% !important;
-            top: 30px !important;
-            z-index: 10 !important;
-            box-shadow: 0 0 10px var(--cyan) !important;
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #020408;
+            border: 3px solid var(--cyan);
+            border-radius: 50%;
+            top: 30px;
+            z-index: 10;
+            box-shadow: 0 0 10px var(--cyan);
         }
-        .phase-container.left::after { right: -7px !important; left: auto !important; }
-        .phase-container.right::after { left: -7px !important; right: auto !important; }
 
-        /* ==========================================================================
-           2. СТРОЧКА ТЕКСТА «// TAC_ZERO SYSTEM MANIFESTO»
-           ========================================================================== */
+        .phase-container.left::after { right: -7px; }
+        .phase-container.right::after { left: -7px; }
+
+        /* Адаптив под мобильные устройства */
+               @media (max-width: 768px) { 
+            /* Скрываем меню ТОЛЬКО на мобилках, на ПК оно будет работать */
+            .nav-menu { display: none !important; }  
+            
+            /* ... остальные мобильные стили ... */
+        }
+        .left { left: 0; text-align: right; } .right { left: 50%; text-align: left; }
+        .right::after { left: -8px; border-color: var(--purple); }
+        .content { padding: 30px; background: var(--card); border-radius: 24px; border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
+        .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
+        .badge.active { background: #00ff87; color: #000; box-shadow: 0 0 15px #00ff87; }
+        .badge.locked { background: rgba(255,255,255,0.05); color: var(--muted); }
+        .date { font-weight: 900; color: var(--cyan); font-size: 1.25rem; margin-bottom: 6px; }
+        .right .date { color: var(--purple); }
+        .phase-title { font-size: 1.5rem; margin: 0 0 12px 0; font-weight: 800; }
+        .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
+                /* Стильная темная плашка для манифеста, чтобы текст не сливался с неоновым полом */
         .manifesto-box {
-    background: rgba(2, 4, 8, 0.75) !important; 
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    padding: 20px 25px !important;
-    border-radius: 20px !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6) !important;
-    box-sizing: border-box !important;
-    
-    /* БЕЗОПАСНОЕ ЦЕНТРИРОВАНИЕ БЕЗ АБСОЛЮТОВ */
-    display: block !important;
-    margin: 40px auto 20px auto !important; 
-    max-width: 650px !important; 
-    text-align: center !important; 
-}
+            background: rgba(2, 4, 8, 0.75); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            padding: 25px 35px; 
+            border-radius: 20px; 
+            max-width: 800px; 
+            margin: 40px auto; 
+            border: 1px solid rgba(255, 255, 255, 0.06); 
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6); 
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-.manifesto-box p, .manifesto-box span {
-    color: #ffffff !important;
-    font-size: 14px !important; 
-    line-height: 1.5 !important;
-    font-weight: 500 !important;
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.9) !important; 
-}
+        /* Делаем сам текст манифеста внутри плашки контрастным и белым */
+        .manifesto-box p {
+            color: #ffffff !important;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            margin: 0;
+        }
+
                 /* Этот код сработает ТОЛЬКО на экранах смартфонов и планшетов (до 768px) */
-                @media (max-width: 768px) {
+        @media (max-width: 768px) {
             body {
                 /* 1. Намертво фиксируем фон на мобильных устройствах */
                 background-attachment: fixed !important; 
                 background-position: center top !important;
-                background-size: cover !important;
-                
-                /* 2. Накладываем фиксированную маску для бесшовного ухода в темный цвет */
+                background-size: cover !important; /* На фиксированном фоне cover удерживает пропорции на мобильном экране */
+
+                /* 2. Накладываем фиксированную маску: сверху картинка чистая, а к нижней половине экрана она плавно и бесшовно тухнет в глубокий черный */
                 background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0) 0%, rgba(2, 4, 8, 0.5) 40%, rgba(2, 4, 8, 0.95) 75%, #020408 100%), url('main-bg.png') !important;
                 background-color: #020408 !important;
-            }            
+            }
+
+            /* Делаем аккуратные отступы для блока манифеста, чтобы он изящно лежал на мобильном дисплее */
+            .manifesto-box {
+                margin: 25px 15px !important;
+                padding: 18px 22px !important;
+                background: rgba(11, 17, 32, 0.6) !important; /* Делаем плашку чуть прозрачнее, так как фон за ней теперь статичен */
+            }
         }
-   .header {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    z-index: 999999 !important; /* Пробивает любой фон и выводит кнопки вперед */
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 20px 40px !important;
-    box-sizing: border-box !important;
-}
 
-/* Также принудительно покажем само меню, если оно где-то скрылось */
-.nav-menu {
-    display: flex !important;
-    gap: 20px !important;
-}
-
-.nav-tab {
-    color: #ffffff !important;
-    cursor: pointer !important;
-}
-
+  .header { padding: 15px 20px; justify-content: space-between; } 
+  .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
+  .nav-menu { display: none; }  
+  .social-icons { 
+    display: flex !important; /* Гарантирует видимость на ПК и телефонах */
+    gap: 12px; 
+    margin-right: 20px; 
+    align-items: center; 
+} 
   .mob-circle-icon { 
     width: 38px; 
     height: 38px; 
@@ -396,33 +388,21 @@
   .left .date, .right .date { color: #00f2fe; } 
   .nft-img { max-width: 100%; }
 }
-        .header {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    z-index: 9999 !important; /* Пробивает любой фон и выводит кнопки вперед */
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 20px 40px !important;
-    box-sizing: border-box !important;
-}
     </style>
 </head>
 <body>
 <header class="header">
   <div class="logo">TAC // Syndicate</div>
-  
+
   <nav class="nav-menu">
     <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
     <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
     <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool 0%</div>
   </nav>
-  
+
   <div style="display: flex; align-items: center; gap: 15px;">
     <div class="social-icons" style="display: flex !important; gap: 18px; margin-right: 15px; align-items: center;">
-      
+
       <!-- Исправленная иконка Telegram -->
       <a href="https://t.me/tac_bears" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; text-decoration: none;" title="Telegram">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
@@ -438,7 +418,7 @@
       </a>
 
     </div>
-    
+
     <button class="connect-btn" disabled style="background: rgba(255,255,255,0.05); color: #788cb6; box-shadow: none; cursor: not-allowed; opacity: 0.4; border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; text-transform: uppercase; font-size: 0.75rem;">Wallet</button>
   </div>
 </header>
@@ -452,10 +432,10 @@
             <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
             <!-- Начало блока двойных кнопок действий -->
 <div class="main-action-buttons" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px; width: 100%; max-width: 400px; padding: 0 20px; box-sizing: border-box; margin-left: auto; margin-right: auto;">
-  
+
   <!-- Кнопка 1: Открытие модального окна вайтлиста -->
   <button class="mint-main-btn" onclick="openMintModal()" style="width: 100%;">1. FILL WHITELIST FORM</button>
-  
+
   <!-- Кнопка 2: Переход на маркетплейс Getgems -->
   <a href="https://getgems.io/collection/EQAIUnDp9xle-oKpEqaWIvGTn4z9Q1cJFI5e6i2xAxodlhfj" target="_blank" style="text-decoration: none; width: 100%;">
     <button class="mint-main-btn" style="width: 100%; background: linear-gradient(45deg, #000, rgba(11,17,32,0.9)); color: #00f2fe; border: 2px solid #00f2fe; box-shadow: 0 0 15px rgba(0,242,254,0.15);">2. VIEW COLLECTION ON GETGEMS</button>
@@ -535,7 +515,7 @@
             </div>
         </div>
 
-       <footer style="width: calc(100% - 30px); max-width: 1000px; margin: 50px auto 30px auto; padding: 25px 35px; background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6); text-align: center; box-sizing: border-box;">
+        <footer style="width:100%; max-width:1000px; margin-top:50px; padding:40px 20px; border-top:1px solid rgba(255,255,255,0.03); text-align:center; color:var(--muted); font-size:0.8rem; line-height:1.7;">
             <p>Risk & Regulatory Disclosure: TAC Genesis Bears are cryptographic 3D digital collectible toys operating on the decentralized TON Blockchain network. Possession of these items is strictly for personal enjoyment with no expectation of profit. Acquisition does not constitute financial investments, securities, or profit-sharing rights. All smart-contract interactions are performed on an "as-is" parameter at the user's sole responsibility. Conduct exhaustive individual research before processing any cryptographic blockchain transactions.</p>
             <p style="margin-top:20px; color:rgba(255,255,255,0.15); font-weight:700; letter-spacing:1px;">© 2026 TAC // SYNDICATE. ALL TECHNOLOGICAL INTERFACES LEGAL SHIELD PROTECTED.</p>
         </footer>
