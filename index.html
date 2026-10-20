@@ -22,20 +22,7 @@
     margin: 0;
     padding: 0;
 }
-         body { 
-    background-color: #020408; 
-    color: var(--text); 
-    font-family: system-ui, -apple-system, sans-serif; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    overflow-x: hidden; 
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-}
-
-/* Яркий, сочный размытый неоновый фон */
+         /* Делаем размытый фон еще ярче и смещаем его чуть выше */
 body::before {
     content: "";
     position: fixed;
@@ -45,14 +32,29 @@ body::before {
     height: 100vh;
     background-image: url('main-bg.png');
     background-repeat: no-repeat;
-    background-position: center top;
+    /* center -10px приподнимет синие круги повыше, чтобы их было видно на узких экранах смартфонов */
+    background-position: center -10px; 
     background-size: cover;
-    /* Уменьшили размытие до 50px и подняли яркость до 1.3 (было 0.45) */
-    filter: blur(50px) brightness(1.3) contrast(1.1); 
+    /* Снизили размытие до 40px, чтобы цветные элементы стали отчетливее и ярче */
+    filter: blur(40px) brightness(1.4) contrast(1.15); 
     z-index: -2;
     pointer-events: none;
 }
 
+/* Максимально прозрачная подложка, убирающая черноту с главного экрана */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Верх сделали почти прозрачным (0.15), чтобы убрать «грязный» черный налет */
+    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.15) 0%, rgba(2, 4, 8, 0.7) 50%, #020408 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+        
 /* Облегченная затемняющая подложка для сохранения цветного свечения */
 body::after {
     content: "";
