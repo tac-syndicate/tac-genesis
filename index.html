@@ -171,7 +171,7 @@
         .feat-card h3 { font-size: 1.4rem; margin: 0 0 12px 0; font-weight: 800; color: #fff; }
         .feat-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .section-title { text-transform: uppercase; letter-spacing: 5px; font-size: 2.5rem; background: linear-gradient(45deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 50px 0; }
-                /* Общий контейнер дорожной карты */
+                 /* 1. ИСПРАВЛЕНИЕ КАШИ: Выстраиваем контейнеры месяцев друг за другом */
         .timeline {
             position: relative;
             max-width: 1000px;
@@ -179,11 +179,11 @@
             padding: 20px 0;
             display: flex;
             flex-direction: column;
-            gap: 40px; /* Одинаковое, аккуратное расстояние между фазами/месяцами */
+            gap: 60px; /* Фиксированный зазор между месяцами, чтобы они не накладывались */
             box-sizing: border-box;
         }
 
-        /* Центральная направляющая неоновая линия */
+        /* Вертикальная неоновая линия по центру */
         .timeline::after {
             content: '';
             position: absolute;
@@ -197,46 +197,50 @@
             z-index: 1;
         }
 
-        /* Контейнер для каждой отдельной карточки месяца/фазы */
+        /* 2. ИСПРАВЛЕНИЕ РАСБРОСА: Позиционируем контейнеры фаз */
         .phase-container {
             position: relative;
-            width: 50%; /* Занимает ровно половину ширины таймлайна */
+            width: 50%;
             box-sizing: border-box;
             z-index: 2;
         }
 
-        /* Карточки, которые идут СЛЕВА */
+        /* Четное/нечетное разделение (Шахматный порядок) */
         .phase-container.left {
             left: 0;
             padding-right: 40px;
-            align-self: flex-start; /* Прижимаем к левому краю */
+            align-self: flex-start;
         }
 
-        /* Карточки, которые идут СПРАВА */
         .phase-container.right {
-            left: 50%; /* Смещаем на правую половину */
+            left: 50%;
             padding-left: 40px;
-            align-self: flex-end; /* Прижимаем к правому краю */
+            align-self: flex-end;
         }
 
-        /* Стилизация самой контентной карточки (матовое стекло) */
-        .phase-container .content-card, .phase-container div[class*="card"] {
-            background: rgba(11, 17, 32, 0.65);
+        /* 3. ИСПРАВЛЕНИЕ НАЕЗДОВ: Отменяем старые абсолютные сдвиги для внутренних блоков */
+        .phase-container .feat-card, 
+        .phase-container .content-card,
+        .phase-container div[class*="card"] {
+            position: relative !important; /* Отменяем absolute, который ломал верстку */
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+            background: rgba(11, 17, 32, 0.65) !important;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 20px;
             padding: 25px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
         }
 
-        /* Неоновые точки-узлы на центральной линии */
+        /* Точки на линии */
         .phase-container::after {
             content: '';
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             background: #020408;
             border: 3px solid var(--cyan);
             border-radius: 50%;
@@ -245,26 +249,12 @@
             box-shadow: 0 0 10px var(--cyan);
         }
 
-        /* Точка для левой карточки крепится к её правому краю */
-        .phase-container.left::after {
-            right: -8px;
-        }
+        .phase-container.left::after { right: -7px; }
+        .phase-container.right::after { left: -7px; }
 
-        /* Точка для правой карточки крепится к её левому краю */
-        .phase-container.right::after {
-            left: -8px;
-        }
-
-        /* Адаптивность: на телефонах выстраиваем ВСЁ в одну ровную колонку */
+        /* Адаптив под мобильные устройства */
         @media (max-width: 768px) {
-            .timeline {
-                padding-left: 20px;
-                padding-right: 20px;
-                gap: 30px;
-            }
-            .timeline::after {
-                left: 30px; /* Смещаем линию влево */
-            }
+            .timeline::after { left: 30px; }
             .phase-container {
                 width: 100% !important;
                 left: 0 !important;
@@ -272,10 +262,12 @@
                 padding-right: 0 !important;
                 align-self: flex-start !important;
             }
-            .phase-container::after {
-                left: 22px !important; /* Центрируем точки по новой линии */
+            .phase-container.left::after,
+            .phase-container.right::after {
+                left: 23px !important;
             }
         }
+
 
         .left { left: 0; text-align: right; } .right { left: 50%; text-align: left; }
         .right::after { left: -8px; border-color: var(--purple); }
