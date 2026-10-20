@@ -4,7 +4,8 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
  <!-- Подключение иконок Font Awesome Free 6.4.2 -->
-    <link rel="stylesheet" href="https://cloudflare.com">    
+<link rel="stylesheet" href="https://cloudflare.com">
+   
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
          body { background: #020408; color: var(--text); font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.4) 0%, rgba(2, 4, 8, 0.95) 80%), url('main-bg.png'); background-repeat: no-repeat; background-position: center top; background-size: 1400px auto; background-attachment: scroll; }
@@ -102,26 +103,25 @@
     </style>
 </head>
 <body>
-   <header class="header">
+<header class="header">
   <div class="logo">TAC // Syndicate</div>
+  
   <nav class="nav-menu">
     <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
     <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
     <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool 0%</div>
   </nav>
+  
+  <!-- ВОТ ЭТОТ БЛОК СЕЙЧАС У ВАС ОТСУТСТВУЕТ ИЛИ СКРЫТ -->
   <div style="display: flex; align-items: center; gap: 15px;">
-    <div class="social-icons">
-    <a href="https://t.me/tac_bears" target="_blank" class="soc-link mob-circle-icon" title="Telegram">
-        <i class="fab fa-telegram"></i>
-    </a>
-    <a href="https://x.com" target="_blank" class="soc-link mob-circle-icon" title="Twitter">
-        <i class="fab fa-x-twitter"></i>
-    </a>
-</div>
-
+    <div class="social-icons" style="display: flex !important; gap: 15px; margin-right: 15px; align-items: center;">
+      <a href="https://t.me" target="_blank" style="color: #ffffff; font-size: 1.5rem; text-decoration: none; transition: 0.3s;" title="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://x.com" target="_blank" style="color: #ffffff; font-size: 1.5rem; text-decoration: none; transition: 0.3s;" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
     <button class="connect-btn" disabled style="background: rgba(255,255,255,0.05); color: #788cb6; box-shadow: none; cursor: not-allowed; opacity: 0.4;">Wallet Locked</button>
   </div>
 </header>
+
 <!-- SECTION 1: PRESENTATION -->
     <section id="home-section" class="page-section active-section">
         <div class="hero">
