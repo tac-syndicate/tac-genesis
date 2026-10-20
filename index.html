@@ -17,7 +17,7 @@
             --muted: #62779f; 
         }
          
-                body { 
+                        body { 
             background: #020408; 
             color: var(--text); 
             font-family: system-ui, -apple-system, sans-serif; 
@@ -28,11 +28,17 @@
             align-items: center; 
             overflow-x: hidden; 
             
-            background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.1) 0%, rgba(2, 4, 8, 0.7) 40%, #020408 70%), url('main-bg.png'); 
+            /* Мягкий золотистый отблеск вместо плотного черного градиента */
+            background-image: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 60%), url('main-bg.png'); 
             background-repeat: no-repeat; 
             background-position: center top; 
-            background-size: 100% auto; 
-            background-attachment: fixed; /* ВОТ ЭТО ЗАСТАВИТ КАРТИНКУ СТОЯТЬ НА МЕСТЕ ПРИ СКРОЛЛЕ */
+            
+            /* Растягиваем картинку на весь экран без сжатия и фиксируем при скролле */
+            background-size: cover; 
+            background-attachment: fixed; 
+            
+            /* Делаем картинку ярче и контрастнее, чтобы проявить золото и медведей */
+            backdrop-filter: brightness(1.25) contrast(1.1);
         }
         
         /* 2. ИСПРАВЛЕНИЕ СДВИГА НА МОБИЛКАХ: предотвращаем вылеты блоков за экран */
