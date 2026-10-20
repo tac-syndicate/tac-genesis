@@ -185,50 +185,7 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) { 
-  .header { padding: 15px 20px; justify-content: space-between; }
-              /* Прячем обычное десктопное меню на мобилках */
-  .nav-menu {
-      display: none !important;
-  }
-
-  /* Перестраиваем шапку на мобильном, чтобы она расширялась вниз */
-  .header {
-      flex-direction: column !important; /* Позволяет пустить второй ряд ссылок ниже */
-      gap: 12px !important;              /* Отступ между верхней строкой и ссылками */
-      padding: 15px 20px 12px 20px !important;
-      height: auto !important;           /* Чтобы плашка сама растягивалась под контент */
-  }
-
-  /* Оборачиваем логотип, соцсети и кошелек, чтобы они оставались на первой строчке */
-  .header > :not(.mobile-sub-menu) {
-      /* Этот стиль заставит верхнюю строчку с кнопками не ломаться */
-  }
-
-  /* Стили для нашего нового второго ряда ссылок */
-  .mobile-sub-menu {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 20px !important;              /* Расстояние между ссылками */
-      width: 100% !important;
-      border-top: 1px solid rgba(255, 255, 255, 0.07) !important; /* Тонкая линия разделения */
-      padding-top: 10px !important;
-  }
-
-  .mobile-sub-menu a {
-      color: rgba(255, 255, 255, 0.6) !important; /* Делаем шрифт аккуратным и не кричащим */
-      font-size: 11px !important;                 /* Мелкий компактный размер */
-      text-decoration: none !important;
-      font-weight: 500 !important;
-      letter-spacing: 0.5px !important;
-      text-transform: uppercase !important;       /* Делаем капсом, как весь твой дизайн */
-      transition: color 0.2s ease;
-  }
-
-  .mobile-sub-menu a:hover, .mobile-sub-menu a:active {
-      color: #00e5ff !important;                  /* При тапе подсвечиваем неоновым голубым */
-  }
-            
+  .header { padding: 15px 20px; justify-content: space-between; } 
   .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
   .nav-menu { display: none; }  
   .social-icons { 
@@ -362,13 +319,6 @@
     
     <button class="connect-btn" disabled style="background: rgba(255,255,255,0.05); color: #788cb6; box-shadow: none; cursor: not-allowed; opacity: 0.4; border: none; padding: 12px 26px; border-radius: 40px; font-weight: 900; text-transform: uppercase; font-size: 0.75rem;">Wallet</button>
   </div>
-      <!-- Блок ссылок, который будет виден ТОЛЬКО на мобильных и планшетах -->
-  <div class="mobile-sub-menu">
-    <a href="#presentation">Presentation</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#swap">Swap Pool 0%</a>
-  </div>
-
 </header>
 
 
