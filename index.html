@@ -210,7 +210,27 @@
             margin: 0;
         }
 
-        @media (max-width: 768px) { 
+                /* Этот код сработает ТОЛЬКО на экранах смартфонов и планшетов (до 768px) */
+        @media (max-width: 768px) {
+            body {
+                /* 1. Намертво фиксируем фон на мобильных устройствах */
+                background-attachment: fixed !important; 
+                background-position: center top !important;
+                background-size: cover !important; /* На фиксированном фоне cover удерживает пропорции на мобильном экране */
+                
+                /* 2. Накладываем фиксированную маску: сверху картинка чистая, а к нижней половине экрана она плавно и бесшовно тухнет в глубокий черный */
+                background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0) 0%, rgba(2, 4, 8, 0.5) 40%, rgba(2, 4, 8, 0.95) 75%, #020408 100%), url('main-bg.png') !important;
+                background-color: #020408 !important;
+            }
+            
+            /* Делаем аккуратные отступы для блока манифеста, чтобы он изящно лежал на мобильном дисплее */
+            .manifesto-box {
+                margin: 25px 15px !important;
+                padding: 18px 22px !important;
+                background: rgba(11, 17, 32, 0.6) !important; /* Делаем плашку чуть прозрачнее, так как фон за ней теперь статичен */
+            }
+        }
+
   .header { padding: 15px 20px; justify-content: space-between; } 
   .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
   .nav-menu { display: none; }  
