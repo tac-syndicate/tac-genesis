@@ -35,37 +35,35 @@
     position: relative;
 }
 
-/* Создаем размытый неоновый фон на всю страницу */
+/* Исправленный размытый неоновый фон */
 body::before {
     content: "";
-    position: absolute;
+    position: fixed; /* Фиксируем на экране, чтобы высота не слетала в 0 */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    /* Ваша картинка используется как источник сине-золотого цвета */
+    width: 100vw;
+    height: 100vh;
     background-image: url('main-bg.png');
     background-repeat: no-repeat;
     background-position: center top;
-    background-size: 1400px auto;
-    /* Сильное размытие превращает картинку в мягкий градиент */
-    filter: blur(100px) brightness(0.4); 
+    background-size: cover;
+    filter: blur(80px) brightness(0.45); /* Мягкое размытие сине-золотых оттенков */
     z-index: -2;
+    pointer-events: none;
 }
 
-/* Плотная темная подложка, чтобы текст не сливался со свечением */
+/* Затемняющая подложка для идеальной читаемости текста */
 body::after {
     content: "";
-    position: absolute;
+    position: fixed; /* Фиксируем вслед за картинкой */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    /* Плавный переход от глубокого темного к чистому черному фону вниз */
-    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.75) 0%, #020408 50%, #020408 100%);
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.6) 0%, rgba(2, 4, 8, 0.9) 100%);
     z-index: -1;
+    pointer-events: none;
 }
-
 /* Исправленная контрастная шапка сайта */
 .header { 
     width: 100%; 
