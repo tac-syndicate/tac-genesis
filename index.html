@@ -23,15 +23,17 @@
     font-family: system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    position: relative; /* Теперь все абсолютные элементы будут привязываться к экрану, а не улетать */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
     
+    /* ВОЗВРАЩАЕМ ТВОЙ СТИЛЬНЫЙ НЕОНОВЫЙ ФОН */
     background-image: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 80%), url("main_bg.png");
     background-repeat: no-repeat;
     background-position: center top;
-    background-size: cover; /* Чтобы фон красиво растягивался */
-    overflow-x: hidden;
 }
+
             
             /* Мягкий золотистый отблеск вместо плотного черного градиента */
             background-image: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 60%), url('main-bg.png'); 
