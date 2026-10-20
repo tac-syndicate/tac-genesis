@@ -32,25 +32,57 @@
     overflow-x: hidden; 
     width: 100%;
     min-height: 100vh;
-    
-    /* Исправление фона: картинка встает во всю ширину, не обрезаясь, и плавно уходит в черный цвет */
-    background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.2) 0%, #020408 80%), url('main-bg.png'); 
-    background-repeat: no-repeat; 
-    background-position: center top; 
-    background-size: 100% auto; 
-    background-attachment: scroll; 
+    position: relative;
 }
-        .header { 
+
+/* Создаем размытый неоновый фон на всю страницу */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Ваша картинка используется как источник сине-золотого цвета */
+    background-image: url('main-bg.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 1400px auto;
+    /* Сильное размытие превращает картинку в мягкий градиент */
+    filter: blur(100px) brightness(0.4); 
+    z-index: -2;
+}
+
+/* Плотная темная подложка, чтобы текст не сливался со свечением */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Плавный переход от глубокого темного к чистому черному фону вниз */
+    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.75) 0%, #020408 50%, #020408 100%);
+    z-index: -1;
+}
+
+/* Исправленная контрастная шапка сайта */
+.header { 
     width: 100%; 
     max-width: 1200px; 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
     padding: 20px 40px; 
-    position: relative; /* Изменили с sticky на relative, чтобы шапка не наезжала на текст при скролле */
+    position: relative; 
     z-index: 100; 
-    border-bottom: 1px solid rgba(255,255,255,0.04); 
+    /* Добавляем легкую темную плашку под шапку для 100% читаемости меню */
+    background: rgba(2, 4, 8, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    border-radius: 0 0 16px 26px;
 }
+
         .logo { 
     font-size: 1.4rem; 
     font-weight: 900; 
