@@ -225,6 +225,36 @@
   .left .date, .right .date { color: #00f2fe; } 
   .nft-img { max-width: 100%; }
 }
+        .manifesto-box {
+    background: rgba(0, 0, 0, 0.6) !important; /* Полупрозрачный темный фон */
+    backdrop-filter: blur(10px) !important;    /* Эффект размытого стекла */
+    -webkit-backdrop-filter: blur(10px) !important;
+    padding: 20px 25px !important;              /* Отступы внутри плашки */
+    border-radius: 16px !important;            /* Красивое скругление углов */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* Тонкая аккуратная рамка */
+    max-width: 600px !important;               /* Ограничиваем ширину, чтобы текст не тянулся во весь экран */
+    margin: 40px auto !important;              /* Центрируем плашку на странице */
+    text-align: center !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.manifesto-title {
+    color: #00e5ff !important; /* Голубой неоновый цвет для заголовка */
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    margin: 0 0 10px 0 !important;
+}
+
+.manifesto-text {
+    color: #ffffff !important; /* Чистый белый читаемый текст */
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    font-weight: 400 !important;
+    margin: 0 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
     </style>
 </head>
 <body>
@@ -289,10 +319,10 @@
             </div>
         </div>
 
-        <div class="manifesto-box">
-            <p style="color:var(--purple); font-weight:900; font-style:normal; margin-bottom:10px; text-transform:uppercase;">// TAC_ZERO SYSTEM MANIFESTO</p>
-            <p>"We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."</p>
-        </div>
+       <div class="manifesto-box">
+    <p class="manifesto-title">// TAC_ZERO SYSTEM MANIFESTO</p>
+    <p class="manifesto-text">"We are not building another temporary asset. TAC is an elite digital syndicate. The Genesis Bears deployment is the baseline architecture of an expanding ecosystem. Our future vision includes strategic cross-chain scaling to tap into global liquidity networks. Protect your entity, force the mutation, rule the dark network."</p>
+    </div>
 
         <div class="features-grid">
             <div class="feat-card">
