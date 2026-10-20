@@ -131,24 +131,27 @@
         }
 
         .banner-title { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin: 0 0 25px 0; background: linear-gradient(180deg, #ffffff, #768fa5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-                .banner-desc { 
-            font-size: 1.2rem; 
-            color: #ffffff; /* Меняем тусклый серый цвет на чистый белый для контраста */
-            max-width: 750px; 
+                        /* Красивое парящее матовое стекло для описания (смягчаем черноту) */
+        .banner-desc { 
+            font-size: 1.1rem; 
+            color: #ffffff; 
+            max-width: 650px; 
             margin: 0 auto 35px auto; 
-            line-height: 1.7; 
-            
-            /* Добавляем мягкую темную плашку прямо под текст */
-            background: rgba(2, 4, 8, 0.65); 
+            line-height: 1.6; 
             padding: 15px 25px; 
-            border-radius: 12px; 
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
             
-            /* Делаем легкую тень, чтобы буквы сильнее отделялись от фона */
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            /* Снижаем плотность черного и делаем сильное размытие заднего плана */
+            background: rgba(11, 17, 32, 0.45); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            
+            /* Закругляем углы, чтобы убрать квадратность, и делаем аккуратную рамку */
+            border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
+
 
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
@@ -183,7 +186,30 @@
         .phase-title { font-size: 1.5rem; margin: 0 0 12px 0; font-weight: 800; }
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
-        .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
+                /* Стильная темная плашка для манифеста, чтобы текст не сливался с неоновым полом */
+        .manifesto-box {
+            background: rgba(2, 4, 8, 0.75); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            padding: 25px 35px; 
+            border-radius: 20px; 
+            max-width: 800px; 
+            margin: 40px auto; 
+            border: 1px solid rgba(255, 255, 255, 0.06); 
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6); 
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Делаем сам текст манифеста внутри плашки контрастным и белым */
+        .manifesto-box p {
+            color: #ffffff !important;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            margin: 0;
+        }
+
         @media (max-width: 768px) { 
   .header { padding: 15px 20px; justify-content: space-between; } 
   .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
