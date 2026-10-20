@@ -7,81 +7,51 @@
 <link rel="stylesheet" href="https://cloudflare.com">
    
     <style>
-        :root { 
-    --bg: #020408; 
-    --card: rgba(11,17,32,0.85); 
-    --cyan: #00f2fe; 
-    --purple: #9b51e0; 
-    --text: #ffffff; 
-    --muted: #788cb6; 
-}
-
-/* Глобальный сброс отступов — убирает смещение на смартфонах */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-         /* Делаем размытый фон еще ярче и смещаем его чуть выше */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('main-bg.png');
-    background-repeat: no-repeat;
-    /* center -10px приподнимет синие круги повыше, чтобы их было видно на узких экранах смартфонов */
-    background-position: center -10px; 
-    background-size: cover;
-    /* Снизили размытие до 40px, чтобы цветные элементы стали отчетливее и ярче */
-    filter: blur(40px) brightness(1.4) contrast(1.15); 
-    z-index: -2;
-    pointer-events: none;
-}
-
-/* Максимально прозрачная подложка, убирающая черноту с главного экрана */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /* Верх сделали почти прозрачным (0.15), чтобы убрать «грязный» черный налет */
-    background: linear-gradient(to bottom, rgba(2, 4, 8, 0.15) 0%, rgba(2, 4, 8, 0.7) 50%, #020408 100%);
-    z-index: -1;
-    pointer-events: none;
-}
-
+                :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
+         
+        body { 
+            background: #020408; 
+            color: var(--text); 
+            font-family: system-ui, -apple-system, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            overflow-x: hidden; 
+            
+            /* 1. ИСПРАВЛЕНИЕ ФОНА: картинка не режется, а плавно уходит в черный цвет */
+            background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.1) 0%, rgba(2, 4, 8, 0.7) 40%, #020408 70%), url('main-bg.png'); 
+            background-repeat: no-repeat; 
+            background-position: center top; 
+            background-size: 100% auto; 
+            background-attachment: scroll; 
+        }
         
-/* Исправленная контрастная шапка сайта */
-.header { 
-    width: 100%; 
-    max-width: 1200px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 20px 40px; 
-    position: relative; 
-    z-index: 100; 
-    /* Добавляем легкую темную плашку под шапку для 100% читаемости меню */
-    background: rgba(2, 4, 8, 0.6);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
-    border-radius: 0 0 16px 26px;
-}
-
-        .logo { 
-    font-size: 1.4rem; 
-    font-weight: 900; 
-    letter-spacing: 3px; 
-    background: linear-gradient(45deg, #fff, var(--cyan)); 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    text-transform: uppercase; 
-}
+        /* 2. ИСПРАВЛЕНИЕ СДВИГА НА МОБИЛКАХ: предотвращаем вылеты блоков за экран */
+        .header, .hero, .page-section, div {
+            box-sizing: border-box;
+        }
+        
+        /* 3. ИСПРАВЛЕНИЕ ЧИТАЕМОСТИ ШАПКИ: легкое темное размытие фона только под меню */
+        .header { 
+            width: 100%; 
+            max-width: 1200px; 
+            box-sizing: border-box; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px 40px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: rgba(2, 4, 8, 0.4);
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.04); 
+        }
+        
+        .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; background: linear-gradient(45deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
         .nav-menu { display: flex; gap: 15px; }
         .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: 0.3s; border: 1px solid transparent; }
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
