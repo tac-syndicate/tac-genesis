@@ -7,9 +7,17 @@
 <link rel="stylesheet" href="https://cloudflare.com">
    
     <style>
-                :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
+                :root { 
+            --bg: #020408; 
+            --card: rgba(11,17,32,0.85); 
+            /* Заменили дефолтный кислотный #00f2fe на дорогой, приглушенный платиновый циан */
+            --cyan: #00cbd7; 
+            --purple: #7a3cb5; 
+            --text: #f0f4f8; /* Слегка смягчили белый, чтобы он не резал глаза */
+            --muted: #62779f; 
+        }
          
-        body { 
+                body { 
             background: #020408; 
             color: var(--text); 
             font-family: system-ui, -apple-system, sans-serif; 
@@ -20,12 +28,11 @@
             align-items: center; 
             overflow-x: hidden; 
             
-            /* 1. ИСПРАВЛЕНИЕ ФОНА: картинка не режется, а плавно уходит в черный цвет */
             background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.1) 0%, rgba(2, 4, 8, 0.7) 40%, #020408 70%), url('main-bg.png'); 
             background-repeat: no-repeat; 
             background-position: center top; 
             background-size: 100% auto; 
-            background-attachment: scroll; 
+            background-attachment: fixed; /* ВОТ ЭТО ЗАСТАВИТ КАРТИНКУ СТОЯТЬ НА МЕСТЕ ПРИ СКРОЛЛЕ */
         }
         
         /* 2. ИСПРАВЛЕНИЕ СДВИГА НА МОБИЛКАХ: предотвращаем вылеты блоков за экран */
@@ -55,7 +62,13 @@
         .nav-menu { display: flex; gap: 15px; }
         .nav-tab { color: var(--muted); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; cursor: pointer; padding: 8px 14px; border-radius: 8px; transition: 0.3s; border: 1px solid transparent; }
         .nav-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
-        .nav-tab.active-tab { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.2); }
+        /* Приглушаем свечение активной вкладки в меню */
+        .nav-tab.active-tab { 
+            color: var(--cyan); 
+            text-shadow: 0 0 12px rgba(0, 203, 215, 0.4); 
+            background: rgba(0, 203, 215, 0.04); 
+            border: 1px solid rgba(0, 203, 215, 0.15); 
+        }
         .social-icons { display: flex; gap: 20px; align-items: center; margin-right: 25px; font-weight: 900; }
         .soc-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
         .soc-link:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
@@ -63,9 +76,37 @@
         .page-section { width: 100%; display: none; flex-direction: column; align-items: center; opacity: 0; transform: scale(0.98) translateY(15px); transition: all 0.4s ease; }
         .page-section.active-section { display: flex; opacity: 1; transform: scale(1) translateY(0); }
         .hero { width: 100%; padding: 60px 20px 40px 20px; box-sizing: border-box; text-align: center; }
-        .supply-tag { font-size: 1.1rem; font-weight: 900; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; }
+        /* Делаем верхний маленький заголовок солиднее */
+        .supply-tag { 
+            font-size: 1rem; 
+            font-weight: 800; 
+            color: var(--cyan); 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            margin-bottom: 15px; 
+            /* Уменьшаем ядовитость свечения букв */
+            text-shadow: 0 0 10px rgba(0, 203, 215, 0.3);
+        }
         .banner-title { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin: 0 0 25px 0; background: linear-gradient(180deg, #ffffff, #768fa5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .banner-desc { font-size: 1.2rem; color: var(--muted); max-width: 750px; margin: 0 auto 35px auto; line-height: 1.7; }
+                .banner-desc { 
+            font-size: 1.2rem; 
+            color: #ffffff; /* Меняем тусклый серый цвет на чистый белый для контраста */
+            max-width: 750px; 
+            margin: 0 auto 35px auto; 
+            line-height: 1.7; 
+            
+            /* Добавляем мягкую темную плашку прямо под текст */
+            background: rgba(2, 4, 8, 0.65); 
+            padding: 15px 25px; 
+            border-radius: 12px; 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            
+            /* Делаем легкую тень, чтобы буквы сильнее отделялись от фона */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,8,0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
