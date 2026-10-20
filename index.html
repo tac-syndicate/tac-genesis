@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC // Syndicate Official</title>
+ <!-- Подключение иконок Font Awesome Free 6.4.2 -->
+    <link rel="stylesheet" href="https://cloudflare.com">    
     <style>
         :root { --bg: #020408; --card: rgba(11,17,32,0.85); --cyan: #00f2fe; --purple: #9b51e0; --text: #ffffff; --muted: #788cb6; }
          body { background: #020408; color: var(--text); font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; background-image: linear-gradient(to bottom, rgba(2, 4, 8, 0.4) 0%, rgba(2, 4, 8, 0.95) 80%), url('main-bg.png'); background-repeat: no-repeat; background-position: center top; background-size: 1400px auto; background-attachment: scroll; }
@@ -72,29 +74,40 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">TAC // Syndicate</div>
-        <nav class="nav-menu">
-            <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
-            <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
-            <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool 0%</div>
-        </nav>
-        <div style="display: flex; align-items: center;">
-            <div class="social-icons">
-                <a href="https://t.me/tac_bears" target="_blank" class="soc-link">TELEGRAM</a>
-                <a href="https://x.com" target="_blank" class="soc-link">TWITTER</a>
-                <a href="https://getgems.io/collection/EQAIUnDp9xle-oKpEqaWIvGTn4z9Q1cJFI5e6i2xAxodlhfj#items" target="_blank" class="soc-link" style="color: var(--cyan)">MINT GETGEMS</a>
-            </div>
-            <button class="connect-btn" disabled style="background: rgba(255,255,255,0.05); color: var(--muted); box-shadow: none; cursor: not-allowed; opacity: 0.4;">Wallet Locked</button>
-        </div>
-    </header>
+   <header class="header">
+  <div class="logo">TAC // Syndicate</div>
+  <nav class="nav-menu">
+    <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
+    <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
+    <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool 0%</div>
+  </nav>
+  <div style="display: flex; align-items: center; gap: 15px;">
+    <div class="social-icons">
+      <a href="https://t.me/tac_bears" target="_blank" class="soc-link mob-circle-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://x.com/YOUR_PROFILE" target="_blank" class="soc-link mob-circle-icon" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <button class="connect-btn" disabled style="background: rgba(255,255,255,0.05); color: #788cb6; box-shadow: none; cursor: not-allowed; opacity: 0.4;">Wallet Locked</button>
+  </div>
+</header>
 <!-- SECTION 1: PRESENTATION -->
     <section id="home-section" class="page-section active-section">
         <div class="hero">
             <div class="supply-tag">TOTAL SUPPLY: 1111 VALUABLE ENTITIES</div>
             <h1 class="banner-title">TAC Genesis Bears</h1>
             <p class="banner-desc">An elite 3D premium collectible toyline launching on TON, built for ultimate value extension across the entire digital asset landscape.</p>
-            <button class="mint-main-btn" onclick="openMintModal()">Mint Now (WL Application)</button>
+            <!-- Начало блока двойных кнопок действий -->
+<div class="main-action-buttons" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px; width: 100%; max-width: 400px; padding: 0 20px; box-sizing: border-box; margin-left: auto; margin-right: auto;">
+  
+  <!-- Кнопка 1: Открытие модального окна вайтлиста -->
+  <button class="mint-main-btn" onclick="openMintModal()" style="width: 100%;">1. FILL WHITELIST FORM</button>
+  
+  <!-- Кнопка 2: Переход на маркетплейс Getgems -->
+  <a href="https://getgems.io/collection/EQAIUnDp9xle-oKpEqaWIvGTn4z9Q1cJFI5e6i2xAxodlhfj" target="_blank" style="text-decoration: none; width: 100%;">
+    <button class="mint-main-btn" style="width: 100%; background: linear-gradient(45deg, #000, rgba(11,17,32,0.9)); color: #00f2fe; border: 2px solid #00f2fe; box-shadow: 0 0 15px rgba(0,242,254,0.15);">2. VIEW COLLECTION ON GETGEMS</button>
+  </a>
+
+</div>
+<!-- Конец блока двойных кнопок действий -->
         </div>
 
         <div id="mint-modal" class="modal-overlay" onclick="closeMintModal(event)">
