@@ -199,6 +199,10 @@
   /* Логотип оставляем на первом месте (вверху слева) */
   .logo { 
     order: 1 !important;
+        font-size: inherit !important; /* Берет родной размер из ПК версии */
+  -webkit-text-size-adjust: none !important; /* Намертво запрещает Яндексу увеличивать текст */
+  text-size-adjust: none !important;
+
   }
 
   /* Блок со значками и Wallet принудительно крепим на второе место (вверху справа) */
