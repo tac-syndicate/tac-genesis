@@ -184,33 +184,50 @@
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
-        @media (max-width: 768px) { 
+        @media (max-width: 768px) {
+  /* Разрешаем перенос строк в шапке */
   .header { 
     display: flex !important;
     flex-wrap: wrap !important; 
     justify-content: space-between !important; 
     align-items: center !important;
+    gap: 15px 0 !important; /* Четкий отступ между первой строчкой контента и второй */
   }
-  .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
+  
+  /* Хитрый трюк: раздаем очередность отображения блоков */
+  
+  /* Логотип оставляем на первом месте (вверху слева) */
+  .logo { 
+    order: 1 !important;
+  }
+
+  /* Блок со значками и Wallet принудительно крепим на второе место (вверху справа) */
+  /* За счет этого они железно останутся в один ряд с логотипом, как на ПК */
+  .social-icons, 
+  [class*="social"], 
+  .header-right { 
+    order: 2 !important;
+  }
+  
+  /* Три слова меню принудительно отправляем в самый низ на вторую строчку */
   .nav-menu { 
     display: flex !important;        
     flex-direction: row !important;  
-    justify-content: space-around !important; 
+    /* Меняем space-around на space-between, чтобы пункты распределились ровно от края до края хедера */
+    justify-content: space-between !important; 
     align-items: center !important;
-    width: 100% !important;          /* Растягиваем на 100%, чтобы блок ушел строго под логотип и значки */
-    margin-top: 15px !important;     /* Отступ второй строки от первой */
+    width: 100% !important;          
+    order: 3 !important; /* Самый низкий приоритет — гарантированный второй этаж */
+    margin: 10px 0 0 0 !important;     
     padding: 0 !important;
   }
- .nav-menu a {
-    font-size: 0.85rem !important;   
+
+  /* Фикс, чтобы слово SWAP 0% не вылетало за границы притемненного блока хедера */
+  .nav-menu a {
+    font-size: 0.8rem !important; /* Чуть-чуть уменьшаем размер только для этих трех мобильных слов */
     white-space: nowrap !important; 
+    padding: 5px 0 !important;
   }
-  .social-icons { 
-    display: flex !important; /* Гарантирует видимость на ПК и телефонах */
-    gap: 12px; 
-    margin-right: 20px; 
-    align-items: center; 
-} 
   .mob-circle-icon { 
     width: 38px; 
     height: 38px; 
