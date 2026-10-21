@@ -185,7 +185,9 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Шапка работает как обычно, но теперь знает, как переносить строки */
+  /* ==========================================================================
+     1. ЧИСТАЯ ШАПКА (Лого и значки сверху, 3 слова строго под ними)
+     ========================================================================== */
   .header { 
     display: flex !important;
     flex-wrap: wrap !important; /* Разрешаем этажи */
@@ -194,13 +196,12 @@
     padding: 15px 20px !important;
   }
 
-  /* Логотип, значки и Wallet остаются в первой строчке, мы их не трогаем */
+  /* Первая строка: Логотип, значки и Wallet остаются в одну линию */
   .logo, .social-icons, .connect-btn { 
     width: auto !important; 
   }
 
-  /* НАШ ЭНТЕР / ВТОРОЙ ОТДЕЛЬНЫЙ БЛОК:
-     Мы берем псевдоэлемент после кошелька и принудительно создаем новую строку */
+  /* Разделитель-Enter после кнопки Wallet, чтобы скинуть меню вниз */
   .connect-btn::after {
     content: "" !important;
     display: block !important;
@@ -208,66 +209,54 @@
     height: 0 !important;
   }
 
-  /* ВТОРАЯ СТРОЧКА (Полностью независимый блок снизу) */
+  /* ВТОРАЯ СТРОЧКА: Ровно встает под первую, не слетает */
   .nav-menu { 
-    display: flex !important;        /* Включаем видимость трех слов */
-    flex-direction: row !important;  /* Выстраиваем их в ряд */
-    justify-content: space-around !important; /* Равномерно распределяем */
+    display: flex !important;        
+    flex-direction: row !important;  
+    justify-content: space-around !important; 
     align-items: center !important;
-    
-    width: 100% !important;          /* Блок ложится на весь второй этаж */
-    margin-top: 15px !important;     /* Четкий контролируемый отступ от первой строки */
+    width: 100% !important;          
+    margin-top: 15px !important;     
     padding: 0 !important;
   }
 
-  /* Ссылки внутри второй строки */
   .nav-menu a {
     font-size: 0.85rem !important;
-    white-space: nowrap !important;
+    white-space: nowrap !important; /* Защита 3 слов от переноса букв */
   }
-    /* ==========================================================================
-     ЖЕСТКИЙ СБРОС ДЛЯ ТЕКСТА В ROADMAP (УБИРАЕМ ENTER ПОСЛЕ КАЖДОГО СЛОВА)
+
+
+  /* ==========================================================================
+     2. ЧИСТЫЙ ROADMAP (Затемненные блоки на месте, текст расправлен)
      ========================================================================== */
   
-  /* Находим контейнер контента внутри дорожной карты */
-  .roadmap-content, 
-  .roadmap-list, 
-  .roadmap-box,
-  [class*="roadmap"] { /* Этот селектор применится ко ВСЕМ классам, содержащим слово roadmap */
-    display: block !important; /* Убираем flex/grid, которые могли выстраивать слова в колонку */
-    width: 100% !important;
+  /* Возвращаем текстовым элементам Roadmap нормальный блочный вид */
+  .roadmap p,
+  .roadmap-item p,
+  .roadmap-card p,
+  .round p,
+  .roadmap-text { 
+    display: block !important;       /* Больше никакого inline, ломающего строки */
+    width: 100% !important;          /* Текст занимает всю ширину затемненного бокса */
+    white-space: normal !important;  /* Сбрасываем pre-wrap и pre-line (эффект ENTER уходит) */
+    word-break: normal !important;   /* Слова не рвутся пополам */
+    overflow-wrap: break-word !important; 
+    text-align: left !important;     /* Текст течет стандартно слева направо */
+    font-size: 0.95rem !important;   
+    line-height: 1.5 !important;     
   }
 
-  /* Сбрасываем отображение для абсолютно ВСЕХ текстовых элементов внутри роадмапа */
-  [class*="roadmap"] p,
-  [class*="roadmap"] span,
-  [class*="roadmap"] div,
-  [class*="roadmap"] li,
-  [class*="roadmap"] h3,
-  [class*="roadmap"] h4 {
-    display: inline !important;       /* Заставляем слова идти в одну строку друг за другом */
-    flex-direction: row !important;   /* На случай, если где-то остался flex */
-    
-    /* Уничтожаем любые правила принудительного переноса строк */
-    white-space: normal !important;   /* Сбрасывает pre/pre-wrap/pre-line, которые давали эффект ENTER */
-    word-break: normal !important;    /* Запрещает ломать слова */
-    overflow-wrap: anywhere !important;
-    
-    /* Возвращаем адекватные размеры */
-    font-size: 0.95rem !important;
-    line-height: 1.5 !important;      /* Нормальный человеческий отступ между строками */
-    letter-spacing: normal !important;
-  }
-
-  /* Чтобы заголовки и абзацы все-таки отделялись друг от друга (а не слипались в одну кучу), 
-     мы делаем блочными только сами логические контейнеры абзацев */
-  [class*="roadmap"] p,
-  [class*="roadmap"] div.text-block {
-    display: block !important; 
-    margin-bottom: 12px !important;   /* Отступ между абзацами */
+  /* Сохраняем и фиксируем внешний вид затемненных карточек */
+  .roadmap-item, 
+  .roadmap-card, 
+  .round {
+    display: block !important;
     width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 20px !important;
   }
 }
+
         .manifesto-box {
     background: rgba(0, 0, 0, 0.6) !important; /* Полупрозрачный темный фон */
     backdrop-filter: blur(10px) !important;    /* Эффект размытого стекла */
