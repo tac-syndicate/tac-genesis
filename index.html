@@ -185,86 +185,28 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Главный контейнер шапки — разрешаем перенос элементов */
+  /* 1. Разрешаем шапке переносить элементы на нижний этаж */
   .header { 
-    padding: 10px 15px !important; 
-    display: flex !important;
-    flex-direction: row !important; /* Строго возвращаем первый ряд в линию! */
-    flex-wrap: wrap !important;     /* Разрешаем перенос меню на вторую строку */
-    justify-content: space-between !important; 
-    align-items: center !important;
-    gap: 15px 0 !important;         /* Отступ между первой и второй строчкой */
+    flex-wrap: wrap !important; 
+    gap: 15px 0 !important; /* Делает отступ между первой и новой второй строчкой */
   }
   
-  /* Логотип — жестко прижимаем к левому краю */
-  .logo { 
-    font-size: 1.1rem !important; 
-    letter-spacing: 1px !important; 
-    margin: 0 !important; 
-    text-align: left !important;
-    width: auto !important;
-    display: inline-block !important;
-  }
-
-  /* Значки и Wallet — жестко прижимаем к правому краю в одну линию */
-  .social-icons {
-    display: flex !important;
-    flex-direction: row !important; /* Строго в ряд */
-    align-items: center !important;
-    gap: 15px !important;           /* Зазор между иконками и кошельком */
-    margin: 0 !important;
-    width: auto !important;
-  }
-  
-  /* Три пропадавшие кнопки — выводим отдельной второй строчкой по центру */
+  /* 2. Включаем три пункта меню и принудительно выбиваем их на вторую строку */
   .nav-menu { 
-    display: flex !important;       /* Включаем их видимость */
-    flex-direction: row !important; /* Кнопки меню идут в ряд */
-    justify-content: space-between !important; /* Равномерно распределяем */
+    display: flex !important;       /* Делаем их видимыми */
+    flex-direction: row !important; /* Выстраиваем в ряд */
+    justify-content: space-around !important; /* Равномерно распределяем по ширине */
     align-items: center !important;
-    width: 100% !important;         /* Растягиваем на 100%, чтобы они ушли на строку ниже */
-    margin: 5px 0 0 0 !important;   /* Небольшой отступ сверху */
-    padding: 0 !important;
+    width: 100% !important;         /* Занимает всю ширину, за счет чего падает вниз */
+    margin-top: 10px !important;    /* Дополнительный зазор сверху */
   }
 
-  /* Ссылки меню делаем чуть меньше, чтобы они не нажимались друг на друга */
+  /* Защита текста кнопок меню от наложения друг на друга */
   .nav-menu a {
-    font-size: 0.8rem !important;
-    white-space: nowrap !important;
-    padding: 5px 10px !important;
+    font-size: 0.8rem !important;   /* Оптимальный размер для экрана телефона */
+    white-space: nowrap !important; /* Запрещаем тексту внутри кнопок переноситься */
+    padding: 6px 10px !important;   /* Удобная зона для тапа */
   }
-}
-
-  .mob-circle-icon { 
-    width: 38px; 
-    height: 38px; 
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px solid rgba(255, 255, 255, 0.08); 
-    border-radius: 50%; 
-    display: flex !important; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.2rem; 
-    color: var(--muted);
-    text-decoration: none;
-    transition: all 0.3s ease; 
-    box-sizing: border-box;
-}
-  .mob-circle-icon:hover { 
-    border-color: var(--cyan); 
-    color: var(--cyan) !important; 
-    background: rgba(0, 242, 254, 0.05);
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); 
-    transform: translateY(-2px);
-}
-  .connect-btn { padding: 8px 14px; font-size: 0.65rem; }
-  .banner-title { font-size: 2.6rem; } 
-  .timeline::after { left: 30px; } 
-  .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } 
-  .phase-container::after { left: 23px; } 
-  .left, .right { left: 0; } 
-  .left .date, .right .date { color: #00f2fe; } 
-  .nft-img { max-width: 100%; }
 }
         .manifesto-box {
     background: rgba(0, 0, 0, 0.6) !important; /* Полупрозрачный темный фон */
