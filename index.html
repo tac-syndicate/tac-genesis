@@ -185,84 +185,71 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Разрешаем перенос строк в шапке */
+  /* Главный контейнер всей шапки */
   .header { 
     display: flex !important;
-    flex-wrap: wrap !important; 
-    justify-content: space-between !important; 
+    flex-direction: row !important; /* Строго горизонтальный режим для первой линии */
+    flex-wrap: wrap !important;     /* Разрешаем перенос меню на вторую строчку */
+    justify-content: space-between !important; /* На ПК это раскидывает элементы, а на мобилке мы скорректируем это отступами */
     align-items: center !important;
-    gap: 15px 0 !important; /* Четкий отступ между первой строчкой контента и второй */
+    padding: 12px 15px !important;  /* Чуть зажимаем паддинги, чтобы всё влезло в затемненное окно */
+    box-sizing: border-box !important;
   }
   
-  /* Хитрый трюк: раздаем очередность отображения блоков */
-  
-  /* Логотип оставляем на первом месте (вверху слева) */
+  /* 1 СТРОКА: ЛОГОТИП (Сверху слева) */
   .logo { 
-    order: 1 !important;
-        font-size: inherit !important; /* Берет родной размер из ПК версии */
-  -webkit-text-size-adjust: none !important; /* Намертво запрещает Яндексу увеличивать текст */
-  text-size-adjust: none !important;
-
+    font-size: 1rem !important;     /* Оптимальный размер, чтобы не раздувало */
+    margin: 0 !important;
+    text-align: left !important;
+    width: auto !important;
+    flex: 1 !important;             /* Даем блоку авторасширение */
+    -webkit-text-size-adjust: none !important;
+    text-size-adjust: none !important;
   }
 
-  /* Блок со значками и Wallet принудительно крепим на второе место (вверху справа) */
-  /* За счет этого они железно останутся в один ряд с логотипом, как на ПК */
-  .social-icons, 
-  [class*="social"], 
-  .header-right { 
-    order: 2 !important;
+  /* 1 СТРОКА: ДВА ЗНАЧКА (Строго по центру первой строки) */
+  .social-icons {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important; /* Центрируем иконки внутри своего блока */
+    align-items: center !important;
+    gap: 12px !important;           /* Фиксированный зазор между ТГ и Твиттером */
+    flex: 2 !important;             /* Занимает центральную часть строки */
+    margin: 0 auto !important;
+    width: auto !important;
   }
   
-  /* Три слова меню принудительно отправляем в самый низ на вторую строчку */
+  /* 1 СТРОКА: ВАЛЛЕТ (Сверху справа) */
+  .connect-btn,
+  .wallet-btn {
+    margin: 0 !important;
+    flex: 1 !important;             /* Симметрично логотипу расширяет правый край */
+    display: inline-flex !important;
+    justify-content: flex-end !important; /* Прижимает текст кнопки кошелька к правому краю */
+    width: auto !important;
+  }
+  
+  /* 2 СТРОКА: ТРИ ПУНКТА МЕНЮ (Presentation, Roadmap, Swap) */
   .nav-menu { 
-    display: flex !important;        
-    flex-direction: row !important;  
-    /* Меняем space-around на space-between, чтобы пункты распределились ровно от края до края хедера */
-    justify-content: space-between !important; 
+    display: flex !important;       /* Включаем видимость трех слов */
+    flex-direction: row !important; /* Они идут горизонтально */
+    justify-content: space-between !important; /* Равномерно распределяем внутри второй строки */
     align-items: center !important;
-    width: 100% !important;          
-    order: 3 !important; /* Самый низкий приоритет — гарантированный второй этаж */
-    margin: 10px 0 0 0 !important;     
-    padding: 0 !important;
+    
+    width: 100% !important;         /* Занимает 100% ширины, за счет чего падает на вторую строку */
+    margin: 15px 0 0 0 !important;  /* Отступ второй строки от первой */
+    padding: 0 5px !important;      /* Небольшие поля, чтобы не липли к краям затемнения */
+    box-sizing: border-box !important;
   }
 
-  /* Фикс, чтобы слово SWAP 0% не вылетало за границы притемненного блока хедера */
+  /* Чтобы слова не вылетали за границы затемненного блока */
   .nav-menu a {
-    font-size: 0.8rem !important; /* Чуть-чуть уменьшаем размер только для этих трех мобильных слов */
-    white-space: nowrap !important; 
+    font-size: 0.8rem !important;   /* Аккуратный размер для мобильного меню */
+    white-space: nowrap !important; /* Запрещаем перенос букв внутри слов */
     padding: 5px 0 !important;
   }
-  .mob-circle-icon { 
-    width: 38px; 
-    height: 38px; 
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px solid rgba(255, 255, 255, 0.08); 
-    border-radius: 50%; 
-    display: flex !important; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.2rem; 
-    color: var(--muted);
-    text-decoration: none;
-    transition: all 0.3s ease; 
-    box-sizing: border-box;
 }
-  .mob-circle-icon:hover { 
-    border-color: var(--cyan); 
-    color: var(--cyan) !important; 
-    background: rgba(0, 242, 254, 0.05);
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); 
-    transform: translateY(-2px);
-}
-  .connect-btn { padding: 8px 14px; font-size: 0.65rem; }
-  .banner-title { font-size: 2.6rem; } 
-  .timeline::after { left: 30px; } 
-  .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } 
-  .phase-container::after { left: 23px; } 
-  .left, .right { left: 0; } 
-  .left .date, .right .date { color: #00f2fe; } 
-  .nft-img { max-width: 100%; }
-}
+
         .manifesto-box {
     background: rgba(0, 0, 0, 0.6) !important; /* Полупрозрачный темный фон */
     backdrop-filter: blur(10px) !important;    /* Эффект размытого стекла */
