@@ -186,11 +186,11 @@
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
   /* ==========================================================================
-     1. ЧИСТАЯ ШАПКА (Лого и значки сверху, 3 слова строго под ними)
+     1. ТОЧЕЧНАЯ ШАПКА (Без влияния на остальные блоки сайта)
      ========================================================================== */
   .header { 
     display: flex !important;
-    flex-wrap: wrap !important; /* Разрешаем этажи */
+    flex-wrap: wrap !important; /* Разрешаем перенос строго для элементов шапки */
     justify-content: space-between !important; 
     align-items: center !important;
     padding: 15px 20px !important;
@@ -201,7 +201,7 @@
     width: auto !important; 
   }
 
-  /* Разделитель-Enter после кнопки Wallet, чтобы скинуть меню вниз */
+  /* Разделитель-Enter строго после кнопки Wallet, чтобы скинуть меню вниз */
   .connect-btn::after {
     content: "" !important;
     display: block !important;
@@ -225,35 +225,40 @@
     white-space: nowrap !important; /* Защита 3 слов от переноса букв */
   }
 
-
   /* ==========================================================================
-     2. ЧИСТЫЙ ROADMAP (Затемненные блоки на месте, текст расправлен)
+     2. ОЧИСТКА ROADMAP (Снимаем тиски со слов, возвращаем блоки и абзацы)
      ========================================================================== */
   
-  /* Возвращаем текстовым элементам Roadmap нормальный блочный вид */
+  /* Принудительно возвращаем текстовым контейнерам внутри Roadmap блочный режим */
   .roadmap p,
   .roadmap-item p,
   .roadmap-card p,
   .round p,
-  .roadmap-text { 
-    display: block !important;       /* Больше никакого inline, ломающего строки */
-    width: 100% !important;          /* Текст занимает всю ширину затемненного бокса */
-    white-space: normal !important;  /* Сбрасываем pre-wrap и pre-line (эффект ENTER уходит) */
-    word-break: normal !important;   /* Слова не рвутся пополам */
+  .roadmap-text,
+  .roadmap-item span,
+  .roadmap-card span { 
+    display: block !important;       /* Отменяем инлайновость, из-за которой слова сжимались */
+    width: 100% !important;          /* Текст занимает всю ширину карточки */
+    white-space: normal !important;  /* Сбрасываем pre-wrap и pre-line (эффект ENTER исчезает) */
+    word-break: normal !important;   /* Слова больше не рвутся по буквам */
     overflow-wrap: break-word !important; 
     text-align: left !important;     /* Текст течет стандартно слева направо */
     font-size: 0.95rem !important;   
-    line-height: 1.5 !important;     
+    line-height: 1.5 !important;     /* Нормальный межстрочный интервал */
   }
 
-  /* Сохраняем и фиксируем внешний вид затемненных карточек */
+  /* Фиксируем внешний вид затемненных карточек раундов, чтобы они не сужались */
   .roadmap-item, 
   .roadmap-card, 
-  .round {
+  .round,
+  [class*="roadmap-item"],
+  [class*="roadmap-card"] {
     display: block !important;
+    flex-direction: column !important; /* Внутри карточки контент идет сверху вниз, а не вширь */
     width: 100% !important;
     box-sizing: border-box !important;
     margin-bottom: 20px !important;
+    padding: 20px !important;
   }
 }
 
