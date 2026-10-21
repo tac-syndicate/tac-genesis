@@ -185,68 +185,71 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Главный контейнер всей шапки */
+  /* Главный контейнер шапки — разрешаем перенос элементов */
   .header { 
     display: flex !important;
-    flex-direction: row !important; /* Строго горизонтальный режим для первой линии */
-    flex-wrap: wrap !important;     /* Разрешаем перенос меню на вторую строчку */
-    justify-content: space-between !important; /* На ПК это раскидывает элементы, а на мобилке мы скорректируем это отступами */
+    flex-direction: row !important; /* Базовое направление — строка */
+    flex-wrap: wrap !important;     /* Разрешаем этажи */
+    justify-content: space-between !important; 
     align-items: center !important;
-    padding: 12px 15px !important;  /* Чуть зажимаем паддинги, чтобы всё влезло в затемненное окно */
+    padding: 10px 15px !important;
     box-sizing: border-box !important;
   }
   
-  /* 1 СТРОКА: ЛОГОТИП (Сверху слева) */
+  /* 1 СТРОКА: ЛОГОТИП (Слева) */
   .logo { 
-    font-size: 1rem !important;     /* Оптимальный размер, чтобы не раздувало */
-    margin: 0 !important;
-    text-align: left !important;
+    order: 1 !important; /* Жестко закрепляем на первом месте */
+    font-size: 1rem !important;
     width: auto !important;
-    flex: 1 !important;             /* Даем блоку авторасширение */
+    margin: 0 !important;
     -webkit-text-size-adjust: none !important;
     text-size-adjust: none !important;
   }
 
-  /* 1 СТРОКА: ДВА ЗНАЧКА (Строго по центру первой строки) */
-  .social-icons {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important; /* Центрируем иконки внутри своего блока */
-    align-items: center !important;
-    gap: 12px !important;           /* Фиксированный зазор между ТГ и Твиттером */
-    flex: 2 !important;             /* Занимает центральную часть строки */
-    margin: 0 auto !important;
-    width: auto !important;
-  }
-  
-  /* 1 СТРОКА: ВАЛЛЕТ (Сверху справа) */
-  .connect-btn,
-  .wallet-btn {
-    margin: 0 !important;
-    flex: 1 !important;             /* Симметрично логотипу расширяет правый край */
-    display: inline-flex !important;
-    justify-content: flex-end !important; /* Прижимает текст кнопки кошелька к правому краю */
-    width: auto !important;
-  }
-  
-  /* 2 СТРОКА: ТРИ ПУНКТА МЕНЮ (Presentation, Roadmap, Swap) */
-  .nav-menu { 
-    display: flex !important;       /* Включаем видимость трех слов */
-    flex-direction: row !important; /* Они идут горизонтально */
-    justify-content: space-between !important; /* Равномерно распределяем внутри второй строки */
-    align-items: center !important;
-    
-    width: 100% !important;         /* Занимает 100% ширины, за счет чего падает на вторую строку */
-    margin: 15px 0 0 0 !important;  /* Отступ второй строки от первой */
-    padding: 0 5px !important;      /* Небольшие поля, чтобы не липли к краям затемнения */
-    box-sizing: border-box !important;
+  /* МУДРЫЙ ТРЮК: Заставляем браузер игнорировать контейнер меню,
+     чтобы вытащить значки и Wallet наружу на первую строчку */
+  .nav-menu {
+    display: contents !important; 
   }
 
-  /* Чтобы слова не вылетали за границы затемненного блока */
-  .nav-menu a {
-    font-size: 0.8rem !important;   /* Аккуратный размер для мобильного меню */
-    white-space: nowrap !important; /* Запрещаем перенос букв внутри слов */
-    padding: 5px 0 !important;
+  /* 1 СТРОКА: ДВА ЗНАЧКА (Принудительно ставим ПОСЕРЕДИНЕ первой строки) */
+  .social-icons {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    order: 2 !important; /* Встают строго вторыми по счету */
+    margin: 0 auto !important; /* Центрирует иконки между лого и кошельком */
+    width: auto !important;
+  }
+  
+  /* 1 СТРОКА: ВАЛЛЕТ (Принудительно ставим СПРАВА в конце первой строки) */
+  .connect-btn,
+  .wallet-btn {
+    display: inline-flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    order: 3 !important; /* Жестко закрывает первую строчку */
+    margin: 0 !important;
+    width: auto !important;
+  }
+  
+  /* 2 СТРОКА: ТРИ ПУНКТА МЕНЮ (Каждую ссылку принудительно отправляем вниз) */
+  .nav-menu a:not(.connect-btn):not(.wallet-btn) { 
+    display: inline-flex !important;       
+    justify-content: center !important;
+    align-items: center !important;
+    
+    /* Отправляем их на четвертый приоритет (они автоматически сформируют вторую строчку) */
+    order: 4 !important; 
+    
+    /* Делим ширину второй строки на 3 равные части, чтобы они встали в ряд */
+    width: 30% !important; 
+    margin-top: 15px !important; /* Отступ второй строки от первой */
+    font-size: 0.8rem !important; /* Компактный размер для мобилки */
+    white-space: nowrap !important;
+    text-align: center !important;
   }
 }
 
