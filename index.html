@@ -185,50 +185,53 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Разрешаем шапке переноситься на вторую строчку */
+  /* Главный контейнер шапки — разрешаем перенос элементов */
   .header { 
-    padding: 15px 20px; 
+    padding: 10px 15px !important; 
     display: flex !important;
-    flex-wrap: wrap !important; /* Включает перенос лишних кнопок вниз */
+    flex-direction: row !important; /* Строго возвращаем первый ряд в линию! */
+    flex-wrap: wrap !important;     /* Разрешаем перенос меню на вторую строку */
     justify-content: space-between !important; 
     align-items: center !important;
-    gap: 15px 0 !important; /* Отступ между первой строчкой и второй */
+    gap: 15px 0 !important;         /* Отступ между первой и второй строчкой */
   }
   
-  /* Логотип остается на первой строчке слева */
+  /* Логотип — жестко прижимаем к левому краю */
   .logo { 
-    font-size: 1.1rem; 
-    letter-spacing: 1px; 
-    margin-right: auto !important; 
+    font-size: 1.1rem !important; 
+    letter-spacing: 1px !important; 
+    margin: 0 !important; 
     text-align: left !important;
     width: auto !important;
+    display: inline-block !important;
   }
 
-  /* Значки и Wallet остаются на первой строчке справа */
+  /* Значки и Wallet — жестко прижимаем к правому краю в одну линию */
   .social-icons {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: row !important; /* Строго в ряд */
     align-items: center !important;
-    gap: 15px !important;
-    margin-right: 0 !important;
+    gap: 15px !important;           /* Зазор между иконками и кошельком */
+    margin: 0 !important;
     width: auto !important;
   }
   
-  /* ЗАСТАВЛЯЕМ ТРИ КНОПКИ ПОЯВИТЬСЯ И ВСТАТЬ ВТОРОЙ СТРОЧКОЙ */
+  /* Три пропадавшие кнопки — выводим отдельной второй строчкой по центру */
   .nav-menu { 
-    display: flex !important; /* Включаем видимость кнопок на мобильном */
-    flex-direction: row !important; /* Выстраиваем их в ряд */
-    justify-content: center !important;
+    display: flex !important;       /* Включаем их видимость */
+    flex-direction: row !important; /* Кнопки меню идут в ряд */
+    justify-content: space-between !important; /* Равномерно распределяем */
     align-items: center !important;
-    gap: 15px !important; /* Расстояние между Presentation, Roadmap и Swap */
-    width: 100% !important; /* Растягиваем блок на всю ширину, чтобы он ушел на вторую строку */
-    order: 2 !important; /* Жестко крепим этот блок вторым этажом */
+    width: 100% !important;         /* Растягиваем на 100%, чтобы они ушли на строку ниже */
+    margin: 5px 0 0 0 !important;   /* Небольшой отступ сверху */
+    padding: 0 !important;
   }
 
-  /* Делаем ссылки меню чуть компактнее для телефона */
+  /* Ссылки меню делаем чуть меньше, чтобы они не нажимались друг на друга */
   .nav-menu a {
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
     white-space: nowrap !important;
+    padding: 5px 10px !important;
   }
 }
 
