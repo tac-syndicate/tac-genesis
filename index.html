@@ -185,9 +185,26 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) { 
-  .header { padding: 15px 20px; justify-content: space-between; } 
+  .header { 
+    display: flex !important;
+    flex-wrap: wrap !important; 
+    justify-content: space-between !important; 
+    align-items: center !important;
+  }
   .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
-  .nav-menu { display: none; }  
+  .nav-menu { 
+    display: flex !important;        
+    flex-direction: row !important;  
+    justify-content: space-around !important; 
+    align-items: center !important;
+    width: 100% !important;          /* Растягиваем на 100%, чтобы блок ушел строго под логотип и значки */
+    margin-top: 15px !important;     /* Отступ второй строки от первой */
+    padding: 0 !important;
+  }
+ .nav-menu a {
+    font-size: 0.85rem !important;   
+    white-space: nowrap !important; 
+  }
   .social-icons { 
     display: flex !important; /* Гарантирует видимость на ПК и телефонах */
     gap: 12px; 
