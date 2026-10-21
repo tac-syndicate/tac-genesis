@@ -184,84 +184,47 @@
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
-        @media (max-width: 768px) {
-  /* ==========================================================================
-     1. ТОЧЕЧНАЯ ШАПКА (Без влияния на остальные блоки сайта)
-     ========================================================================== */
-  .header { 
-    display: flex !important;
-    flex-wrap: wrap !important; /* Разрешаем перенос строго для элементов шапки */
-    justify-content: space-between !important; 
-    align-items: center !important;
-    padding: 15px 20px !important;
-  }
-
-  /* Первая строка: Логотип, значки и Wallet остаются в одну линию */
-  .logo, .social-icons, .connect-btn { 
-    width: auto !important; 
-  }
-
-  /* Разделитель-Enter строго после кнопки Wallet, чтобы скинуть меню вниз */
-  .connect-btn::after {
-    content: "" !important;
-    display: block !important;
-    width: 100% !important;
-    height: 0 !important;
-  }
-
-  /* ВТОРАЯ СТРОЧКА: Ровно встает под первую, не слетает */
-  .nav-menu { 
-    display: flex !important;        
-    flex-direction: row !important;  
-    justify-content: space-around !important; 
-    align-items: center !important;
-    width: 100% !important;          
-    margin-top: 15px !important;     
-    padding: 0 !important;
-  }
-
-  .nav-menu a {
-    font-size: 0.85rem !important;
-    white-space: nowrap !important; /* Защита 3 слов от переноса букв */
-  }
-
-  /* ==========================================================================
-     2. ОЧИСТКА ROADMAP (Снимаем тиски со слов, возвращаем блоки и абзацы)
-     ========================================================================== */
-  
-  /* Принудительно возвращаем текстовым контейнерам внутри Roadmap блочный режим */
-  .roadmap p,
-  .roadmap-item p,
-  .roadmap-card p,
-  .round p,
-  .roadmap-text,
-  .roadmap-item span,
-  .roadmap-card span { 
-    display: block !important;       /* Отменяем инлайновость, из-за которой слова сжимались */
-    width: 100% !important;          /* Текст занимает всю ширину карточки */
-    white-space: normal !important;  /* Сбрасываем pre-wrap и pre-line (эффект ENTER исчезает) */
-    word-break: normal !important;   /* Слова больше не рвутся по буквам */
-    overflow-wrap: break-word !important; 
-    text-align: left !important;     /* Текст течет стандартно слева направо */
-    font-size: 0.95rem !important;   
-    line-height: 1.5 !important;     /* Нормальный межстрочный интервал */
-  }
-
-  /* Фиксируем внешний вид затемненных карточек раундов, чтобы они не сужались */
-  .roadmap-item, 
-  .roadmap-card, 
-  .round,
-  [class*="roadmap-item"],
-  [class*="roadmap-card"] {
-    display: block !important;
-    flex-direction: column !important; /* Внутри карточки контент идет сверху вниз, а не вширь */
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-bottom: 20px !important;
-    padding: 20px !important;
-  }
+        @media (max-width: 768px) { 
+  .header { padding: 15px 20px; justify-content: space-between; } 
+  .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
+  .nav-menu { display: none; }  
+  .social-icons { 
+    display: flex !important; /* Гарантирует видимость на ПК и телефонах */
+    gap: 12px; 
+    margin-right: 20px; 
+    align-items: center; 
+} 
+  .mob-circle-icon { 
+    width: 38px; 
+    height: 38px; 
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 50%; 
+    display: flex !important; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.2rem; 
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.3s ease; 
+    box-sizing: border-box;
 }
-
+  .mob-circle-icon:hover { 
+    border-color: var(--cyan); 
+    color: var(--cyan) !important; 
+    background: rgba(0, 242, 254, 0.05);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); 
+    transform: translateY(-2px);
+}
+  .connect-btn { padding: 8px 14px; font-size: 0.65rem; }
+  .banner-title { font-size: 2.6rem; } 
+  .timeline::after { left: 30px; } 
+  .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } 
+  .phase-container::after { left: 23px; } 
+  .left, .right { left: 0; } 
+  .left .date, .right .date { color: #00f2fe; } 
+  .nft-img { max-width: 100%; }
+}
         .manifesto-box {
     background: rgba(0, 0, 0, 0.6) !important; /* Полупрозрачный темный фон */
     backdrop-filter: blur(10px) !important;    /* Эффект размытого стекла */
@@ -332,7 +295,7 @@
   <nav class="nav-menu">
     <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
     <div class="nav-tab" onclick="switchSection('roadmap', this)">Roadmap</div>
-    <div class="nav-tab" onclick="switchSection('swap', this)">Swap</div>
+    <div class="nav-tab" onclick="switchSection('swap', this)">Swap Pool 0%</div>
   </nav>
   
   <div style="display: flex; align-items: center; gap: 15px;">
