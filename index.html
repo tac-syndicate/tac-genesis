@@ -185,39 +185,50 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Перестраиваем шапку в две строки: сверху логотип, снизу кнопки */
+  /* Разрешаем шапке переноситься на вторую строчку */
   .header { 
     padding: 15px 20px; 
     display: flex !important;
-    flex-direction: column !important;
+    flex-wrap: wrap !important; /* Включает перенос лишних кнопок вниз */
+    justify-content: space-between !important; 
     align-items: center !important;
-    justify-content: center !important;
-    gap: 12px !important;
+    gap: 15px 0 !important; /* Отступ между первой строчкой и второй */
   }
   
-  /* Центрируем логотип на первой строчке */
+  /* Логотип остается на первой строчке слева */
   .logo { 
     font-size: 1.1rem; 
     letter-spacing: 1px; 
-    margin: 0 auto !important; 
-    text-align: center !important; 
-    width: 100% !important;
+    margin-right: auto !important; 
+    text-align: left !important;
+    width: auto !important;
   }
-  
-  /* Прячем три пункта меню, как ты и просил */
-  .nav-menu { 
-    display: none !important; 
-  }
-  
-  /* Выстраиваем ТГ, X и WALLET во вторую строку ровно по центру */
+
+  /* Значки и Wallet остаются на первой строчке справа */
   .social-icons {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
+    gap: 15px !important;
+    margin-right: 0 !important;
+    width: auto !important;
+  }
+  
+  /* ЗАСТАВЛЯЕМ ТРИ КНОПКИ ПОЯВИТЬСЯ И ВСТАТЬ ВТОРОЙ СТРОЧКОЙ */
+  .nav-menu { 
+    display: flex !important; /* Включаем видимость кнопок на мобильном */
+    flex-direction: row !important; /* Выстраиваем их в ряд */
     justify-content: center !important;
-    gap: 15px !important; /* Удерживает фиксированный отступ, чтобы не накладывались */
-    margin: 0 auto !important;
-    width: 100% !important;
+    align-items: center !important;
+    gap: 15px !important; /* Расстояние между Presentation, Roadmap и Swap */
+    width: 100% !important; /* Растягиваем блок на всю ширину, чтобы он ушел на вторую строку */
+    order: 2 !important; /* Жестко крепим этот блок вторым этажом */
+  }
+
+  /* Делаем ссылки меню чуть компактнее для телефона */
+  .nav-menu a {
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
   }
 }
 
