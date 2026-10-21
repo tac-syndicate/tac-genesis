@@ -159,6 +159,57 @@
                 width: 100%;
             }
         }
+                /* Перестройка дорожной карты в горизонтальную линию ТОЛЬКО для компьютеров */
+        @media screen and (min-width: 769px) {
+            /* Выстраиваем этапы слева направо */
+            .timeline {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: stretch !important;
+                gap: 20px !important;
+                max-width: 1200px !important;
+                margin: 0 auto !important;
+                padding: 40px 10px !important;
+            }
+
+            /* Скрываем вертикальную линию змейки по центру */
+            .timeline::after {
+                display: none !important;
+            }
+
+            /* Сбрасываем ширину и настройки змейки для левых и правых блоков */
+            .phase-container {
+                width: 24% !important; /* Примерно по четверти экрана на каждый из 4 этапов */
+                left: 0 !important;
+                right: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                float: none !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            /* Делаем саму карточку плотной и убираем стрелочки-указатели */
+            .content {
+                height: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .content::before {
+                display: none !important; /* Убираем треугольные стрелочки, которые вели к линии */
+            }
+
+            /* Делаем картинки медведей аккуратными внизу карточек */
+            .nft-img {
+                width: 100% !important;
+                max-width: 180px !important;
+                height: auto !important;
+                margin: 15px auto 0 auto !important;
+                display: block !important;
+                border-radius: 12px !important;
+            }
+        }
+
 
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
