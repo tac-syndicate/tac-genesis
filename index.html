@@ -184,47 +184,65 @@
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
-        @media (max-width: 768px) { 
-  .header { padding: 15px 20px; justify-content: space-between; } 
-  .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
-  .nav-menu { display: none; }  
-  .social-icons { 
-    display: flex !important; /* Гарантирует видимость на ПК и телефонах */
-    gap: 12px; 
-    margin-right: 20px; 
-    align-items: center; 
-} 
-  .mob-circle-icon { 
-    width: 38px; 
-    height: 38px; 
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px solid rgba(255, 255, 255, 0.08); 
-    border-radius: 50%; 
-    display: flex !important; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.2rem; 
-    color: var(--muted);
-    text-decoration: none;
-    transition: all 0.3s ease; 
-    box-sizing: border-box;
+        @media (max-width: 768px) {
+  /* Главный контейнер хедера */
+  .header { 
+    display: flex !important;
+    flex-direction: row !important; /* Строго горизонтальный режим для первой линии */
+    flex-wrap: wrap !important;     /* Разрешаем перенос второй строки вниз */
+    justify-content: space-between !important; 
+    align-items: center !important;
+    gap: 15px 0 !important;         /* Отступ между первой и второй строчкой */
+  }
+  
+  /* 1. ЛОГОТИП — Жестко крепим на ПЕРВОЕ место (вверху слева) */
+  .logo { 
+    order: 1 !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  /* 2. ДВА ЗНАЧКА (ТГ и Твиттер) — У них должен быть класс .social-icons. 
+     Жестко крепим их на ВТОРОЕ место (вверху, сразу после логотипа) */
+  .social-icons {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 15px !important;
+    order: 2 !important; 
+    width: auto !important;
+    margin: 0 0 0 auto !important; /* Прижимает значки вправо к кнопке Wallet */
+  }
+
+  /* 3. КНОПКА WALLET (У тебя это .connect-btn на строке 219).
+     Жестко крепим на ТРЕТЬЕ место (вверху справа, закрывает первую строчку) */
+  .connect-btn, 
+  .wallet-btn { 
+    order: 3 !important;
+    width: auto !important;
+    margin: 0 0 0 15px !important; /* Отступ слева от значков */
+  }
+  
+  /* 4. ВТОРАЯ СТРОЧКА: ТРИ ПУНКТА МЕНЮ (Presentation, Roadmap, Swap).
+     Жестко крепим на ЧЕТВЕРТОЕ место — они гарантированно упадут вниз */
+  .nav-menu { 
+    display: flex !important;       /* Включаем их видимость */
+    flex-direction: row !important; /* Внутри второй строки они идут в ряд */
+    justify-content: space-around !important; /* Равномерно распределяем */
+    align-items: center !important;
+    width: 100% !important;         /* Растягиваем на 100%, чтобы выбить на нижний этаж */
+    order: 4 !important;            /* Самый высокий приоритет переноса */
+    margin-top: 10px !important;    /* Отступ от верхнего ряда */
+  }
+
+  /* Адаптивный размер шрифта для трех слов */
+  .nav-menu a {
+    font-size: 0.8rem !important;
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+  }
 }
-  .mob-circle-icon:hover { 
-    border-color: var(--cyan); 
-    color: var(--cyan) !important; 
-    background: rgba(0, 242, 254, 0.05);
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); 
-    transform: translateY(-2px);
-}
-  .connect-btn { padding: 8px 14px; font-size: 0.65rem; }
-  .banner-title { font-size: 2.6rem; } 
-  .timeline::after { left: 30px; } 
-  .phase-container { width: 100%; padding-left: 60px; padding-right: 20px; text-align: left !important; } 
-  .phase-container::after { left: 23px; } 
-  .left, .right { left: 0; } 
-  .left .date, .right .date { color: #00f2fe; } 
-  .nft-img { max-width: 100%; }
-}
+
         .manifesto-box {
     background: rgba(0, 0, 0, 0.6) !important; /* Полупрозрачный темный фон */
     backdrop-filter: blur(10px) !important;    /* Эффект размытого стекла */
