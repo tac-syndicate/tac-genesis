@@ -184,16 +184,43 @@
         .nft-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
-        @media (max-width: 768px) { 
-  .header { padding: 15px 20px; justify-content: space-between; } 
-  .logo { font-size: 1.1rem; letter-spacing: 1px; margin-right: auto; text-align: left; } 
-  .nav-menu { display: none; }  
-  .social-icons { 
-    display: flex !important; /* Гарантирует видимость на ПК и телефонах */
-    gap: 12px; 
-    margin-right: 20px; 
-    align-items: center; 
-} 
+        @media (max-width: 768px) {
+  /* Перестраиваем шапку в две строки: сверху логотип, снизу кнопки */
+  .header { 
+    padding: 15px 20px; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+  
+  /* Центрируем логотип на первой строчке */
+  .logo { 
+    font-size: 1.1rem; 
+    letter-spacing: 1px; 
+    margin: 0 auto !important; 
+    text-align: center !important; 
+    width: 100% !important;
+  }
+  
+  /* Прячем три пункта меню, как ты и просил */
+  .nav-menu { 
+    display: none !important; 
+  }
+  
+  /* Выстраиваем ТГ, X и WALLET во вторую строку ровно по центру */
+  .social-icons {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important; /* Удерживает фиксированный отступ, чтобы не накладывались */
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+}
+
   .mob-circle-icon { 
     width: 38px; 
     height: 38px; 
