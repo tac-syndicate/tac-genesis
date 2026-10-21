@@ -185,71 +185,82 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Главный контейнер шапки — разрешаем перенос элементов */
-  .header { 
+  /* 1. Превращаем главный тег body или общий контейнер в обертку, 
+     которая позволит выстроить блоки в правильном порядке */
+  body {
     display: flex !important;
-    flex-direction: row !important; /* Базовое направление — строка */
-    flex-wrap: wrap !important;     /* Разрешаем этажи */
-    justify-content: space-between !important; 
-    align-items: center !important;
-    padding: 10px 15px !important;
-    box-sizing: border-box !important;
+    flex-direction: column !important;
   }
-  
-  /* 1 СТРОКА: ЛОГОТИП (Слева) */
-  .logo { 
-    order: 1 !important; /* Жестко закрепляем на первом месте */
-    font-size: 1rem !important;
+
+  /* ШАПКА С ЛОГОТИПОМ — жестко крепим на первый этаж слева */
+  header.header {
+    display: block !important;
     width: auto !important;
+    order: 1 !important; /* Первое место */
     margin: 0 !important;
+    padding: 15px 0 0 20px !important; /* Отступы для логотипа */
+  }
+
+  .logo {
+    font-size: 1.1rem !important;
+    text-align: left !important;
     -webkit-text-size-adjust: none !important;
     text-size-adjust: none !important;
   }
 
-  /* МУДРЫЙ ТРЮК: Заставляем браузер игнорировать контейнер меню,
-     чтобы вытащить значки и Wallet наружу на первую строчку */
-  .nav-menu {
-    display: contents !important; 
+  /* БЛОК СО ЗНАЧКАМИ И WALLET (Строка 331 в HTML) 
+     Принудительно поднимаем его на ПЕРВЫЙ этаж в правый угол */
+  body > div[style*="display: flex"] {
+    position: absolute !important; /* Вырываем его и ставим в один ряд с лого */
+    top: 15px !important;
+    right: 20px !important;
+    order: 2 !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
   }
 
-  /* 1 СТРОКА: ДВА ЗНАЧКА (Принудительно ставим ПОСЕРЕДИНЕ первой строки) */
-  .social-icons {
-    display: inline-flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 12px !important;
-    order: 2 !important; /* Встают строго вторыми по счету */
-    margin: 0 auto !important; /* Центрирует иконки между лого и кошельком */
-    width: auto !important;
-  }
-  
-  /* 1 СТРОКА: ВАЛЛЕТ (Принудительно ставим СПРАВА в конце первой строки) */
-  .connect-btn,
-  .wallet-btn {
-    display: inline-flex !important;
-    justify-content: flex-end !important;
-    align-items: center !important;
-    order: 3 !important; /* Жестко закрывает первую строчку */
-    margin: 0 !important;
-    width: auto !important;
-  }
-  
-  /* 2 СТРОКА: ТРИ ПУНКТА МЕНЮ (Каждую ссылку принудительно отправляем вниз) */
-  .nav-menu a:not(.connect-btn):not(.wallet-btn) { 
-    display: inline-flex !important;       
-    justify-content: center !important;
+  /* ВТОРАЯ СТРОЧКА: ТРИ ПУНКТА МЕНЮ (Строка 325 в HTML)
+     Жестко спускаем этот блок на второй этаж под логотип и значки */
+  .nav-menu {
+    display: flex !important;
+    flex-direction: row !important; /* Строго в ряд */
+    justify-content: space-between !important; /* Равномерно распределяем 3 слова по ширине хедера */
     align-items: center !important;
     
-    /* Отправляем их на четвертый приоритет (они автоматически сформируют вторую строчку) */
-    order: 4 !important; 
-    
-    /* Делим ширину второй строки на 3 равные части, чтобы они встали в ряд */
-    width: 30% !important; 
-    margin-top: 15px !important; /* Отступ второй строки от первой */
+    width: calc(100% - 40px) !important; /* Растягиваем в границы затемненного окна */
+    margin: 60px auto 15px auto !important; /* 60px сверху дают четкий отступ от первого ряда */
+    padding: 0 !important;
+    order: 3 !important; /* Третье место — гарантированный второй этаж */
+  }
+
+  /* Фикс, чтобы слова (особенно Swap) не вылетали за границы затемнения */
+  .nav-menu .nav-tab {
     font-size: 0.8rem !important; /* Компактный размер для мобилки */
     white-space: nowrap !important;
+    padding: 5px 10px !important;
     text-align: center !important;
+  }
+
+  /* ==========================================================================
+     3. ПОЛНЫЙ СБРОС ИСПОРЧЕННОГО ROADMAP
+     ========================================================================== */
+  /* Полностью очищаем Roadmap от старых конфликтов, возвращаем блочный режим текста */
+  .roadmap p, .roadmap-item p, .roadmap-card p, .round p, .roadmap-text {
+    display: block !important;
+    width: 100% !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-align: left !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .roadmap-item, .roadmap-card, .round {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 20px !important;
   }
 }
 
@@ -318,7 +329,9 @@
 </head>
 <body>
 <header class="header">
-  <div class="logo">TAC // Syndicate</div>
+  <div class="logo">TAC // SYNDICATE</div>
+  <!-- Твои значки, кошелек и старое меню, как они и были изначально -->
+</header>
   
   <nav class="nav-menu">
     <div class="nav-tab active-tab" onclick="switchSection('home', this)">Presentation</div>
