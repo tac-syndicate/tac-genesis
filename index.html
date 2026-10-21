@@ -149,6 +149,16 @@
             /* Делаем легкую тень, чтобы буквы сильнее отделялись от фона */
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
+        /* Скрываем кнопку Roadmap на ПК и показываем только на мобилках */
+        .mobile-only-btn {
+            display: none !important;
+        }
+        @media screen and (max-width: 768px) {
+            .mobile-only-btn {
+                display: block !important;
+                width: 100%;
+            }
+        }
 
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
@@ -341,7 +351,7 @@
 
 <!-- Кнопка 3: Переход на раздел Roadmap -->
 <a href="#roadmap" style="text-decoration: none; width: 100%;">
-    <button class="mint-main-btn" style="width: 100%;" onclick="document.querySelectorAll('.nav-tab')[1].click();">3. ROADMAP</button>
+    <button class="mint-main-btn mobile-only-btn" onclick="document.querySelectorAll('.nav-tab')[1].click();">3. ROADMAP</button>
 </a>
 
 
