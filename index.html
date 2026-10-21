@@ -225,49 +225,47 @@
     font-size: 0.85rem !important;
     white-space: nowrap !important;
   }
-              /* ==========================================================================
-     ФИКС ДОРОЖНОЙ КАРТЫ (ROADMAP) ДЛЯ МОБИЛЬНЫХ
+    /* ==========================================================================
+     ЖЕСТКИЙ СБРОС ДЛЯ ТЕКСТА В ROADMAP (УБИРАЕМ ENTER ПОСЛЕ КАЖДОГО СЛОВА)
      ========================================================================== */
   
-  /* 1. Главный контейнер всей дорожной карты */
-  .roadmap, 
-  .roadmap-container, 
-  .roadmap-section { /* Замени на класс своего контейнера Roadmap */
+  /* Находим контейнер контента внутри дорожной карты */
+  .roadmap-content, 
+  .roadmap-list, 
+  .roadmap-box,
+  [class*="roadmap"] { /* Этот селектор применится ко ВСЕМ классам, содержащим слово roadmap */
+    display: block !important; /* Убираем flex/grid, которые могли выстраивать слова в колонку */
     width: 100% !important;
-    max-width: 100% !important;
-    padding: 20px 15px !important;
-    box-sizing: border-box !important;
   }
 
-  /* 2. Блок конкретного раунда (этапа) */
-  .roadmap-item, 
-  .roadmap-step, 
-  .roadmap-card,
-  .round { /* Замени на класс карточки раунда */
-    width: 100% !important;         /* Карточка раунда растягивается на весь экран смартфона */
-    max-width: 100% !important;
-    display: block !important;       /* Переводим в блочный режим, чтобы текст не сжимался сбоку */
-    margin: 0 0 20px 0 !important;   /* Отступы между раундами вниз */
-    box-sizing: border-box !important;
+  /* Сбрасываем отображение для абсолютно ВСЕХ текстовых элементов внутри роадмапа */
+  [class*="roadmap"] p,
+  [class*="roadmap"] span,
+  [class*="roadmap"] div,
+  [class*="roadmap"] li,
+  [class*="roadmap"] h3,
+  [class*="roadmap"] h4 {
+    display: inline !important;       /* Заставляем слова идти в одну строку друг за другом */
+    flex-direction: row !important;   /* На случай, если где-то остался flex */
+    
+    /* Уничтожаем любые правила принудительного переноса строк */
+    white-space: normal !important;   /* Сбрасывает pre/pre-wrap/pre-line, которые давали эффект ENTER */
+    word-break: normal !important;    /* Запрещает ломать слова */
+    overflow-wrap: anywhere !important;
+    
+    /* Возвращаем адекватные размеры */
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;      /* Нормальный человеческий отступ между строками */
+    letter-spacing: normal !important;
   }
 
-  /* 3. Текст внутри каждого раунда */
-  .roadmap-item p, 
-  .roadmap-step p, 
-  .roadmap-card p,
-  .round p,
-  .roadmap-text { /* Замени на класс текста / описания раунда */
+  /* Чтобы заголовки и абзацы все-таки отделялись друг от друга (а не слипались в одну кучу), 
+     мы делаем блочными только сами логические контейнеры абзацев */
+  [class*="roadmap"] p,
+  [class*="roadmap"] div.text-block {
+    display: block !important; 
+    margin-bottom: 12px !important;   /* Отступ между абзацами */
     width: 100% !important;
-    display: inline-block !important;
-    text-align: left !important;     /* Текст читается слева направо */
-    
-    /* Отменяем сжатие слов по одной букве */
-    white-space: normal !important;  /* Позволяет тексту нормально переноситься по фразам */
-    word-break: normal !important;   /* Запрещает рвать слова на части */
-    overflow-wrap: break-word !important; /* Переносит только очень длинные слова */
-    
-    font-size: 0.9rem !important;    /* Комфортный размер для чтения с телефона */
-    line-height: 1.4 !important;     /* Нормальный межстрочный интервал */
   }
 }
         .manifesto-box {
