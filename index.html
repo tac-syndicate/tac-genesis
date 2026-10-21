@@ -159,17 +159,17 @@
                 width: 100%;
             }
         }
-                        /* Перестройка дорожной карты в широкие плашки сверху вниз ТОЛЬКО для ПК */
+                /* Презентационные плашки Роадмапа для ПК */
         @media screen and (max-width: 768px) {
-            /* Оставляем мобильную версию без изменений */
+            /* Мобильную змейку оставляем идеальной и не трогаем */
         }
         @media screen and (min-width: 769px) {
-            /* Выстраиваем этапы строго друг под другом на ПК */
+            /* Общий контейнер — выстраиваем этапы строго друг под другом */
             .timeline {
                 display: flex !important;
                 flex-direction: column !important;
-                gap: 40px !important;
-                max-width: 1000px !important;
+                gap: 50px !important;
+                max-width: 1100px !important;
                 margin: 0 auto !important;
                 padding: 40px 20px !important;
             }
@@ -190,52 +190,81 @@
                 position: relative !important;
             }
 
-            /* Превращаем карточку внутри этапа в широкую горизонтальную строку */
+            /* Сама притемненная карточка: делит пространство на 2 равные половины */
             .content {
                 display: flex !important;
-                flex-direction: row !important; /* Текст и картинка встанут бок о бок */
+                flex-direction: row !important; /* Текст слева, NFT справа */
                 align-items: center !important;
                 justify-content: space-between !important;
-                gap: 40px !important;
-                padding: 35px !important;
+                gap: 50px !important;
+                padding: 40px !important;
                 box-sizing: border-box !important;
-                text-align: left !important; /* Выравнивание текста по левому краю для читаемости */
-                background: rgba(11, 17, 32, 0.85) !important;
-                border: 1px solid rgba(255, 255, 255, 0.06) !important;
-                border-radius: 20px !important;
+                background: linear-gradient(135deg, rgba(11, 17, 32, 0.85) 0%, rgba(2, 4, 8, 0.9) 100%) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                border-radius: 24px !important;
+                backdrop-filter: blur(12px) !important;
             }
 
-            /* Убираем треугольные мобильные стрелочки у карточек */
+            /* Скрываем треугольные стрелочки змейки */
             .content::before {
                 display: none !important;
             }
 
-            /* Содержимое карточки (заголовки, списки) занимает левую часть */
-            .content .phase-title, 
-            .content .details,
-            .content .date,
+            /* ЛЕВАЯ ПОЛОВИНА ОКНА: контейнер для всего текста */
+            .content div:not(.nft-img) {
+                flex: 1 !important;
+                width: 50% !important; /* Занимает ровно половину плашки */
+                display: flex !important;
+                flex-direction: column !important; /* Элементы идут строго сверху вниз */
+                align-items: flex-start !important; /* Выравнивание по левому краю */
+                text-align: left !important;
+            }
+
+            /* 1 ПУНКТ (Верхняя левая часть) */
+            /* Зеленый бейдж "LIVE NOW" */
             .content .badge {
+                display: inline-block !important;
+                margin: 0 0 15px 0 !important;
+            }
+            /* Дата (October 20, 2026) */
+            .content .date {
+                font-size: 1.1rem !important;
+                color: var(--cyan) !important;
+                font-weight: 700 !important;
+                margin: 0 0 10px 0 !important;
+                position: static !important; /* Сбрасываем старое абсолютное позиционирование */
+            }
+            /* Главный заголовок (Phase 1: Whitelist Allocation) */
+            .content h2, .content .phase-title {
+                font-size: 1.8rem !important;
+                font-weight: 800 !important;
+                margin: 0 0 25px 0 !important;
+                color: #fff !important;
+            }
+
+            /* 2 ПУНКТ (Описание, которое ложится строго снизу под 1 пунктом) */
+            .content .details, .content p {
+                font-size: 0.95rem !important;
+                line-height: 1.8 !important;
+                color: #b4c6ef !important; /* Приятный для чтения светлый оттенок */
+                margin: 0 !important;
                 width: 100% !important;
             }
 
-            /* Группируем текстовый контент, чтобы он не разваливался */
-            .content div:not(.nft-img) {
-                flex: 1 !important;
-            }
-
-            /* Картинка медведя встает справа от текста — крупная и красивая */
+            /* ПРАВАЯ ПОЛОВИНА ОКНА: картинка NFT */
             .nft-img {
-                width: 220px !important; /* Делаем арт медведя большим и заметным */
-                height: 220px !important;
+                width: 45% !important; /* Занимает вторую половину (с учетом отступов) */
+                max-width: 400px !important;
+                height: auto !important;
+                aspect-ratio: 1 / 1 !important; /* Идеальный квадрат */
                 object-fit: cover !important;
+                border-radius: 20px !important;
+                box-shadow: 0 0 30px rgba(0, 203, 215, 0.15) !important;
                 margin: 0 !important;
                 display: block !important;
-                border-radius: 16px !important;
-                box-shadow: 0 0 20px rgba(0, 203, 215, 0.1);
-                order: 2 !important; /* Принудительно ставим картинку справа */
+                order: 2 !important; /* Гарантирует, что картинка всегда будет справа */
             }
         }
-
 
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
