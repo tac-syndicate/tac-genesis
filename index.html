@@ -149,6 +149,25 @@
             /* Делаем легкую тень, чтобы буквы сильнее отделялись от фона */
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
+                /* Кнопка ROADMAP для мобильных устройств */
+        @media screen and (max-width: 768px) {
+            .nav-menu {
+                display: flex !important;
+            }
+            .nav-tab {
+                display: none;
+            }
+            .nav-tab:nth-child(2) { 
+                display: inline-block !important;
+                color: var(--cyan);
+                border: 1px solid rgba(0, 203, 215, 0.4);
+                background: rgba(0, 203, 215, 0.05);
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                border-radius: 8px;
+            }
+        }
+
 
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
