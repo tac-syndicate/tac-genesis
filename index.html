@@ -185,64 +185,47 @@
         .details { color: var(--muted); font-size: 0.95rem; line-height: 1.6; } .details p { margin: 6px 0; }
         .manifesto-box { max-width: 800px; background: rgba(155,81,224,0.05); border: 1px dashed rgba(155,81,224,0.3); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center; font-style: italic; }
         @media (max-width: 768px) {
-  /* Главный контейнер хедера */
+  /* Шапка работает как обычно, но теперь знает, как переносить строки */
   .header { 
     display: flex !important;
-    flex-direction: row !important; /* Строго горизонтальный режим для первой линии */
-    flex-wrap: wrap !important;     /* Разрешаем перенос второй строки вниз */
+    flex-wrap: wrap !important; /* Разрешаем этажи */
     justify-content: space-between !important; 
     align-items: center !important;
-    gap: 15px 0 !important;         /* Отступ между первой и второй строчкой */
-  }
-  
-  /* 1. ЛОГОТИП — Жестко крепим на ПЕРВОЕ место (вверху слева) */
-  .logo { 
-    order: 1 !important;
-    width: auto !important;
-    margin: 0 !important;
+    padding: 15px 20px !important;
   }
 
-  /* 2. ДВА ЗНАЧКА (ТГ и Твиттер) — У них должен быть класс .social-icons. 
-     Жестко крепим их на ВТОРОЕ место (вверху, сразу после логотипа) */
-  .social-icons {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 15px !important;
-    order: 2 !important; 
-    width: auto !important;
-    margin: 0 0 0 auto !important; /* Прижимает значки вправо к кнопке Wallet */
+  /* Логотип, значки и Wallet остаются в первой строчке, мы их не трогаем */
+  .logo, .social-icons, .connect-btn { 
+    width: auto !important; 
   }
 
-  /* 3. КНОПКА WALLET (У тебя это .connect-btn на строке 219).
-     Жестко крепим на ТРЕТЬЕ место (вверху справа, закрывает первую строчку) */
-  .connect-btn, 
-  .wallet-btn { 
-    order: 3 !important;
-    width: auto !important;
-    margin: 0 0 0 15px !important; /* Отступ слева от значков */
+  /* НАШ ЭНТЕР / ВТОРОЙ ОТДЕЛЬНЫЙ БЛОК:
+     Мы берем псевдоэлемент после кошелька и принудительно создаем новую строку */
+  .connect-btn::after {
+    content: "" !important;
+    display: block !important;
+    width: 100% !important;
+    height: 0 !important;
   }
-  
-  /* 4. ВТОРАЯ СТРОЧКА: ТРИ ПУНКТА МЕНЮ (Presentation, Roadmap, Swap).
-     Жестко крепим на ЧЕТВЕРТОЕ место — они гарантированно упадут вниз */
+
+  /* ВТОРАЯ СТРОЧКА (Полностью независимый блок снизу) */
   .nav-menu { 
-    display: flex !important;       /* Включаем их видимость */
-    flex-direction: row !important; /* Внутри второй строки они идут в ряд */
+    display: flex !important;        /* Включаем видимость трех слов */
+    flex-direction: row !important;  /* Выстраиваем их в ряд */
     justify-content: space-around !important; /* Равномерно распределяем */
     align-items: center !important;
-    width: 100% !important;         /* Растягиваем на 100%, чтобы выбить на нижний этаж */
-    order: 4 !important;            /* Самый высокий приоритет переноса */
-    margin-top: 10px !important;    /* Отступ от верхнего ряда */
+    
+    width: 100% !important;          /* Блок ложится на весь второй этаж */
+    margin-top: 15px !important;     /* Четкий контролируемый отступ от первой строки */
+    padding: 0 !important;
   }
 
-  /* Адаптивный размер шрифта для трех слов */
+  /* Ссылки внутри второй строки */
   .nav-menu a {
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
     white-space: nowrap !important;
-    padding: 6px 10px !important;
   }
 }
-
         .manifesto-box {
     background: rgba(0, 0, 0, 0.6) !important; /* Полупрозрачный темный фон */
     backdrop-filter: blur(10px) !important;    /* Эффект размытого стекла */
