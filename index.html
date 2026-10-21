@@ -159,9 +159,12 @@
                 width: 100%;
             }
         }
-                        /* Презентационные плашки Роадмапа для ПК по схеме из Paint */
+                /* Презентационные плашки Роадмапа для ПК по схеме из Paint */
         @media screen and (max-width: 768px) {
-            /* Мобильную змейку оставляем идеальной и не трогаем */
+            /* Для мобилок отключаем влияние нового блока текста, чтобы ничего не поехало */
+            .roadmap-text-block {
+                display: contents !important;
+            }
         }
         @media screen and (min-width: 769px) {
             /* Общий контейнер — выстраиваем этапы строго друг под другом */
@@ -169,7 +172,7 @@
                 display: flex !important;
                 flex-direction: column !important;
                 gap: 50px !important;
-                max-width: 1160px !important;
+                max-width: 1100px !important;
                 margin: 0 auto !important;
                 padding: 40px 20px !important;
             }
@@ -190,7 +193,7 @@
                 position: relative !important;
             }
 
-            /* Сама притемненная карточка: делит пространство на 2 равные части */
+            /* Сама притемненная карточка: делит пространство на 2 равные половины */
             .content {
                 display: flex !important;
                 flex-direction: row !important; /* Текст слева, NFT справа */
@@ -210,77 +213,58 @@
                 display: none !important;
             }
 
-            /* ЛЕВАЯ ПОЛОВИНА ОКНА (Для всего текста) */
-            .content div:not(.nft-img) {
-                flex: 1 !important;
+            /* ЛЕВАЯ ПОЛОВИНА ОКНА (Включается только на ПК) */
+            .roadmap-text-block {
                 width: 50% !important; /* Текст занимает ровно половину плашки */
                 max-width: 50% !important;
                 display: flex !important;
-                flex-direction: row !important; /* Позволяет бейджу и дате встать на одной линии */
-                flex-wrap: wrap !important; /* Самая важная магия: заголовок и описание переносятся под них! */
-                align-content: flex-start !important;
-                align-items: center !important;
-                gap: 15px !important; /* Зазоры между элементами текста */
+                flex-direction: column !important; /* Элементы идут строго сверху вниз */
+                align-items: flex-start !important; /* Выравнивание по левому краю */
                 text-align: left !important;
+                box-sizing: border-box !important;
             }
 
-            /* 1 ПУНКТ НА СХЕМЕ: Бейдж и дата наверху в одну линию */
-            /* Зеленый бейдж "LIVE NOW" / "UPCOMING" */
+            /* Элементы 1-го пункта идут друг под другом сверху */
             .content .badge {
                 display: inline-block !important;
-                margin: 0 !important;
-                order: 1 !important;
+                margin-bottom: 12px !important;
             }
-            /* Дата (October 20, 2026) */
             .content .date {
                 font-size: 1.1rem !important;
                 color: var(--cyan) !important;
                 font-weight: 700 !important;
-                margin: 0 0 0 10px !important;
-                position: static !important; /* Сбрасываем старое абсолютное позиционирование */
-                order: 2 !important;
+                margin-bottom: 10px !important;
+                position: static !important; /* Сбрасываем абсолютное позиционирование */
             }
-            /* Главный заголовок (Phase 1: Whitelist Allocation) */
             .content h2, .content .phase-title {
-                font-size: 2.1rem !important; /* Крупный и солидный */
+                font-size: 2.1rem !important;
                 font-weight: 900 !important;
-                width: 100% !important; /* Растягивается на всю левую половину */
-                margin: 15px 0 20px 0 !important;
                 color: #fff !important;
-                order: 3 !important;
+                margin: 0 0 25px 0 !important;
             }
 
-            /* 2 ПУНКТ НА СХЕМЕ: Описание строго снизу под заголовком */
+            /* 2-й ПУНКТ ложится строго снизу под заголовком */
             .content .details, .content p {
                 font-size: 1.05rem !important;
                 line-height: 1.8 !important;
-                color: #b4c6ef !important; 
-                width: 100% !important; /* Растягивается на всю левую половину под заголовком */
-                margin: 0 !important;
-                order: 4 !important;
-            }
-            
-            /* Делаем списки внутри описания аккуратными */
-            .content .details ul, .content p ul {
-                padding-left: 20px !important;
+                color: #b4c6ef !important;
+                width: 100% !important;
                 margin: 0 !important;
             }
 
             /* ПРАВАЯ ПОЛОВИНА ОКНА: Квадратная картинка NFT во всю высоту плашки */
             .nft-img {
-                width: 45% !important; /* Занимает вторую половину с учетом отступа */
+                width: 45% !important; /* Занимает вторую половину */
                 max-width: 420px !important;
                 height: auto !important;
                 aspect-ratio: 1 / 1 !important; /* Строгий ровный квадрат */
-                object-fit: cover !important; /* Медведь заполняет весь квадрат без искажений */
+                object-fit: cover !important;
                 border-radius: 24px !important;
                 box-shadow: 0 0 35px rgba(0, 203, 215, 0.12) !important;
                 margin: 0 !important;
                 display: block !important;
-                order: 5 !important; /* Картинка всегда железно справа */
             }
         }
-
 
         .mint-main-btn { background: linear-gradient(45deg, #ffffff, var(--cyan)); color: #000; border: none; padding: 18px 48px; border-radius: 14px; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 0 30px rgba(0,242,254,0.4); transition: 0.3s; }
         .mint-main-btn:hover { transform: scale(1.04); background: linear-gradient(45deg, var(--cyan), var(--purple)); color: #fff; }
@@ -588,16 +572,21 @@
 <div class="timeline">
 <!-- PHASE 1: WHITELIST (OCT 20) -->
 <div class="phase-container left">
-<div class="content">
-<span class="badge active">Live Now</span>
-<div class="date">October 20, 2026</div>
-<div class="phase-title">Phase 1: Whitelist Allocation</div>
-<div class="details">
-<p>• Registration: Official opening of Whitelist registration.</p>
-<p>• Allocation Rules: Strictly 88 slots available at the price of 50 TON. The registration window closes exactly after 24 hours.</p>
-</div>
-<img src="bear1.png" alt="Whitelist Allocation" class="nft-img">
-</div>
+    <div class="content">
+        
+        <div class="roadmap-text-block"> <!-- 1. ВСТАВИТЬ СЮДА -->
+            <span class="badge">Live Now</span>
+            <div class="date">October 20, 2026</div>
+            <h2>Phase 1: Whitelist Allocation</h2>
+            <div class="details">
+                <ul>
+                    <li>...тест...</li>
+                </ul>
+            </div>
+        </div> <!-- 2. ВСТАВИТЬ СЮДА (строго перед картинкой!) -->
+        
+        <img src="bear1.png" class="nft-img">
+    </div>
 </div>
 <!-- PHASE 2: MINT (OCT 25) -->
 <div class="phase-container right">
